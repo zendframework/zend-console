@@ -9,7 +9,7 @@
     "homepage": "https://github.com/zendframework/zend-console",
     "autoload": {
         "psr-4": {
-            "Zend\\Console": "src/"
+            "Zend\\Console\\": "src/"
         }
     },
     "require": {
