@@ -1,41 +1,28 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework (http://framework.zend.com/)
  *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Console
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @link      http://github.com/zendframework/zf2 for the canonical source repository
+ * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @package   Zend_Console
  */
 
 namespace ZendTest\Console;
-use Zend\Console\Getopt,
-    Zend\Console\GetoptException;
+
+use Zend\Console\Getopt;
 
 /**
  * @category   Zend
  * @package    Zend_Console
  * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Console
  */
 class GetoptTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        if(ini_get('register_argc_argv') == false) {
+        if (ini_get('register_argc_argv') == false) {
             $this->markTestSkipped("Cannot Test Zend\\Console\\Getopt without 'register_argc_argv' ini option true.");
         }
         $_SERVER['argv'] = array('getopttest');
@@ -239,7 +226,7 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
         unset($opts->a);
         $this->assertFalse(isset($opts->a));
     }
-    
+
     /**
      * @group ZF-5948
      */
@@ -331,7 +318,7 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
     {
         $opts = new Getopt('abp:', array('--apple'));
         $opts->setAliases(array('a' => 'apple'));
-        
+
         $this->setExpectedException('\Zend\Console\Exception\InvalidArgumentException', 'defined more than once');
         $opts->setAliases(array('b' => 'apple'));
     }
@@ -341,7 +328,7 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
         $opts = new Getopt('abp:', array('--apple'));
         $opts->setAliases(array('c' => 'cumquat'));
         $opts->setArguments(array('-c'));
-        
+
         $this->setExpectedException('\Zend\Console\Exception\RuntimeException', 'not recognized');
         $opts->parse();
     }
@@ -439,7 +426,7 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
         try {
             $opts = new GetOpt('abp:');
             $this->fail();
-        } catch(\Zend\Console\Exception\InvalidArgumentException $e) {
+        } catch (\Zend\Console\Exception\InvalidArgumentException $e) {
             $this->assertContains('$_SERVER["argv"]', $e->getMessage());
         }
 
@@ -502,7 +489,7 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
     public function testUsingDashWithoutOptionNotAsLastArgumentThrowsException()
     {
         $opts = new Getopt("abp:", array("-", "file1"));
-        
+
         $this->setExpectedException('\Zend\Console\Exception\RuntimeException');
         $opts->parse();
     }
@@ -516,7 +503,7 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
 
         $opts = new Getopt(
             array('foo=s' => 'Option One (string)'),
-            array('--foo='.$fooValue)
+            array('--foo=' . $fooValue)
         );
         $this->assertEquals($fooValue, $opts->foo);
     }
@@ -527,7 +514,7 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
             array('colors=s' => 'Colors-option'),
             array('--colors=red', '--colors=green', '--colors=blue')
         );
-        
+
         $this->assertInternalType('string', $opts->colors);
         $this->assertEquals('blue', $opts->colors, 'Should be equal to last variable');
     }
@@ -547,7 +534,7 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
     public function testGetoptIgnoreCumulativeFlagsByDefault()
     {
         $opts = new Getopt('v', array('-v', '-v', '-v'));
-        
+
         $this->assertEquals(true, $opts->v);
     }
 
