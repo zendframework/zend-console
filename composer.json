@@ -20,6 +20,8 @@
         "zendframework/zend-validator": "To support DefaultRouteMatcher usage",
         "zendframework/zend-filter": "To support DefaultRouteMatcher usage"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "extra": {
         "branch-alias": {
             "dev-master": "2.4-dev",
