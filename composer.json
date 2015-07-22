@@ -18,7 +18,8 @@
     },
     "suggest": {
         "zendframework/zend-validator": "To support DefaultRouteMatcher usage",
-        "zendframework/zend-filter": "To support DefaultRouteMatcher usage"
+        "zendframework/zend-filter": "To support DefaultRouteMatcher usage",
+        "zendframework/zend-text": "Add text based components"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
