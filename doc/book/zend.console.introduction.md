@@ -28,7 +28,7 @@ controller &lt;zend.mvc.controllers&gt; and an action.
 
 Let's assume that we'd like our application to handle the following command line:
 
-``` sourceCode
+```php
 > zf user resetpassword user@mail.com
 ```
 
@@ -41,7 +41,7 @@ application bin folder or simply an alias for `php public/index.php`
 
 First we need to create a **route definition**:
 
-``` sourceCode
+```php
 user resetpassword <userEmail>
 ```
 
@@ -49,7 +49,7 @@ This simple route definition expects exactly 3 arguments: a literal "user", lite
 followed by a parameter we're calling "userEmail". Let's assume we also accept one optional
 parameter, that will turn on verbose operation:
 
-``` sourceCode
+```php
 user resetpassword [--verbose|-v] <userEmail>
 ```
 
@@ -64,7 +64,7 @@ to route definitions and the order that flags are used on the command line.
 Let's use the definition above and configure our console route. Console routes are automatically
 loaded from the following location inside config file:
 
-``` sourceCode
+```php
 array(
     'router' => array(
         'routes' => array(
@@ -85,7 +85,7 @@ array(
 Let's create our console route and point it to
 `Application\Controller\IndexController::resetpasswordAction()`
 
-``` sourceCode
+```php
 // we could define routes for Application\Controller\IndexController in Application module config
 file
 // which is usually located at modules/application/config/module.config.php
@@ -116,7 +116,7 @@ http requests.
 
 We will now add `resetpassword` action to `Application\Controller\IndexController`:
 
-``` sourceCode
+```php
 <?php
 namespace Application\Controller;
 
@@ -186,7 +186,7 @@ Usage info in ZF2 console applications is provided by loaded modules
 
 Let's modify our `Application\Module` to provide usage info:
 
-``` sourceCode
+```php
 <?php
 
 namespace Application;

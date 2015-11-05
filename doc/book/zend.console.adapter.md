@@ -9,7 +9,7 @@ and provides basic line drawing capabilities.
 If you are using MVC controllers &lt;zend.mvc.controllers&gt; you can obtain Console adapter
 instance using Service Manager.
 
-``` sourceCode
+```php
 namespace Application;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -31,7 +31,7 @@ console?');
 
 If you are using `Zend\Console` without MVC, we can get adapter using the following code:
 
-``` sourceCode
+```php
 use Zend\Console\Console;
 use Zend\Console\Exception\RuntimeException as ConsoleException;
 

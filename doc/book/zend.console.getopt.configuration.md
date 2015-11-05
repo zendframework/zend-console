@@ -11,7 +11,7 @@ See Declaring Getopt Rules
 
 ### Using addRules()
 
-``` sourceCode
+```php
 $opts = new Zend\Console\Getopt('abp:');
 $opts->addRules(
   array(
@@ -33,7 +33,7 @@ corresponding help string.
 
 ### Using setHelp()
 
-``` sourceCode
+```php
 $opts = new Zend\Console\Getopt('abp:');
 $opts->setHelp(
     array(
@@ -62,7 +62,7 @@ An alias may be declared only once. If you try to redefine an alias, a
 
 ### Using setAliases()
 
-``` sourceCode
+```php
 $opts = new Zend\Console\Getopt('abp:');
 $opts->setAliases(
     array(
@@ -90,7 +90,7 @@ current arguments, and the latter method substitutes the array for the current a
 
 ### Using addArguments() and setArguments()
 
-``` sourceCode
+```php
 // By default, the constructor uses $_SERVER['argv']
 $opts = new Zend\Console\Getopt('abp:');
 
@@ -136,7 +136,7 @@ The two arguments to the `setOption()` method are a configuration option name an
 
 ### Using setOption()
 
-``` sourceCode
+```php
 $opts = new Zend\Console\Getopt('abp:');
 $opts->setOption('ignoreCase', true);
 ```
@@ -148,7 +148,7 @@ configuration; you don't have to list all options.
 
 ### Using setOptions()
 
-``` sourceCode
+```php
 $opts = new Zend\Console\Getopt('abp:');
 $opts->setOptions(
     array(

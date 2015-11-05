@@ -19,7 +19,7 @@ Our Application module (and any other module) can provide **application banner**
 our Module class has to implement `Zend\ModuleManager\Feature\ConsoleBannerProviderInterface`. Let's
 do this now.
 
-``` sourceCode
+```php
 // modules/Application/Module.php
 <?php
 namespace Application;
@@ -52,7 +52,7 @@ After running our application, we'll see our newly created banner.
 
 Let's create and load second module that provides a banner.
 
-``` sourceCode
+```php
 <?php
 // config/application.config.php
 return array(
@@ -64,7 +64,7 @@ return array(
 
 User module will add-on a short info about itself:
 
-``` sourceCode
+```php
 // modules/User/Module.php
 <?php
 namespace User;
@@ -97,7 +97,7 @@ In order to display usage information, our Module class has to implement
 `Zend\ModuleManager\Feature\ConsoleUsageProviderInterface`. Let's modify our example and add new
 method:
 
-``` sourceCode
+```php
 // modules/Application/Module.php
 <?php
 namespace Application;
@@ -147,7 +147,7 @@ affect how MVC handles console commands. In order to handle real console request
 In order to output free-form text as usage information, `getConsoleUsage()` can return a string, or
 an array of strings, for example:
 
-``` sourceCode
+```php
 public function getConsoleUsage(Console $console)
 {
     return 'User module expects exactly one argument - user name. It will display information for
@@ -168,7 +168,7 @@ If `getConsoleUsage()` returns and associative array, it will be automatically a
 The first column will be prepended with script name (the entry point for the application). This is
 useful to display different ways of running the application.
 
-``` sourceCode
+```php
 public function getConsoleUsage(Console $console)
 {
      return array(
@@ -196,7 +196,7 @@ aligned in multiple columns for readability.
 
 Below is an example:
 
-``` sourceCode
+```php
 public function getConsoleUsage(Console $console)
 {
     return array(
@@ -213,7 +213,7 @@ public function getConsoleUsage(Console $console)
 
 Using this method, we can display more than 2 columns of information, for example:
 
-``` sourceCode
+```php
 public function getConsoleUsage(Console $console)
 {
     return array(
@@ -245,7 +245,7 @@ be transformed in any way.
 You can use mix together all of the above styles to provide comprehensive usage information, for
 example:
 
-``` sourceCode
+```php
 public function getConsoleUsage(Console $console)
 {
     return array(

@@ -22,7 +22,7 @@ requires a parameter.
 
 ### Using the Short Syntax
 
-``` sourceCode
+```php
 $opts = new Zend\Console\Getopt('abp:');
 ```
 
@@ -55,7 +55,7 @@ your program.
 
 ### Using the Long Syntax
 
-``` sourceCode
+```php
 $opts = new Zend\Console\Getopt(
   array(
     'apple|a'    => 'apple option, with no parameter',

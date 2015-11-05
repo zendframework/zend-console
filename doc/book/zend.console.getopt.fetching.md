@@ -21,7 +21,7 @@ returns as a string the formatted set of usage messages for all declared options
 
 ### Catching Getopt Exceptions
 
-``` sourceCode
+```php
 try {
     $opts = new Zend\Console\Getopt('abp:');
     $opts->parse();
@@ -45,7 +45,7 @@ specify it on the command-line, the method returns `TRUE`. Otherwise the method 
 
 ### Using getOption()
 
-``` sourceCode
+```php
 $opts = new Zend\Console\Getopt('abp:');
 $b = $opts->getOption('b');
 $p_parameter = $opts->getOption('p');
@@ -56,7 +56,7 @@ were a class member variable. The `__isset()` magic method is also implemented.
 
 ### Using \_\_get() and \_\_isset() Magic Methods
 
-``` sourceCode
+```php
 $opts = new Zend\Console\Getopt('abp:');
 if (isset($opts->b)) {
     echo "I got the b option.\n";
@@ -93,7 +93,7 @@ This method returns an array of the strings that were not part of any options.
 
 ### Using getRemainingArgs()
 
-``` sourceCode
+```php
 $opts = new Zend\Console\Getopt('abp:');
 $opts->setArguments(array('-p', 'p_parameter', 'filename'));
 $args = $opts->getRemainingArgs(); // returns array('filename')

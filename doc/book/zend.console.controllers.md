@@ -18,7 +18,7 @@ the controller class. This is analogous to the way HTTP requests are handled in 
 
 In this example we'll use the following simple route:
 
-``` sourceCode
+```php
 // FILE: modules/Application/config/module.config.php
 array(
     'router' => array(
@@ -47,7 +47,7 @@ array(
 
 This route will match commands such as:
 
-``` sourceCode
+```php
 > php public/index.php show users
 php public/index.php show all users
 php public/index.php show disabled users
@@ -57,7 +57,7 @@ This route points to the method `Application\Controller\IndexController::showUse
 
 Let's add it to our controller.
 
-``` sourceCode
+```php
 <?php
 namespace Application\Controller;
 
@@ -106,7 +106,7 @@ In order to make this method functional, we'll have to display the result in the
 The simplest way for our controller to display data in the console window is to `return` a string.
 Let's modify our example to output a list of users:
 
-``` sourceCode
+```php
 public function showUsersAction()
 {
     $request = $this->getRequest();
@@ -160,7 +160,7 @@ based on that context.
 
 Here is an example of how to check if we are dealing with a console request:
 
-``` sourceCode
+```php
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -196,7 +196,7 @@ that points to it.
 The example below shows how a single controller method can handle **both Console and HTTP
 requests**:
 
-``` sourceCode
+```php
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -240,7 +240,7 @@ within the `$request` container.
 
 Assuming we have the following route:
 
-``` sourceCode
+```php
 // inside of config.console.router.routes:
 'show-users' => array(
     'options' => array(
@@ -255,7 +255,7 @@ Assuming we have the following route:
 
 If this route matches, our action can now query parameters in the following way:
 
-``` sourceCode
+```php
 // an action inside Application\Controller\UsersController:
 public function showUsersAction()
 {
@@ -277,7 +277,7 @@ public function showUsersAction()
 In case of parameter alternatives, it is a good idea to **assign a name to the group**, which
 simplifies the branching in our action controllers. We can do this with the following syntax:
 
-``` sourceCode
+```php
 // inside of config.console.router.routes:
 'show-users' => array(
     'options' => array(
@@ -293,7 +293,7 @@ simplifies the branching in our action controllers. We can do this with the foll
 Now we can use a the group name `userTypeFilter` to check which option has been selected by the
 user:
 
-``` sourceCode
+```php
 public function showUsersAction()
 {
     $request = $this->getRequest();
@@ -323,7 +323,7 @@ by the user. Non-value flags will be equal to `true`.
 
 Given the following route:
 
-``` sourceCode
+```php
 'find-user' => array(
     'options' => array(
         'route'    => 'find user [--fast] [--verbose] [--id=] [--firstName=] [--lastName=]
@@ -338,7 +338,7 @@ Given the following route:
 
 We can easily retrieve values in the following fashion:
 
-``` sourceCode
+```php
 public function findAction()
 {
     $request = $this->getRequest();
@@ -363,7 +363,7 @@ public function findAction()
 
 In case of **flag alternatives**, we have to check each alternative separately:
 
-``` sourceCode
+```php
 // Assuming our route now reads:
 //      'route'    => 'find user [--fast|-f] [--verbose|-v] ... ',
 //

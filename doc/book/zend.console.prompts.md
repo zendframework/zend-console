@@ -6,7 +6,7 @@ describes available `Zend\Console\Prompt` classes and their example usage.
 
 All prompts can be instantiated as objects and provide `show()` method.
 
-``` sourceCode
+```php
 use Zend\Console\Prompt;
 
 $confirm = new Prompt\Confirm('Are you sure you want to continue?');
@@ -18,7 +18,7 @@ if ($result) {
 
 There is also a shorter method of displaying prompts, using static `prompt()` method:
 
-``` sourceCode
+```php
 use Zend\Console\Prompt;
 
 $result = Prompt\Confirm::prompt('Are you sure you want to continue?');
@@ -35,7 +35,7 @@ Both of above examples will display something like this:
 
 This prompt is best used for a **yes** / **no** type of choices.
 
-``` sourceCode
+```php
 Confirm( string $text, string $yesChar = 'y', string $noChar = 'n' )
 ```
 
@@ -50,7 +50,7 @@ Confirm( string $text, string $yesChar = 'y', string $noChar = 'n' )
 
 Example usage:
 
-``` sourceCode
+```php
 use Zend\Console\Prompt\Confirm;
 
 if ( Confirm::prompt('Is this the correct answer? [y/n]', 'y', 'n') ) {
@@ -66,7 +66,7 @@ if ( Confirm::prompt('Is this the correct answer? [y/n]', 'y', 'n') ) {
 
 This prompt asks for a line of text input.
 
-``` sourceCode
+```php
 Line(
     string $text = 'Please enter value',
     bool $allowEmpty = false,
@@ -85,7 +85,7 @@ Line(
 
 Example usage:
 
-``` sourceCode
+```php
 use Zend\Console\Prompt\Line;
 
 $name = Line::prompt(
@@ -104,7 +104,7 @@ $console->write("Good day to you $name!");
 This prompt reads a single keystroke and optionally validates it against a list o allowed
 characters.
 
-``` sourceCode
+```php
 Char(
     string $text = 'Please hit a key',
     string $allowedChars = 'abc',
@@ -131,7 +131,7 @@ Char(
 
 Example usage:
 
-``` sourceCode
+```php
 use Zend\Console\Prompt\Char;
 
 $answer = Char::prompt(
@@ -155,7 +155,7 @@ if ($answer == 'b') {
 
 This prompt displays a number of choices and asks the user to pick one.
 
-``` sourceCode
+```php
 Select(
     string $text = 'Please select one option',
     array  $options = array(),
@@ -178,7 +178,7 @@ Select(
 
 Example usage:
 
-``` sourceCode
+```php
 $options = array(
     'a' => 'Apples',
     'o' => 'Oranges',
@@ -204,7 +204,7 @@ $console->write("You told me that you like " . $options[$answer]);
 This prompt reads in a string, without echoing that string back to the console. Useful for password
 prompts.
 
-``` sourceCode
+```php
 Password(
     string $promptText = 'Password : ',
     boolean $echo = true
@@ -219,7 +219,7 @@ Password(
 
 Example usage:
 
-``` sourceCode
+```php
 use Zend\Console\Prompt\Password;
 
 $password = Password::prompt('Enter the secret', true);

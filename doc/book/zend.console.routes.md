@@ -13,7 +13,7 @@ There are several routes you can use with Console. All of them are defined in
 
 All Console Routes are automatically read from the following configuration location:
 
-``` sourceCode
+```php
 // This can sit inside of modules/Application/config/module.config.php or any other module's config.
 array(
     'router' => array(
@@ -39,7 +39,7 @@ which will refuse to run in a browser).
 
 A single route can be described with the following array:
 
-``` sourceCode
+```php
 // inside config.console.router.routes:
 // [...]
 'my-first-route' => array(
@@ -72,7 +72,7 @@ This is the default route type for console. It recognizes the following types of
 These parameters are expected to appear on the command line exactly the way they are spelled in the
 route. For example:
 
-``` sourceCode
+```php
 'show-users' => array(
     'options' => array(
         'route'    => 'show users',
@@ -86,7 +86,7 @@ route. For example:
 
 This route will **only** match for the following command line
 
-``` sourceCode
+```php
 > zf show users
 ```
 
@@ -95,7 +95,7 @@ params, or if one of the words is missing. The order of words is also enforced.
 
 We can also provide **optional literal parameters**, for example:
 
-``` sourceCode
+```php
 'show-users' => array(
     'options' => array(
         'route'    => 'show [all] users',
@@ -109,14 +109,14 @@ We can also provide **optional literal parameters**, for example:
 
 Now this route will match for both of these commands:
 
-``` sourceCode
+```php
 > zf show users
 zf show all users
 ```
 
 We can also provide **parameter alternative**:
 
-``` sourceCode
+```php
 'show-users' => array(
     'options' => array(
         'route'    => 'show [all|deleted|locked|admin] users',
@@ -131,7 +131,7 @@ We can also provide **parameter alternative**:
 This route will match both without and with second parameter being one of the words, which enables
 us to capture commands such:
 
-``` sourceCode
+```php
 > zf show users
 zf show locked users
 zf show admin users
@@ -151,7 +151,7 @@ in any other order.
 
 Let's create a route with **optional long flags**
 
-``` sourceCode
+```php
 'check-users' => array(
     'options' => array(
         'route'    => 'check users [--verbose] [--fast] [--thorough]',
@@ -165,7 +165,7 @@ Let's create a route with **optional long flags**
 
 This route will match for commands like:
 
-``` sourceCode
+```php
 > zf check users
 zf check users --fast
 zf check users --verbose --thorough
@@ -174,7 +174,7 @@ zf check users --thorough --fast
 
 We can also define one or more **mandatory long flags** and group them as an alternative:
 
-``` sourceCode
+```php
 'check-users' => array(
     'options' => array(
         'route'    => 'check users (--suspicious|--expired) [--verbose] [--fast] [--thorough]',
@@ -188,7 +188,7 @@ We can also define one or more **mandatory long flags** and group them as an alt
 
 This route will **only match** if we provide either `--suspicious` or `--expired` flag, i.e.:
 
-``` sourceCode
+```php
 > zf check users --expired
 zf check users --expired --fast
 zf check users --verbose --thorough --suspicious
@@ -197,7 +197,7 @@ zf check users --verbose --thorough --suspicious
 We can also use **short flags** in our routes and group them with long flags for convenience, for
 example:
 
-``` sourceCode
+```php
 'check-users' => array(
     'options' => array(
         'route'    => 'check users [--verbose|-v] [--fast|-f] [--thorough|-t]',
@@ -211,7 +211,7 @@ example:
 
 Now we can use short versions of our flags:
 
-``` sourceCode
+```php
 > zf check users -f
 zf check users -v --thorough
 zf check users -t -f -v
@@ -225,7 +225,7 @@ Value parameters capture any text-based input and come in two forms - positional
 Let's take a look at  
 the following route definition:
 
-``` sourceCode
+```php
 'delete-user' => array(
     'options' => array(
         'route'    => 'delete user <userEmail>',
@@ -239,7 +239,7 @@ the following route definition:
 
 This route will match for commands like:
 
-``` sourceCode
+```php
 > zf delete user john@acme.org
 zf delete user betty@acme.org
 ```
@@ -249,7 +249,7 @@ controller action (you can \[read more about accessing values here\](reading-val
 
 We can also define **optional positional value parameters** by adding square brackets:
 
-``` sourceCode
+```php
 'delete-user' => array(
     'options' => array(
         'route'    => 'delete user [<userEmail>]',
@@ -266,7 +266,7 @@ provided, `userEmail` parameter will not be set.
 
 We can define any number of positional value parameters, for example:
 
-``` sourceCode
+```php
 'create-user' => array(
     'options' => array(
         'route'    => 'create user <firstName> <lastName> <email> <position>',
@@ -280,7 +280,7 @@ We can define any number of positional value parameters, for example:
 
 This allows us to capture commands such as:
 
-``` sourceCode
+```php
 > zf create user Johnny Bravo john@acme.org Entertainer
 ```
 
@@ -288,7 +288,7 @@ This allows us to capture commands such as:
 Command line arguments on all systems must be properly escaped, otherwise they will not be passed to
 our application correctly. For example, to create a user with two names and a complex position
 description, we could write something like this:
-``` sourceCode
+```php
 zf create user "Johnan Tom" Bravo john@acme.org "Head of the Entertainment Department"
 ```
 
@@ -300,7 +300,7 @@ route. If we do not want to enforce the order of parameters, we can define **val
 **Value flags** can be defined and matched in any order. They can digest text-based values, for
 example:
 
-``` sourceCode
+```php
 'find-user' => array(
     'options' => array(
         'route'    => 'find user [--id=] [--firstName=] [--lastName=] [--email=] [--position=] ',
@@ -314,7 +314,7 @@ example:
 
 This route will match for any of the following routes:
 
-``` sourceCode
+```php
 > zf find user
 zf find user --id 29110
 zf find user --id=29110
@@ -335,7 +335,7 @@ whitespaces however, must be properly quoted and written after a space.
 In previous example, all value flags are optional. It is also possible to define **mandatory value
 flags**:
 
-``` sourceCode
+```php
 'rename-user' => array(
     'options' => array(
         'route'    => 'rename user --id= [--firstName=] [--lastName=]',
@@ -350,7 +350,7 @@ flags**:
 The `--id` parameter **is required** for this route to match. The following commands will work with
 this route:
 
-``` sourceCode
+```php
 > zf rename user --id 123
 zf rename user --id 123 --firstName Jonathan
 zf rename user --id=123 --lastName=Bravo
@@ -360,7 +360,7 @@ zf rename user --id=123 --lastName=Bravo
 
 This special route will catch all console requests, regardless of the parameters provided.
 
-``` sourceCode
+```php
 'default-route' => array(
     'type'     => 'catchall',
     'options' => array(
