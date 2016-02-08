@@ -11,6 +11,8 @@
 namespace ZendTest\Console\RouteMatcher;
 
 use Zend\Console\RouteMatcher\DefaultRouteMatcher;
+use Zend\Validator\Digits;
+use Zend\Validator\StringLength;
 
 /**
  * @category   Zend
@@ -1253,12 +1255,23 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
 
     public function routeValidatorsProvider()
     {
+        if (! class_exists(Digits::class)) {
+            return [
+                'do-not-run' => [
+                    '<string> <number>',
+                    [],
+                    ['foobar', '12345'],
+                    true,
+                ],
+            ];
+        }
+
         return [
             'validators-valid' => [
                 '<string> <number>',
                 [
-                    'string' => new \Zend\Validator\StringLength(['min' => 5, 'max' => 12]),
-                    'number' => new \Zend\Validator\Digits()
+                    'string' => new StringLength(['min' => 5, 'max' => 12]),
+                    'number' => new Digits()
                 ],
                 ['foobar', '12345'],
                 true
@@ -1266,8 +1279,8 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
             'validators-invalid' => [
                 '<string> <number>',
                 [
-                    'string' => new \Zend\Validator\StringLength(['min' => 5, 'max' => 12]),
-                    'number' => new \Zend\Validator\Digits()
+                    'string' => new StringLength(['min' => 5, 'max' => 12]),
+                    'number' => new Digits()
                 ],
                 ['foo', '12345'],
                 false
@@ -1275,8 +1288,8 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
             'validators-invalid2' => [
                 '<number> <string>',
                 [
-                    'string' => new \Zend\Validator\StringLength(['min' => 5, 'max' => 12]),
-                    'number' => new \Zend\Validator\Digits()
+                    'string' => new StringLength(['min' => 5, 'max' => 12]),
+                    'number' => new Digits()
                 ],
                 ['foozbar', 'not_digits'],
                 false
@@ -1294,6 +1307,14 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
      */
     public function testParamsCanBeValidated($routeDefinition, $validators, $arguments, $shouldMatch)
     {
+        if (! class_exists(Digits::class)) {
+            $this->markTestSkipped(sprintf(
+                '%s is skipped due to a dependency on zend-validator; update once that component '
+                . 'is forwards-compatible with zend-stdlib and zend-servicemanager v3',
+                __METHOD__
+            ));
+        }
+
         $matcher = new DefaultRouteMatcher($routeDefinition, [], [], [], null, $validators);
         $match = $matcher->match($arguments);
         if ($shouldMatch === false) {
