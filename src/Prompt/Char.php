@@ -94,10 +94,10 @@ class Char extends AbstractPrompt
         $char = $this->getConsole()->readChar($mask);
 
         if ($this->echo) {
-            echo trim($char)."\n";
+            $this->getConsole()->writeLine(trim($char));
         } else {
             if ($this->promptText) {
-                echo "\n";  // skip to next line but only if we had any prompt text
+                $this->getConsole()->writeLine();  // skip to next line but only if we had any prompt text
             }
         }
 
