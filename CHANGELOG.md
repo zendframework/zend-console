@@ -21,3 +21,6 @@ All notable changes to this project will be documented in this file, in reverse 
 - [#13](https://github.com/zendframework/zend-console/pull/13) updates the
   component to make it forwards-compatible with the zend-stdlib and
   zend-servicemanager v3 versions.
+- [#4](https://github.com/zendframework/zend-console/pull/4) fixes an error in
+  `getTitle()` whereby the `$output` array was being incorrectly used as a
+  string.
