@@ -24,3 +24,6 @@ All notable changes to this project will be documented in this file, in reverse 
 - [#4](https://github.com/zendframework/zend-console/pull/4) fixes an error in
   `getTitle()` whereby the `$output` array was being incorrectly used as a
   string.
+- [#12](https://github.com/zendframework/zend-console/pull/12) updates the
+  `Zend\Console\Prompt\Char::show()` method to call on the composed adapter's
+  `write()`/`writeLine()` methods instead of calling `echo()`.

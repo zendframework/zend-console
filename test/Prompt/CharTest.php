@@ -43,7 +43,7 @@ class CharTest extends \PHPUnit_Framework_TestCase
         ob_start();
         $response = $char->show();
         $text = ob_get_clean();
-        $this->assertEquals($text, "Please hit a key\n");
+        $this->assertEquals("Please hit a key\n", $text);
         $this->assertEquals('a', $response);
     }
 
@@ -70,7 +70,7 @@ class CharTest extends \PHPUnit_Framework_TestCase
         ob_start();
         $response = $char->show();
         $text = ob_get_clean();
-        $this->assertEquals($text, "Give a number\n");
+        $this->assertEquals("Give a number\n", $text);
         $this->assertEquals('1', $response);
     }
 
@@ -99,5 +99,24 @@ class CharTest extends \PHPUnit_Framework_TestCase
         $response = $char->show();
         ob_get_clean();
         $this->assertEquals('b', $response);
+    }
+
+    /**
+     * @group 12
+     */
+    public function testShowWritesToConsoleAdapterWhenEchoIsSetToTrue()
+    {
+        fwrite($this->adapter->stream, 'a');
+
+        $char = new Char();
+        $char->setEcho(true);
+        $char->setConsole($this->adapter);
+
+        ob_start();
+        $response = $char->show();
+        $text = ob_get_clean();
+
+        $this->assertEquals("Please hit a keya\n", $text);
+        $this->assertEquals('a', $response);
     }
 }
