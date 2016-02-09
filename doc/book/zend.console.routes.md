@@ -381,160 +381,30 @@ with other modules in your application.
 
 ## Console routes cheat-sheet
 
-<table>
-<colgroup>
-<col width="25%" />
-<col width="20%" />
-<col width="53%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Param type</th>
-<th align="left">Example route definition</th>
-<th align="left">Explanation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><strong>Literal params</strong></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">Literal</td>
-<td align="left"><code>foo bar</code></td>
-<td align="left">&quot;foo&quot; followed by &quot;bar&quot;</td>
-</tr>
-<tr class="odd">
-<td align="left">Literal alternative</td>
-<td align="left"><code>foo (bar|baz)</code></td>
-<td align="left">&quot;foo&quot; followed by &quot;bar&quot; or &quot;baz&quot;</td>
-</tr>
-<tr class="even">
-<td align="left">Literal, optional</td>
-<td align="left"><code>foo [bar]</code></td>
-<td align="left">&quot;foo&quot;, optional &quot;bar&quot;</td>
-</tr>
-<tr class="odd">
-<td align="left">Literal, optional alternative</td>
-<td align="left"><code>foo [bar|baz]</code></td>
-<td align="left">&quot;foo&quot;, optional &quot;bar&quot; or &quot;baz&quot;</td>
-</tr>
-<tr class="even">
-<td align="left"><strong>Flags</strong></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Flag long</td>
-<td align="left"><code>foo --bar</code></td>
-<td align="left">&quot;foo&quot; as first parameter, &quot;--bar&quot; flag before or after</td>
-</tr>
-<tr class="even">
-<td align="left">Flag long, optional</td>
-<td align="left"><code>foo [--bar]</code></td>
-<td align="left">&quot;foo&quot; as first parameter, optional &quot;--bar&quot; flag before or
-after</td>
-</tr>
-<tr class="odd">
-<td align="left">Flag long, optional, alternative</td>
-<td align="left"><code>foo [--bar|--baz]</code></td>
-<td align="left">&quot;foo&quot; as first parameter, optional &quot;--bar&quot; or
-&quot;--baz&quot;, before or after</td>
-</tr>
-<tr class="even">
-<td align="left">Flag short</td>
-<td align="left"><code>foo -b</code></td>
-<td align="left">&quot;foo&quot; as first parameter, &quot;-b&quot; flag before or after</td>
-</tr>
-<tr class="odd">
-<td align="left">Flag short, optional</td>
-<td align="left"><code>foo [-b]</code></td>
-<td align="left">&quot;foo&quot; as first parameter, optional &quot;-b&quot; flag before or
-after</td>
-</tr>
-<tr class="even">
-<td align="left">Flag short, optional, alternative</td>
-<td align="left"><code>foo [-b|-z]</code></td>
-<td align="left">&quot;foo&quot; as first parameter, optional &quot;-b&quot; or &quot;-z&quot;,
-before or after</td>
-</tr>
-<tr class="odd">
-<td align="left">Flag long/short alternative</td>
-<td align="left"><code>foo [--bar|-b]</code></td>
-<td align="left">&quot;foo&quot; as first parameter, optional &quot;--bar&quot; or &quot;-b&quot;
-before or after</td>
-</tr>
-<tr class="even">
-<td align="left"><strong>Value parameters</strong></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Value positional param</td>
-<td align="left"><code>foo &lt;bar&gt;</code></td>
-<td align="left">&quot;foo&quot; followed by any text (stored as &quot;bar&quot; param)</td>
-</tr>
-<tr class="even">
-<td align="left">Value positional param, optional</td>
-<td align="left"><code>foo [&lt;bar&gt;]</code></td>
-<td align="left">&quot;foo&quot;, optionally followed by any text (stored as &quot;bar&quot;
-param)</td>
-</tr>
-<tr class="odd">
-<td align="left">Value Flag</td>
-<td align="left"><code>foo --bar=</code></td>
-<td align="left">&quot;foo&quot; as first parameter, &quot;--bar&quot; with a value, before or
-after</td>
-</tr>
-<tr class="even">
-<td align="left">Value Flag, optional</td>
-<td align="left"><code>foo [--bar=]</code></td>
-<td align="left">&quot;foo&quot; as first parameter, optionally &quot;--bar&quot; with a value,
-before or after</td>
-</tr>
-<tr class="odd">
-<td align="left"><strong>Parameter groups</strong></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">Literal params group</td>
-<td align="left"><code>foo (bar|baz):myParam</code></td>
-<td align="left">&quot;foo&quot; followed by &quot;bar&quot; or &quot;baz&quot; (stored as
-&quot;myParam&quot; param)</td>
-</tr>
-<tr class="odd">
-<td align="left">Literal optional params group</td>
-<td align="left"><code>foo [bar|baz]:myParam</code></td>
-<td align="left">&quot;foo&quot; followed by optional &quot;bar&quot; or &quot;baz&quot; (stored as
-&quot;myParam&quot; param)</td>
-</tr>
-<tr class="even">
-<td align="left">Long flags group</td>
-<td align="left"><code>foo (--bar|--baz):myParam</code></td>
-<td align="left">&quot;foo&quot;, &quot;bar&quot; or &quot;baz&quot; flag before or after (stored as
-&quot;myParam&quot; param)</td>
-</tr>
-<tr class="odd">
-<td align="left">Long optional flags group</td>
-<td align="left"><code>foo [--bar|--baz]:myParam</code></td>
-<td align="left">&quot;foo&quot;, optional &quot;bar&quot; or &quot;baz&quot; flag before or after
-(as &quot;myParam&quot; param)</td>
-</tr>
-<tr class="even">
-<td align="left">Short flags group</td>
-<td align="left"><code>foo (-b|-z):myParam</code></td>
-<td align="left">&quot;foo&quot;, &quot;-b&quot; or &quot;-z&quot; flag before or after (stored as
-&quot;myParam&quot; param)</td>
-</tr>
-<tr class="odd">
-<td align="left">Short optional flags group</td>
-<td align="left"><code>foo [-b|-z]:myParam</code></td>
-<td align="left">&quot;foo&quot;, optional &quot;-b&quot; or &quot;-z&quot; flag before or after
-(stored as &quot;myParam&quot; param)</td>
-</tr>
-</tbody>
-</table>
-
-
+Param type                        | Example route definition    | Explanation
+:---                              | :---                        | :---
+**Literal params**                |                             |
+Literal                           | `foo bar`                   | "foo" followed by "bar"
+Literal alternative               | `foo (bar|baz)`             | "foo" followed by "bar" or "baz"
+Literal, optional                 | `foo [bar]`                 | "foo", optional "bar"
+Literal, optional alternative     | `foo [bar|baz]`             | "foo", optional "bar" or "baz"
+**Flags**                         |                             |
+Flag long                         | `foo --bar`                 | "foo" as first parameter, "--bar" flag before or after
+Flag long, optional               | `foo [--bar]`               | "foo" as first parameter, optional "--bar" flag before or after
+Flag long, optional, alternative  | `foo [--bar|--baz]`         | "foo" as first parameter, optional "--bar" or "--baz", before or after
+Flag short                        | `foo -b`                    | "foo" as first parameter, "-b" flag before or after
+Flag short, optional              | `foo [-b]`                  | "foo" as first parameter, optional "-b" flag before or after
+Flag short, optional, alternative | `foo [-b|-z]`               | "foo" as first parameter, optional "-b" or "-z", before or after
+Flag long/short alternative       | `foo [--bar|-b]`            | "foo" as first parameter, optional "--bar" or "-b" before or after
+**Value parameters**              |                             |
+Value positional param            | `foo <bar>`                 | "foo" followed by any text (stored as "bar" param)
+Value positional param, optional  | `foo [<bar>]`               | "foo", optionally followed by any text (stored as "bar" param)
+Value Flag                        | `foo --bar=`                | "foo" as first parameter, "--bar" with a value, before or after
+Value Flag, optional              | `foo [--bar=]`              | "foo" as first parameter, optionally "--bar" with a value, before or after
+**Parameter groups**              |                             |
+Literal params group              | `foo (bar|baz):myParam`     | "foo" followed by "bar" or "baz" (stored as "myParam" param)
+Literal optional params group     | `foo [bar|baz]:myParam`     | "foo" followed by optional "bar" or "baz" (stored as "myParam" param)
+Long flags group                  | `foo (--bar|--baz):myParam` | "foo", "bar" or "baz" flag before or after (stored as "myParam" param)
+Long optional flags group         | `foo [--bar|--baz]:myParam` | "foo", optional "bar" or "baz" flag before or after (as "myParam" param)
+Short flags group                 | `foo (-b|-z):myParam`       | "foo", "-b" or "-z" flag before or after (stored as "myParam" param)
+Short optional flags group        | `foo [-b|-z]:myParam`       | "foo", optional "-b" or "-z" flag before or after (stored as "myParam" param)
