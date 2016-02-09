@@ -2,11 +2,13 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 2.6.0 - 2016-02-8
+## 2.6.0 - 2016-02-9
 
 ### Added
 
-- Nothing.
+- [#16](https://github.com/zendframework/zend-console/pull/16) updates,
+  reorganizes, and publishes the documentation to
+  https://zendframework.github.io/zend-console
 
 ### Deprecated
 
