@@ -1,61 +1,60 @@
-# Console-aware action controllers
+# Console-aware controllers
 
-Zend Framework 2 has built-in MVC integration with the console&lt;zend.console.introduction&gt;.
-When the user runs an application in a console window, the request will be routed. By matching
-command line arguments against console routes we have defined in our application
-&lt;zend.console.routes&gt;, the MVC will invoke a controller and an action.
-
-In this chapter we will learn how ZF2 Controllers can interact with and return output to console
-window.
+When using the zend-mvc integration with zend-console, a matched route results
+in dispatch of an action controller. In this chapter we will learn how ZF2
+Controllers can interact with and return output to console window.
 
 ## Handling console requests
 
-Console requests are very similar to HTTP requests. In fact, they implement a common interface and
-are created at the same time in the MVC workflow. Console routes &lt;zend.console.routes&gt; match
-against command line arguments and provide a `defaults` array, which holds the `controller` and
-`action` keys. These correspond with controller aliases in the ServiceManager, and method names in
-the controller class. This is analogous to the way HTTP requests are handled in ZF2.
+Console requests are very similar to HTTP requests. In fact, they implement a
+common interface and are created at the same time in the MVC workflow. [Console
+routes](../routes.md) match against command line arguments and provide a `defaults`
+array, which holds the `controller` and `action` keys. These correspond with
+controller aliases in the `ServiceManager`, and method names in the controller
+class. This is analogous to the way HTTP requests are handled under zend-mvc.
 
-In this example we'll use the following simple route:
+In this example we'll use the following route:
 
 ```php
-// FILE: modules/Application/config/module.config.php
-array(
-    'router' => array(
-        'routes' => array(
+// in file module/Application/config/module.config.php:
+return [
+    'router' => [
+        'routes' => [
             // HTTP routes are here
-        )
-    ),
+        ],
+    ],
 
-    'console' => array(
-        'router' => array(
-            'routes' => array(
-                'list-users' => array(
-                    'options' => array(
+    'console' => [
+        'router' => [
+            'routes' => [
+                'list-users' => [
+                    'options' => [
                         'route'    => 'show [all|disabled|deleted]:mode users [--verbose|-v]',
-                        'defaults' => array(
-                            'controller' => 'Application\Controller\Index',
-                            'action'     => 'show-users'
-                        )
-                    )
-                )
-            )
-        )
-    ),
-)
+                        'defaults' => [
+                            'controller' => Application\Controller\Index::class,
+                            'action'     => 'show-users',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+
+    /* ... */
+);
 ```
 
 This route will match commands such as:
 
-```php
-> php public/index.php show users
-php public/index.php show all users
-php public/index.php show disabled users
+```bash
+$ php public/index.php show users
+$ php public/index.php show all users
+$ php public/index.php show disabled users
 ```
 
-This route points to the method `Application\Controller\IndexController::showUsersAction()`.
+This route maps to the method `Application\Controller\IndexController::showUsersAction()`.
 
-Let's add it to our controller.
+Let's add it that method to our controller.
 
 ```php
 <?php
@@ -74,6 +73,7 @@ class IndexController extends AbstractActionController
     public function showUsersAction()
     {
         $request = $this->getRequest();
+        $users   = $this->getServiceLocator()->get('users');
 
         // Check verbose flag
         $verbose = $request->getParam('verbose') || $request->getParam('v');
@@ -84,32 +84,34 @@ class IndexController extends AbstractActionController
         $users = array();
         switch ($mode) {
             case 'disabled':
-                $users = $this->getServiceLocator()->get('users')->fetchDisabledUsers();
+                $users = $users->fetchDisabledUsers();
                 break;
             case 'deleted':
-                $users = $this->getServiceLocator()->get('users')->fetchDeletedUsers();
+                $users = $users->fetchDeletedUsers();
                 break;
             case 'all':
             default:
-                $users = $this->getServiceLocator()->get('users')->fetchAllUsers();
+                $users = $users->fetchAllUsers();
                 break;
         }
     }
 }
 ```
 
-We fetch the console request, read parameters, and load users from our (theoretical) users service.
-In order to make this method functional, we'll have to display the result in the console window.
+We fetch the console request, read parameters, and load users from our
+(theoretical) users service.  In order to make this method functional, we'll
+have to display the result in the console window.
 
-## Sending output to console
+## Sending output to the console
 
-The simplest way for our controller to display data in the console window is to `return` a string.
-Let's modify our example to output a list of users:
+The simplest way for our controller to display data in the console window is to
+return a string. Let's modify our example to output a list of users:
 
 ```php
 public function showUsersAction()
 {
     $request = $this->getRequest();
+    $users   = $this->getServiceLocator()->get('users');
 
     // Check verbose flag
     $verbose = $request->getParam('verbose') || $request->getParam('v');
@@ -120,18 +122,18 @@ public function showUsersAction()
     $users = array();
     switch ($mode) {
         case 'disabled':
-            $users = $this->getServiceLocator()->get('users')->fetchDisabledUsers();
+            $users = $users->fetchDisabledUsers();
             break;
         case 'deleted':
-            $users = $this->getServiceLocator()->get('users')->fetchDeletedUsers();
+            $users = $users->fetchDeletedUsers();
             break;
         case 'all':
         default:
-            $users = $this->getServiceLocator()->get('users')->fetchAllUsers();
+            $users = $users->fetchAllUsers();
             break;
     }
 
-    if (count($users) == 0) {
+    if (count($users) === 0) {
         // Show an error message in the console
         return "There are no users in the database\n";
     }
@@ -146,17 +148,18 @@ public function showUsersAction()
 }
 ```
 
-On line 27, we are checking if the users service found any users - otherwise we are returning an
-error message that will be immediately displayed and the application will end.
+In the second conditional, we are checking if the users service found any users;
+if not, we return an error message to display immediately, terminating the
+application.
 
-If there are 1 or more users, we will loop through them with and prepare a listing. It is then
-returned from the action and displayed in the console window.
+If any users are found, we loop through each to prepare a listing, which we then
+return from the action for display in the console.
 
 ## Are we in a console?
 
-Sometimes we might need to check if our method is being called from a console or from a web request.
-This is useful to block certain methods from running in the console or to change their behavior
-based on that context.
+Sometimes we might need to check if our method is being called from a console or
+from a web request. This is useful to block certain methods from running in the
+console or to change their behavior based on that context.
 
 Here is an example of how to check if we are dealing with a console request:
 
@@ -176,25 +179,28 @@ class IndexController extends AbstractActionController
 
         // Make sure that we are running in a console and the user has not tricked our
         // application into running this action from a public web server.
-        if (!$request instanceof ConsoleRequest) {
+        if (! $request instanceof ConsoleRequest) {
             throw new RuntimeException('You can only use this action from a console!');
         }
-        // ...
+
+        /* ... */
     }
 }
 ```
 
-> ## Note
-You do not need to secure all your controllers and methods from console requests. Controller actions
-will **only be invoked** when at least one console route &lt;zend.console.routes&gt; matches it.
-HTTP and Console routes are separated and defined in different places in module (and application)
-configuration.
-There is no way to invoke a console action unless there is at least one route pointing to it.
-Similarly, there is no way for an HTTP action to be invoked unless there is at least one HTTP route
-that points to it.
+> ### Use routing to protect methods
+>
+> You do not need to secure all your controllers and methods from console
+> requests. Controller actions will **only be invoked** when at least one
+> console route matches it.  HTTP and Console routes are separated and defined
+> in different places in module (and application) configuration.
+>
+> There is no way to invoke a console action unless there is at least one route
+> pointing to it.  Similarly, there is no way for an HTTP action to be invoked
+> unless there is at least one HTTP route that points to it.
 
-The example below shows how a single controller method can handle **both Console and HTTP
-requests**:
+The example below shows how a single controller method can handle **both Console
+and HTTP requests**:
 
 ```php
 namespace Application\Controller;
@@ -212,45 +218,54 @@ class IndexController extends AbstractActionController
         $request = $this->getRequest();
 
         $users = array();
-        // ... fetch users from database ...
+        /* ... fetch users from database ... */
 
         if ($request instanceof HttpRequest) {
             // display a web page with users list
             return new ViewModel($result);
-        } elseif ($request instanceof ConsoleRequest) {
+        }
+        
+        if ($request instanceof ConsoleRequest) {
             // ... prepare console output and return it ...
             return $result;
-        } else {
-            throw new RuntimeException('Cannot handle request of type ' . get_class($request));
         }
+
+        throw new RuntimeException('Cannot handle request of type ' . get_class($request));
     }
 }
 ```
 
+> ### AbstractConsoleController
+> 
+> One way to ensure you always receive a console request instance is to extend
+> `Zend\Mvc\Controller\AbstractConsoleController`. This controller instance also
+> exposes a new method, `getConsole()`, providing you access to the console
+> adapter, allowing you to use prompts, send output (including colorized output),
+> and more.
+
 ## Reading values from console parameters
 
-There are several types of parameters recognized by the Console component - all of them are
-described in the console routing chapter &lt;zend.console.routes&gt;. Here, we'll focus on how to
-retrieve values from distinct parameters and flags.
+There are several types of parameters recognized by the Console component, all
+of which are described in the [console routing chapter](../routes.md). Here, we'll
+focus on how to retrieve values from distinct parameters and flags.
 
 ### Positional parameters
 
-After a route matches, we can access both **literal parameters** and **value parameters** from
-within the `$request` container.
+After a route matches, we can access both **literal parameters** and **value
+parameters** via the `$request` instance, using the `getParam()` method.
 
 Assuming we have the following route:
 
 ```php
-// inside of config.console.router.routes:
-'show-users' => array(
-    'options' => array(
+'show-users' => [
+    'options' => [
         'route'    => 'show (all|deleted|locked|admin) [<groupName>]'
-        'defaults' => array(
+        'defaults' => [
             'controller' => 'Application\Controller\Users',
-            'action'     => 'showusers'
-        )
-    )
-)
+            'action'     => 'showusers',
+        ],
+    ],
+],
 ```
 
 If this route matches, our action can now query parameters in the following way:
@@ -270,7 +285,8 @@ public function showUsersAction()
     } elseif (isset($request->getParam('deleted'))) {
         // show deleted users
     }
-    // ...
+
+    /* ... */
 }
 ```
 
@@ -290,8 +306,8 @@ simplifies the branching in our action controllers. We can do this with the foll
 )
 ```
 
-Now we can use a the group name `userTypeFilter` to check which option has been selected by the
-user:
+Now we can use a the group name `userTypeFilter` to check which option has been
+selected by the user:
 
 ```php
 public function showUsersAction()
@@ -302,7 +318,7 @@ public function showUsersAction()
     $showUsersFromGroup = $request->getParam('groupName');
 
     // The selected option from second parameter is now stored under 'userTypeFilter'
-    $userTypeFilter     = $request->getParam('userTypeFilter');
+    $userTypeFilter = $request->getParam('userTypeFilter');
 
     switch ($userTypeFilter) {
         case 'all':
@@ -318,25 +334,25 @@ public function showUsersAction()
 
 ### Flags
 
-Flags are directly accessible by name. Value-capturing flags will contain string values, as provided
-by the user. Non-value flags will be equal to `true`.
+Flags are directly accessible by name. Value-capturing flags will contain string
+values, as provided by the user. Non-value flags will be equal to `true`, or
+`null` if not present.
 
 Given the following route:
 
 ```php
-'find-user' => array(
-    'options' => array(
-        'route'    => 'find user [--fast] [--verbose] [--id=] [--firstName=] [--lastName=]
-[--email=] ',
-        'defaults' => array(
+'find-user' => [
+    'options' => [
+        'route'    => 'find user [--fast] [--verbose] [--id=] [--firstName=] [--lastName=] [--email=] ',
+        'defaults' => [
             'controller' => 'Application\Controller\Users',
             'action'     => 'find',
-        )
-    )
-)
+        ],
+    ],
+],
 ```
 
-We can easily retrieve values in the following fashion:
+We can retrieve values in the following fashion:
 
 ```php
 public function findAction()
@@ -350,8 +366,8 @@ public function findAction()
     $searchEmail     = $request->getParam('email',     null);
 
     // Standard flags that have been matched will be equal to TRUE
-    $isFast          = (bool) $request->getParam('fast',   false); // default false
-    $isVerbose       = (bool) $request->getParam('verbose',false);
+    $isFast          = (bool) $request->getParam('fast',    false); // default false
+    $isVerbose       = (bool) $request->getParam('verbose', false);
 
     if ($isFast) {
         // perform a fast query ...
@@ -364,16 +380,17 @@ public function findAction()
 In case of **flag alternatives**, we have to check each alternative separately:
 
 ```php
-// Assuming our route now reads:
-//      'route'    => 'find user [--fast|-f] [--verbose|-v] ... ',
-//
+/*
+ * Assuming our route now reads:
+ *      'route'    => 'find user [--fast|-f] [--verbose|-v] ... ',
+ */
 public function findAction()
 {
     $request = $this->getRequest();
 
     // Check both alternatives
-    $isFast    = $request->getParam('fast',false)    || $request->getParam('f',false);
-    $isVerbose = $request->getParam('verbose',false) || $request->getParam('v',false);
+    $isFast    = $request->getParam('fast', false)    || $request->getParam('f', false);
+    $isVerbose = $request->getParam('verbose', false) || $request->getParam('v', false);
 
     // ...
 }
