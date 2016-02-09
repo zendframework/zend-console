@@ -51,16 +51,16 @@ You can override this behavior by manually instantiating one of `Zend\Console\Ad
 
 ### Window size and title
 
-**$console-&gt;getWidth()**  
+##### $console->getWidth()
 (int) Get real console window width in characters.
 
-**$console-&gt;getHeight()**  
+##### $console->getHeight()
 (int) Get real console window height in characters.
 
-**$console-&gt;getSize()**  
+##### $console->getSize()
 (array) Get an `array( $width, $height)` with current console window dimensions.
 
-**$console-&gt;getTitle()**  
+##### $console->getTitle()
 (string) Get console window title.
 
 > ## Note
@@ -74,53 +74,53 @@ but it's real, visible width is 80 chars, `getWidth()` will return `80`.
 
 ### Character set
 
-**$console-&gt;isUtf8()**  
+##### $console->isUtf8()
 (boolean) Is the console UTF-8 compatible (can display unicode strings) ?
 
-**$console-&gt;getCharset()**  
+##### $console->getCharset()
 (Zend\\\\Console\\\\Charset\\\\CharsetInterface) This method will return one of `Console\Charset\*`
 classes that represent the readable charset that can be used for line-drawing. It is automatically
 detected by the adapter.
 
 ### Writing to console
 
-**$console-&gt;write( string $text, $color = null, $bgColor = null )**  
+##### $console->write( string $text, $color = null, $bgColor = null )
 Write a `$text` to the console, optionally using foreground `$color` and background `$bgColor`.
 Color value is one of the constants in `Zend\Console\ColorInterface`.
 
-**$console-&gt;writeLine( string $text, $color = null, $bgColor = null )**  
+##### $console->writeLine( string $text, $color = null, $bgColor = null )
 Write a single line of `$text` to the console. This method will output a newline character at the
 end of text moving console cursor to next line.
 
-**$console-&gt;writeAt( string $text, int $x, int $y, $color = null, $bgColor = null )**  
+##### $console->writeAt( string $text, int $x, int $y, $color = null, $bgColor = null )
 Write `$text` at the specified `$x` and `$y` coordinates of console window. Top left corner of the
 screen has coordinates of `$x = 1; $x = 1`. To retrieve far-right and bottom coordinates, use
 `getWidth()` and `getHeight()` methods.
 
 ### Reading from console
 
-**$console-&gt;readChar( string $mask = null )**  
+##### $console->readChar( string $mask = null )
 (string) Read a single character from console. Optional `(string) $mask` can be provided to force
 entering only a selected set of characters. For example, to read a single digit, we can use the
 following syntax: `$digit = $console->readChar('0123456789');`
 
-**$console-&gt;readLine( int $maxLength = 2048 )**  
+##### $console->readLine( int $maxLength = 2048 )
 (string) Read a single line of input from console. Optional `(int) $maxLength` can be used to limit
 the length of data that will be read. The line will be returned **without ending newline
 character**.
 
 ### Miscellaneous
 
-**$console-&gt;hideCursor()**  
+##### $console->hideCursor()
 Hide blinking cursor from console.
 
-**$console-&gt;showCursor()**  
+##### $console->showCursor()
 Show blinking cursor in console.
 
-**$console-&gt;clear()**  
+##### $console->clear()
 Clear the screen.
 
-**$console-&gt;clearLine()**  
+##### $console->clearLine()
 Clear the line that the cursor currently sits at.
 
 
