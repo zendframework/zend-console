@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    <title>Declaring Rules - zend-console</title>
+
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/zf.css" rel="stylesheet">
+    <link href="../../css/prism-zf.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <span class="navbar-brand">
+              <a href="http://framework.zend.com"><img src="../../img/zf-logo-mark.png" height="28" alt="Zend Framework" /></a>
+              <a href="../..">zend-console</a>
+            </span>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../intro/">Intro</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../adapter/">Console Adapters</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../prompts/">Console Prompts</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../routes/">Routes</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">MVC Integration <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../mvc/routing/">MVC Routing</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../mvc/modules/">Console-Aware Modules</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../mvc/controllers/">Console-Aware Controllers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Getopt <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../intro/">Introduction</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Declaring Rules</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../fetching/">Fetching Options and Arguments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../configuration/">Configuration</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="prev" href="../intro/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../fetching/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/zendframework/zend-console">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <!-- content:begin -->
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#declaring-getopt-rules">Declaring Getopt Rules</a></li>
+        
+            <li><a href="#declaring-options-with-the-short-syntax">Declaring Options with the Short Syntax</a></li>
+        
+            <li><a href="#declaring-options-with-the-long-syntax">Declaring Options with the Long Syntax</a></li>
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<ol class="breadcrumb" role="navigation" aria-label="breadcrumbs navigation">
+  <li><a href="../..">Docs</a> &raquo;</li>
+  
+    
+      
+        <li>Getopt &raquo;</li>
+      
+    
+  
+  <li class="active">Declaring Rules</li>
+</ol>
+
+<nav class="hidden-lg">
+  <ul class="pager">
+    <li class="previous">
+      <a rel="prev" href="../intro/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next">
+      <a rel="next" href="../fetching/">Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav>
+
+<h1 id="declaring-getopt-rules">Declaring Getopt Rules</h1>
+<p>The constructor for the <code>Zend\Console\Getopt</code> class takes from one to three
+arguments. The first argument declares which options are supported by your
+application. This class supports alternative syntax forms for declaring the
+options. See the sections below for the format and usage of these syntax forms.</p>
+<p>The constructor takes two more arguments, both of which are optional. The second
+argument may contain the command-line arguments. This defaults to
+<code>$_SERVER['argv']</code>.</p>
+<p>The third argument of the constructor may contain any configuration options
+required to customize the behavior of <code>Zend\Console\Getopt</code>. See
+<a href="../configuration/#adding-configuration">Adding Configuration</a> for a reference on
+the options available.</p>
+<h2 id="declaring-options-with-the-short-syntax">Declaring Options with the Short Syntax</h2>
+<p><code>Zend\Console\Getopt</code> supports a compact syntax similar to that used by
+<a href="http://www.gnu.org/software/libc/manual/html_node/Getopt.html">GNU Getopt</a>.
+This syntax supports only single-character flags. In a single string, you type
+each of the letters that correspond to flags supported by your application. A
+letter followed by a colon character (<code>:</code>) indicates a flag that requires a
+parameter.</p>
+<h3 id="using-the-short-syntax">Using the Short Syntax</h3>
+<pre class="codehilite"><code class="language-php">$opts = new Zend\Console\Getopt('abp:');</code></pre>
+
+
+<p>The example above shows using <code>Zend\Console\Getopt</code> to declare that options may
+be given as <code>-a</code>, <code>-b</code>, or <code>-p</code>. The latter flag requires a parameter.</p>
+<p>The short syntax is limited to flags of a single character. Aliases, parameter
+types, and help strings are not supported in the short syntax.</p>
+<h2 id="declaring-options-with-the-long-syntax">Declaring Options with the Long Syntax</h2>
+<p>A different syntax with more features is also available. This syntax allows you
+to specify aliases for flags, types of option parameters, and also help strings
+to describe usage to the user. Instead of the single string used in the short
+syntax to declare the options, the long syntax uses an associative array as the
+first argument to the constructor.</p>
+<p>The key of each element of the associative array is a string with a format that
+names the flag, with any aliases, separated by the pipe symbol (<code>|</code>). Following
+this series of flag aliases, if the option requires a parameter, is an equals
+symbol (<code>=</code>) with a letter that stands for the <strong>type</strong> of the parameter:</p>
+<ul>
+<li><code>=s</code> for a string parameter</li>
+<li><code>=w</code> for a word parameter (a string containing no whitespace)</li>
+<li><code>=i</code> for an integer parameter</li>
+</ul>
+<p>If the parameter is optional, use a dash (<code>-</code>) instead of the equals symbol.</p>
+<p>The value of each element in the associative array is a help string to describe
+to a user how to use your program.</p>
+<h3 id="using-the-long-syntax">Using the Long Syntax</h3>
+<pre class="codehilite"><code class="language-php">$opts = new Zend\Console\Getopt(
+  array(
+    'apple|a'    =&gt; 'apple option, with no parameter',
+    'banana|b=i' =&gt; 'banana option, with required integer parameter',
+    'pear|p-s'   =&gt; 'pear option, with optional string parameter'
+  )
+);</code></pre>
+
+
+<p>In the example declaration above, there are three options. <code>--apple</code> and <code>-a</code>
+are aliases for each other, and the option takes no parameter. <code>--banana</code> and
+<code>-b</code> are aliases for each other, and the option takes a mandatory integer
+parameter. Finally, <code>--pear</code> and <code>-p</code> are aliases for each other, and the option
+may take an optional string parameter.</p>
+
+<hr />
+
+<nav>
+  <ul class="pager">
+    <li class="previous">
+      <a rel="prev" href="../intro/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next">
+      <a rel="next" href="../fetching/">Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav></div>
+        
+    </div>
+    <!-- content:end -->
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>Copyright (c) 2016 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a><br></small>
+        </p>
+        <p><small><a href="http://framework.zend.com">Learn more about Zend Framework</a></small></p>
+    </footer>
+
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/prism-zf.js"></script>
+
+    <script>var base_url = '../..';</script>
+    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+    <script src="../../js/base.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

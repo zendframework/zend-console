@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    <title>MVC Routing - zend-console</title>
+
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/zf.css" rel="stylesheet">
+    <link href="../../css/prism-zf.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <span class="navbar-brand">
+              <a href="http://framework.zend.com"><img src="../../img/zf-logo-mark.png" height="28" alt="Zend Framework" /></a>
+              <a href="../..">zend-console</a>
+            </span>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../intro/">Intro</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../adapter/">Console Adapters</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../prompts/">Console Prompts</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../routes/">Routes</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">MVC Integration <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li class="active">
+    <a href="./">MVC Routing</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../modules/">Console-Aware Modules</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../controllers/">Console-Aware Controllers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Getopt <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../getopt/intro/">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../getopt/rules/">Declaring Rules</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../getopt/fetching/">Fetching Options and Arguments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../getopt/configuration/">Configuration</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="prev" href="../../routes/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../modules/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/zendframework/zend-console">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <!-- content:begin -->
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#mvc-routing">MVC Routing</a></li>
+        
+            <li><a href="#route-types">Route types</a></li>
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<ol class="breadcrumb" role="navigation" aria-label="breadcrumbs navigation">
+  <li><a href="../..">Docs</a> &raquo;</li>
+  
+    
+      
+        <li>MVC Integration &raquo;</li>
+      
+    
+  
+  <li class="active">MVC Routing</li>
+</ol>
+
+<nav class="hidden-lg">
+  <ul class="pager">
+    <li class="previous">
+      <a rel="prev" href="../../routes/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next">
+      <a rel="next" href="../modules/">Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav>
+
+<h1 id="mvc-routing">MVC Routing</h1>
+<p>zend-mvc provides integration with zend-console, routing command line arguments
+to the appropriate action controller and action method that will handle the
+request. Actions can perform any number of tasks prior to returning a result to
+display in the console window.</p>
+<p>When using zend-mvc, console routes are provided via configuration.</p>
+<pre class="codehilite"><code class="language-php">// The following can sit inside of module/Application/config/module.config.php,
+// any other module's configuration, or within files under config/autoload/:
+return [
+    'router' =&gt; [
+        'routes' =&gt; [
+            // HTTP routes are here
+        ],
+    ],
+
+    'console' =&gt; [
+        'router' =&gt; [
+            'routes' =&gt; [
+                // Console routes go here
+            ],
+        ],
+    ],
+];</code></pre>
+
+
+<p>Console routes exposed via zend-mvc will only be processed when the application
+is run inside a console (terminal) window; they are not used for web (HTTP)
+requests. It is possible to define only HTTP routes (web application only), only
+console routes (console-only application), or a mixture of the two.</p>
+<p>As an example of a single route:</p>
+<pre class="codehilite"><code class="language-php">// inside config.console.router.routes:
+'my-first-route' =&gt; [
+    'type'    =&gt; 'simple',  // This is the default, and may be omitted; more on
+                            // types below
+    'options' =&gt; [
+        'route'    =&gt; 'foo bar',
+        'defaults' =&gt; [
+            'controller' =&gt; Application\Controller\Index::class,
+            'action'     =&gt; 'password',
+        ],
+    ],
+],</code></pre>
+
+
+<p>We have created a <code>simple</code> console route with the name <code>my-first-route</code>. It
+expects two parameters: <code>foo</code> and <code>bar</code>. If user puts these in a console,
+<code>Application\Controller\IndexController::passwordAction()</code> action will be
+invoked.</p>
+<h2 id="route-types">Route types</h2>
+<p>In the last example of the previous section, we noted that configuration for a
+given route can accept a <code>type</code> argument. This refers to the route type (which
+maps to a class) to use when creating the route instance. zend-mvc defines
+several types.</p>
+<h3 id="simple-route">Simple route</h3>
+<p><code>Zend\Mvc\Router\Console\Simple</code> is a factory for zend-console's
+<code>DefaultRouteMatcher</code>, and decorates it to work with the zend-mvc routing
+system. See the section on <a href="../../routes/#the-default-route-matcher">the default route matcher</a>
+for details on route strings and available configuration to provide.</p>
+<h3 id="catchall-route">Catchall route</h3>
+<p>This special route will catch all console requests, regardless of the parameters provided.</p>
+<pre class="codehilite"><code class="language-php">'default-route' =&gt; [
+    'type'     =&gt; 'catchall',
+    'options' =&gt; [
+        'route'    =&gt; '',
+        'defaults' =&gt; [
+            'controller' =&gt; 'Application\Controller\Index',
+            'action'     =&gt; 'consoledefault',
+        ],
+    ],
+],</code></pre>
+
+
+<p>This route type is rarely used; one possible use case is to register it as the
+last console route, in order to display usage information. Before you do so,
+read about the <a href="../modules/">preferred way of displaying console usage
+information</a>; following recommendations will guarantee proper
+interoperation with other modules in your application.</p>
+
+<hr />
+
+<nav>
+  <ul class="pager">
+    <li class="previous">
+      <a rel="prev" href="../../routes/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next">
+      <a rel="next" href="../modules/">Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav></div>
+        
+    </div>
+    <!-- content:end -->
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>Copyright (c) 2016 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a><br></small>
+        </p>
+        <p><small><a href="http://framework.zend.com">Learn more about Zend Framework</a></small></p>
+    </footer>
+
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/prism-zf.js"></script>
+
+    <script>var base_url = '../..';</script>
+    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+    <script src="../../js/base.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

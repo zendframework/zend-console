@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    <title>Introduction - zend-console</title>
+
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/zf.css" rel="stylesheet">
+    <link href="../../css/prism-zf.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <span class="navbar-brand">
+              <a href="http://framework.zend.com"><img src="../../img/zf-logo-mark.png" height="28" alt="Zend Framework" /></a>
+              <a href="../..">zend-console</a>
+            </span>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../intro/">Intro</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../adapter/">Console Adapters</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../prompts/">Console Prompts</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../routes/">Routes</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">MVC Integration <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../mvc/routing/">MVC Routing</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../mvc/modules/">Console-Aware Modules</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../mvc/controllers/">Console-Aware Controllers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Getopt <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li class="active">
+    <a href="./">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../rules/">Declaring Rules</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../fetching/">Fetching Options and Arguments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../configuration/">Configuration</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="prev" href="../../mvc/controllers/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../rules/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/zendframework/zend-console">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <!-- content:begin -->
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#zend92console92getopt">Zend\Console\Getopt</a></li>
+        
+            <li><a href="#getopt-is-not-an-application-framework">Getopt is not an Application Framework</a></li>
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<ol class="breadcrumb" role="navigation" aria-label="breadcrumbs navigation">
+  <li><a href="../..">Docs</a> &raquo;</li>
+  
+    
+      
+        <li>Getopt &raquo;</li>
+      
+    
+  
+  <li class="active">Introduction</li>
+</ol>
+
+<nav class="hidden-lg">
+  <ul class="pager">
+    <li class="previous">
+      <a rel="prev" href="../../mvc/controllers/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next">
+      <a rel="next" href="../rules/">Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav>
+
+<h1 id="zend92console92getopt">Zend\Console\Getopt</h1>
+<p>The <code>Zend\Console\Getopt</code> class helps command-line applications to parse their
+options and arguments.</p>
+<p>Users may specify command-line arguments when they execute your application. These arguments have
+meaning to the application, to change the behavior in some way, or choose resources, or specify
+parameters. Many options have developed customary meaning, for example <code>--verbose</code> enables extra
+output from many applications. Other options may have a meaning that is different for each
+application. For example, <code>-c</code> enables different features in <code>grep</code>, <code>ls</code>, and <code>tar</code>.</p>
+<p>Below are a few definitions of terms. Common usage of the terms varies, but this documentation will
+use the definitions below.</p>
+<ul>
+<li>"argument": a string that occurs on the command-line following the name of the
+  command. Arguments may be options or else may appear without an option, to
+  name resources on which the command operates.</li>
+<li>"option": an argument that signifies that the command should change its
+  default behavior in some way.</li>
+<li>"flag": the first part of an option, identifies the purpose of the option. A
+  flag is preceded conventionally by one or two dashes (<code>-</code> or <code>--</code>). A single
+  dash precedes a single-character flag or a cluster of single-character flags.
+  A double-dash precedes a multi-character flag. Long flags cannot be clustered.</li>
+<li>"parameter": the secondary part of an option; a data value that may accompany
+  a flag, if it is applicable to the given option. For example, many commands
+  accept a <code>--verbose</code> option, but typically this option has no parameter.
+  However, an option like <code>--user</code> almost always requires a following parameter.</li>
+</ul>
+<p>A parameter may be given as a separate argument following a flag argument, or
+  as part of the same argument string, separated from the flag by an equals symbol
+  (<code>=</code>). The latter form is supported only by long flags. For example, <code>-u
+  username</code>, <code>--user username</code>, and <code>--user=username</code> are forms supported by
+  <code>Zend\Console\Getopt</code>.
+- "cluster": multiple single-character flags combined in a single string
+  argument and preceded by a single dash. For example, "<code>ls -1str</code>" uses a
+  cluster of four short flags. This command is equivalent to "<code>ls -1 -s -t -r</code>".
+  Only single-character flags can be clustered. You cannot make a cluster of
+  long flags.</p>
+<p>For example, in <code>mysql --user=root mydatabase</code>, <code>mysql</code> is a <strong>command</strong>,
+<code>--user=root</code> is an <strong>option</strong> (<code>--user</code> is a <strong>flag</strong> and <code>root</code> is a
+<strong>parameter</strong> to the option), and <code>mydatabase</code> is an argument (but not an option
+by our definition).</p>
+<p><code>Zend\Console\Getopt</code> provides an interface to declare which flags are valid for
+your application, output an error and usage message if they invalid flags are
+specified, and report to your application which flags the user specified.</p>
+<blockquote>
+<h2 id="getopt-is-not-an-application-framework">Getopt is not an Application Framework</h2>
+<p><code>Zend\Console\Getopt</code> does <strong>not</strong> interpret the meaning of flags and
+parameters, nor does this class implement application workflow or invoke
+application code. You must implement those actions in your own application
+code. You can use the <code>Zend\Console\Getopt</code> class to parse the command-line
+and provide object-oriented methods for querying which options were given by a
+user, but code to use this information to invoke parts of your application
+should be in another PHP class.</p>
+</blockquote>
+<p>The following sections describe usage of <code>Zend\Console\Getopt</code>.</p>
+
+<hr />
+
+<nav>
+  <ul class="pager">
+    <li class="previous">
+      <a rel="prev" href="../../mvc/controllers/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next">
+      <a rel="next" href="../rules/">Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav></div>
+        
+    </div>
+    <!-- content:end -->
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>Copyright (c) 2016 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a><br></small>
+        </p>
+        <p><small><a href="http://framework.zend.com">Learn more about Zend Framework</a></small></p>
+    </footer>
+
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/prism-zf.js"></script>
+
+    <script>var base_url = '../..';</script>
+    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+    <script src="../../js/base.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

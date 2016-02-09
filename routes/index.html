@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    <title>Routes - zend-console</title>
+
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/zf.css" rel="stylesheet">
+    <link href="../css/prism-zf.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <span class="navbar-brand">
+              <a href="http://framework.zend.com"><img src="../img/zf-logo-mark.png" height="28" alt="Zend Framework" /></a>
+              <a href="..">zend-console</a>
+            </span>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../intro/">Intro</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../adapter/">Console Adapters</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../prompts/">Console Prompts</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Routes</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">MVC Integration <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../mvc/routing/">MVC Routing</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mvc/modules/">Console-Aware Modules</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mvc/controllers/">Console-Aware Controllers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Getopt <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../getopt/intro/">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../getopt/rules/">Declaring Rules</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../getopt/fetching/">Fetching Options and Arguments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../getopt/configuration/">Configuration</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="prev" href="../prompts/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../mvc/routing/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/zendframework/zend-console">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <!-- content:begin -->
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#console-routes-and-routing">Console routes and routing</a></li>
+        
+            <li><a href="#handling-routing-results">Handling routing results</a></li>
+        
+            <li><a href="#routematcherinterface">RouteMatcherInterface</a></li>
+        
+            <li><a href="#the-default-route-matcher">The default route matcher</a></li>
+        
+            <li><a href="#routing-strings">Routing strings</a></li>
+        
+            <li><a href="#console-routes-cheat-sheet">Console routes cheat-sheet</a></li>
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<ol class="breadcrumb" role="navigation" aria-label="breadcrumbs navigation">
+  <li><a href="..">Docs</a> &raquo;</li>
+  
+    
+      
+        <li>Reference &raquo;</li>
+      
+    
+  
+  <li class="active">Routes</li>
+</ol>
+
+<nav class="hidden-lg">
+  <ul class="pager">
+    <li class="previous">
+      <a rel="prev" href="../prompts/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next">
+      <a rel="next" href="../mvc/routing/">Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav>
+
+<h1 id="console-routes-and-routing">Console routes and routing</h1>
+<p>A powerful feature the zend-console component exposes is <em>routing</em>. Routing
+reads the command line arguments and matches them to criteria; if the criteria
+matches, it then returns a list of matched parameters and flags.</p>
+<blockquote>
+<h2 id="handling-routing-results">Handling routing results</h2>
+<p>zend-console exposes routing via the <code>Zend\Console\RouteMatcher\DefaultRouteMatcher</code>
+class, allowing you to create standalone routable console applications.</p>
+<p>zend-mvc provides structure around routing results to controllers, which
+we <a href="../mvc/routing/">detail in the MVC Routing chapter</a>.</p>
+<p>Another option is <a href="https://github.com/zfcampus/zf-console">zf-console</a>, which
+provides a convenience wrapper around supplying routes and dispatching route
+handlers.</p>
+</blockquote>
+<h2 id="routematcherinterface">RouteMatcherInterface</h2>
+<p>zend-console defines an interface for routing,
+<code>Zend\Console\RouteMatcher\RouteMatcherInterface</code>, which defines a single
+method, <code>match()</code>:</p>
+<pre class="codehilite"><code class="language-php">namespace Zend\Console\RouteMatcher;
+
+interface RouteMatcherInterface
+{
+    /**
+     * Match parameters against route passed to constructor
+     *
+     * @param array $params
+     * @return array|null
+     */
+    public function match($params);
+}</code></pre>
+
+
+<p>Applications are expected to retrieve arguments from the console and pass them to
+the routing implementation as an array; the routing implementation will then
+return either a <code>null</code> value (meaning failure to match), or an associative array
+(the values matched).</p>
+<h2 id="the-default-route-matcher">The default route matcher</h2>
+<p>zend-console's default routing implementation is <code>Zend\Console\RouteMatcher\DefaultRouteMatcher</code>.
+Its constructor expects:</p>
+<pre class="codehilite"><code class="language-php">    /**
+     * @param string $route
+     * @param array $constraints
+     * @param array $defaults
+     * @param array $aliases
+     * @param array $filters
+     * @param ValidatorInterface[] $validators
+     * @throws Exception\InvalidArgumentException
+     */
+    public function __construct(
+        $route,
+        array $constraints = [],
+        array $defaults = [],
+        array $aliases = [],
+        array $filters = null,
+        array $validators = null
+    )</code></pre>
+
+
+<p>The arguments are as follows:</p>
+<ul>
+<li><code>$route</code> is a string pattern describing the argument list it will match.</li>
+<li><code>$constraints</code> is an associative array, with the keys being named arguments,
+  and the values being regular expressions to match against.</li>
+<li><code>$defaults</code> are an an associative array of named arguments, with the default
+  value to use if no value was provided; these should only be provided for
+  optional arguments (more on that below).</li>
+<li><code>$aliases</code> is an associative array where the key values are the alias names,
+  and the string values are the named argument the alias points to; if an alias
+  is used in the invocation, it will be returned using the named argument
+  instead. As an example, if you provide the alias <code>'FOO' =&gt; 'foo'</code>, and have
+  defined <code>--foo=</code> in the <code>$route</code>, you can invoke it with <code>--FOO=something</code>,
+  and the router will map it to the <code>foo</code> value.</li>
+<li><code>$filters</code> is an associative array of named arguments pointing to a
+  <code>Zend\Filter\FilterInterface</code> instance (or <code>FilterChain</code> instance);
+  filters are used to normalize the value associated with the argument.</li>
+<li><code>$validators</code> is an associative array of named arguments pointing to a
+  <code>Zend\Validator\ValidatorInterface</code> instance (or <code>ValidatorChain</code> instance);
+  validators are used to validate values, and provide more options than simply
+  regular expressions (as used with the <code>$constraints</code>).</li>
+</ul>
+<blockquote>
+<h3 id="single-routes-only">Single routes only</h3>
+<p><code>DefaultRouteMatcher</code> instances define <em>a single console route to match</em>. Most
+times, you will want to define multiple routes. The zend-mvc integration and
+zf-console both provide methods for aggregating routes.</p>
+</blockquote>
+<h2 id="routing-strings">Routing strings</h2>
+<p>Routing strings consist of one or more of the following:</p>
+<ul>
+<li><a href="#literal-parameters">Literal parameters</a> (e.g. <code>create object (external|internal)</code>)</li>
+<li><a href="#literal-flags">Literal flags</a> (e.g. <code>--verbose --direct [-d] [-a]</code>)</li>
+<li><a href="#positional-value-parameters">Positional value parameters</a> (e.g. <code>create &lt;modelName&gt; [&lt;destination&gt;]</code>)</li>
+<li><a href="#value-flag-parameters">Value flags</a> (e.g. <code>--name=NAME [--method=METHOD]</code>)</li>
+<li><a href="#grouping-literal-alternatives">Named literal alternative groups</a> (e.g., <code>(all|some|none):filter</code>)</li>
+</ul>
+<h3 id="literal-parameters">Literal parameters</h3>
+<p><em>Literal parameters</em> are expected to appear on the command line exactly the way
+they are provided in the route. For example:</p>
+<pre class="codehilite"><code>show users</code></pre>
+
+
+<p>This route will <strong>only</strong> match for the following command line</p>
+<pre class="codehilite"><code class="language-bash">$ zf show users</code></pre>
+
+
+<p>It expects the <strong>mandatory literal parameters</strong> <code>show users</code>. It will not match
+if there are any more parameters, or if either one of the two words is missing.
+The order of words is also enforced.</p>
+<p>You can also provide <strong>optional literal parameters</strong>. As an example:</p>
+<pre class="codehilite"><code>show [all] users</code></pre>
+
+
+<p>The above route will match each of the following:</p>
+<pre class="codehilite"><code class="language-bash">$ zf show users
+$ zf show all users</code></pre>
+
+
+<p>You can also provide <strong>parameter alternatives</strong>:</p>
+<pre class="codehilite"><code class="language-php">show [all|deleted|locked|admin] users</code></pre>
+
+
+<p>The above route will match both with and without the second parameter; if
+provided, however, it must be one of the words listed. This enables matching any
+of the following:</p>
+<pre class="codehilite"><code class="language-php">$ zf show users
+$ zf show locked users
+$ zf show admin users
+# etc.</code></pre>
+
+
+<blockquote>
+<h4 id="whitespace-is-ignored">Whitespace is ignored</h4>
+<p>Whitespaces in route definitions are ignored. If you separate your parameters
+with more spaces, or separate alternatives and pipe characters with spaces,
+the parser will ignore the whitespace.
+The above route definition is equivalent to:</p>
+<pre class="codehilite"><code>show [  all | deleted | locked | admin  ]   users</code></pre>
+
+
+<p>As such, you can use whitespace for readability.</p>
+</blockquote>
+<h3 id="literal-flags">Literal flags</h3>
+<p>Console tools commonly use flags. zend-console allows you to define any number
+of optional and/or mandatory flags.</p>
+<p>Flag order is ignored; they can be defined in any order, and the user can
+provide them in any order.</p>
+<p>The following is a route with <strong>optional long flags</strong>:</p>
+<pre class="codehilite"><code>check users [--verbose] [--fast] [--thorough]</code></pre>
+
+
+<p>The above route will match commands like:</p>
+<pre class="codehilite"><code class="language-bash">$ zf check users
+$ zf check users --fast
+$ zf check users --verbose --thorough
+$ zf check users --thorough --fast
+# etc</code></pre>
+
+
+<p>You can also define one or more <strong>mandatory long flags</strong>, and group them as an
+alternative:</p>
+<pre class="codehilite"><code class="language-php">check users (--suspicious|--expired) [--verbose] [--fast] [--thorough]</code></pre>
+
+
+<p>The above will only match if we provide either the <code>--suspicious</code> or <code>--expired</code>
+flag:</p>
+<pre class="codehilite"><code class="language-bash">$ zf check users --expired
+$ zf check users --expired --fast
+$ zf check users --verbose --thorough --suspicious</code></pre>
+
+
+<p><strong>Short flags</strong> are also available, and may be grouped with long flags for
+convenience:</p>
+<pre class="codehilite"><code>check users [--verbose|-v] [--fast|-f] [--thorough|-t]</code></pre>
+
+
+<p>Now we can use short versions of our flags:</p>
+<pre class="codehilite"><code class="language-bash">$ zf check users -f
+$ zf check users -v --thorough
+$ zf check users -t -f -v
+# etc.</code></pre>
+
+
+<h3 id="positional-value-parameters">Positional value parameters</h3>
+<p>Value parameters capture any text-based input, and come in two forms: positional
+and flags (which we've already discussed).</p>
+<p><strong>Positional value parameters</strong> are expected to appear in an <em>exact</em> position on
+the command line, and are denoted using angle brackets (<code>&lt;&gt;</code>).</p>
+<p>Consider the following:</p>
+<pre class="codehilite"><code>delete user &lt;userEmail&gt;</code></pre>
+
+
+<p>This route will match the following commands:</p>
+<pre class="codehilite"><code class="language-bash">$ zf delete user john@acme.org
+$ zf delete user betty@acme.org</code></pre>
+
+
+<p>When matched, the router will return the value under the key we provided in the
+route definition. If using the <code>DefaultRouteMatcher</code> standalone, this would be:</p>
+<pre class="codehilite"><code class="language-php">$matches = $route-&gt;match($argv);
+$userEmail = $matches['userEmail'];</code></pre>
+
+
+<p>Under zend-mvc, you will pull the parameter from the request:</p>
+<pre class="codehilite"><code class="language-php">$userEmail = $this-&gt;getRequest()-&gt;getParam('userEmail');</code></pre>
+
+
+<p>You can also define <strong>optional positional value parameters</strong> by surrounding the
+parameter with square brackets:</p>
+<pre class="codehilite"><code>delete user [&lt;userEmail&gt;]</code></pre>
+
+
+<p>In this case, the <code>userEmail</code> parameter will not be required for the route to
+match. If it is not provided, the <code>userEmail</code> parameter will not be present in
+the matched parameters.</p>
+<p>You can define any number of positional value parameters:</p>
+<pre class="codehilite"><code>create user &lt;firstName&gt; &lt;lastName&gt; &lt;email&gt; &lt;position&gt;</code></pre>
+
+
+<p>This allows us to capture commands such as the following:</p>
+<pre class="codehilite"><code class="language-bash">$ zf create user Johnny Bravo john@acme.org Entertainer</code></pre>
+
+
+<blockquote>
+<h4 id="escaping">Escaping</h4>
+<p>Command line arguments on all systems must be properly escaped; otherwise they
+will not be passed to our application correctly. For example, to create a user
+with two names and a complex position description, we would issue the command
+like this:</p>
+<pre class="codehilite"><code class="language-bash">$ zf create user &quot;Johnan Tom&quot; Bravo john@acme.org &quot;Head of the Entertainment Department&quot;</code></pre>
+
+
+</blockquote>
+<h3 id="value-flag-parameters">Value flag parameters</h3>
+<p>Positional value parameters are only matched if they appear in the exact order described in the
+route. If we do not want to enforce the order of parameters, we can define <strong>value flags</strong>.</p>
+<p><strong>Value flags</strong> can be defined and matched in <em>any</em> order, and can receive any
+text-based value.</p>
+<pre class="codehilite"><code>find user [--id=] [--firstName=] [--lastName=] [--email=] [--position=]</code></pre>
+
+
+<p>The above route will match for any of the following routes:</p>
+<pre class="codehilite"><code class="language-bash">$ zf find user
+$ zf find user --id 29110
+$ zf find user --id=29110
+$ zf find user --firstName=Johny --lastName=Bravo
+$ zf find user --lastName Bravo --firstName Johny
+$ zf find user --position=Executive --firstName=Bob
+$ zf find user --position &quot;Head of the Entertainment Department&quot;
+# etc.</code></pre>
+
+
+<p>As noted, the order of flags is irrelevant for the parser.</p>
+<blockquote>
+<h5 id="providing-values">Providing values</h5>
+<p>The parser understands values that are provided after either an equals symbol
+(<code>=</code>) or a single space, but only if the value itself does not contain
+whitespace.  Values containing any whitespace  must be properly quoted and
+appear following a space <em>only</em>; you cannot use the <code>=</code> sign to assign such
+values.</p>
+</blockquote>
+<p>In the previous example, all value flags are optional. You may also define
+<strong>mandatory value flags</strong> by omitting the square brackets:</p>
+<pre class="codehilite"><code>rename user --id= [--firstName=] [--lastName=]</code></pre>
+
+
+<p>In the above example, the <code>--id</code> parameter <strong>is required</strong> for the route to
+match. The following commands will work with this route:</p>
+<pre class="codehilite"><code class="language-bash">$ zf rename user --id 123
+$ zf rename user --id 123 --firstName Jonathan
+$ zf rename user --id=123 --lastName=Bravo
+# etc.</code></pre>
+
+
+<h3 id="grouping-literal-alternatives">Grouping literal alternatives</h3>
+<p>In the flags section, we demonstrated grouping alternative flags:</p>
+<pre class="codehilite"><code>check users (--suspicious|--expired) [--verbose] [--fast] [--thorough]</code></pre>
+
+
+<p>This can also be done with literals:</p>
+<pre class="codehilite"><code>show (all|deleted|locked|admin) &lt;group&gt;</code></pre>
+
+
+<p>However, this makes checking for which alternative was used quite difficult:</p>
+<pre class="codehilite"><code class="language-php">switch (true) {
+    case (isset($params['all'])):
+        // all members
+        break;
+    case (isset($params['deleted'])):
+        // deleted members
+        break;
+    /* etc. */
+}</code></pre>
+
+
+<p>To simplify this, you can <em>assign a name to the grouped alternatives</em>. Do this
+with the verbiage <code>:groupname</code> following the group:</p>
+<pre class="codehilite"><code>show (all|deleted|locked|admin):filter &lt;group&gt;</code></pre>
+
+
+<p>The above names the group "filter". When a group is provided a name, you can
+then retrieve the group name parameter, which will be set to the alternative
+used:</p>
+<pre class="codehilite"><code class="language-php">switch ($params['filter']) {
+    case 'all':
+        // all members
+        break;
+    case 'deleted':
+        // deleted members
+        break;
+    /* etc. */
+}</code></pre>
+
+
+<h2 id="console-routes-cheat-sheet">Console routes cheat-sheet</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Param type</th>
+<th>Example route definition</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>Literal params</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left">Literal</td>
+<td><code>foo bar</code></td>
+<td>"foo" followed by "bar"</td>
+</tr>
+<tr>
+<td align="left">Literal alternative</td>
+<td><code>foo (bar|baz)</code></td>
+<td>"foo" followed by "bar" or "baz"</td>
+</tr>
+<tr>
+<td align="left">Literal, optional</td>
+<td><code>foo [bar]</code></td>
+<td>"foo", optional "bar"</td>
+</tr>
+<tr>
+<td align="left">Literal, optional alternative</td>
+<td><code>foo [bar|baz]</code></td>
+<td>"foo", optional "bar" or "baz"</td>
+</tr>
+<tr>
+<td align="left"><strong>Flags</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left">Flag long</td>
+<td><code>foo --bar</code></td>
+<td>"foo" as first parameter, "--bar" flag before or after</td>
+</tr>
+<tr>
+<td align="left">Flag long, optional</td>
+<td><code>foo [--bar]</code></td>
+<td>"foo" as first parameter, optional "--bar" flag before or after</td>
+</tr>
+<tr>
+<td align="left">Flag long, optional, alternative</td>
+<td><code>foo [--bar|--baz]</code></td>
+<td>"foo" as first parameter, optional "--bar" or "--baz", before or after</td>
+</tr>
+<tr>
+<td align="left">Flag short</td>
+<td><code>foo -b</code></td>
+<td>"foo" as first parameter, "-b" flag before or after</td>
+</tr>
+<tr>
+<td align="left">Flag short, optional</td>
+<td><code>foo [-b]</code></td>
+<td>"foo" as first parameter, optional "-b" flag before or after</td>
+</tr>
+<tr>
+<td align="left">Flag short, optional, alternative</td>
+<td><code>foo [-b|-z]</code></td>
+<td>"foo" as first parameter, optional "-b" or "-z", before or after</td>
+</tr>
+<tr>
+<td align="left">Flag long/short alternative</td>
+<td><code>foo [--bar|-b]</code></td>
+<td>"foo" as first parameter, optional "--bar" or "-b" before or after</td>
+</tr>
+<tr>
+<td align="left"><strong>Value parameters</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left">Value positional param</td>
+<td><code>foo &lt;bar&gt;</code></td>
+<td>"foo" followed by any text (stored as "bar" param)</td>
+</tr>
+<tr>
+<td align="left">Value positional param, optional</td>
+<td><code>foo [&lt;bar&gt;]</code></td>
+<td>"foo", optionally followed by any text (stored as "bar" param)</td>
+</tr>
+<tr>
+<td align="left">Value Flag</td>
+<td><code>foo --bar=</code></td>
+<td>"foo" as first parameter, "--bar" with a value, before or after</td>
+</tr>
+<tr>
+<td align="left">Value Flag, optional</td>
+<td><code>foo [--bar=]</code></td>
+<td>"foo" as first parameter, optionally "--bar" with a value, before or after</td>
+</tr>
+<tr>
+<td align="left"><strong>Parameter groups</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left">Literal params group</td>
+<td><code>foo (bar|baz):myParam</code></td>
+<td>"foo" followed by "bar" or "baz" (stored as "myParam" param)</td>
+</tr>
+<tr>
+<td align="left">Literal optional params group</td>
+<td><code>foo [bar|baz]:myParam</code></td>
+<td>"foo" followed by optional "bar" or "baz" (stored as "myParam" param)</td>
+</tr>
+<tr>
+<td align="left">Long flags group</td>
+<td><code>foo (--bar|--baz):myParam</code></td>
+<td>"foo", "bar" or "baz" flag before or after (stored as "myParam" param)</td>
+</tr>
+<tr>
+<td align="left">Long optional flags group</td>
+<td><code>foo [--bar|--baz]:myParam</code></td>
+<td>"foo", optional "bar" or "baz" flag before or after (as "myParam" param)</td>
+</tr>
+<tr>
+<td align="left">Short flags group</td>
+<td><code>foo (-b|-z):myParam</code></td>
+<td>"foo", "-b" or "-z" flag before or after (stored as "myParam" param)</td>
+</tr>
+<tr>
+<td align="left">Short optional flags group</td>
+<td><code>foo [-b|-z]:myParam</code></td>
+<td>"foo", optional "-b" or "-z" flag before or after (stored as "myParam" param)</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<nav>
+  <ul class="pager">
+    <li class="previous">
+      <a rel="prev" href="../prompts/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next">
+      <a rel="next" href="../mvc/routing/">Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav></div>
+        
+    </div>
+    <!-- content:end -->
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>Copyright (c) 2016 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a><br></small>
+        </p>
+        <p><small><a href="http://framework.zend.com">Learn more about Zend Framework</a></small></p>
+    </footer>
+
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../js/prism-zf.js"></script>
+
+    <script>var base_url = '..';</script>
+    <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+    <script src="../js/base.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

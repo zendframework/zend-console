@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    <title>Fetching Options and Arguments - zend-console</title>
+
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/zf.css" rel="stylesheet">
+    <link href="../../css/prism-zf.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <span class="navbar-brand">
+              <a href="http://framework.zend.com"><img src="../../img/zf-logo-mark.png" height="28" alt="Zend Framework" /></a>
+              <a href="../..">zend-console</a>
+            </span>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../intro/">Intro</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../adapter/">Console Adapters</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../prompts/">Console Prompts</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../routes/">Routes</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">MVC Integration <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../mvc/routing/">MVC Routing</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../mvc/modules/">Console-Aware Modules</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../mvc/controllers/">Console-Aware Controllers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Getopt <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../intro/">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../rules/">Declaring Rules</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Fetching Options and Arguments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../configuration/">Configuration</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="prev" href="../rules/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../configuration/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/zendframework/zend-console">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <!-- content:begin -->
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#fetching-options-and-arguments">Fetching Options and Arguments</a></li>
+        
+            <li><a href="#handling-getopt-exceptions">Handling Getopt Exceptions</a></li>
+        
+            <li><a href="#fetching-options-by-name">Fetching Options by Name</a></li>
+        
+            <li><a href="#reporting-options">Reporting Options</a></li>
+        
+            <li><a href="#fetching-non-option-arguments">Fetching Non-option Arguments</a></li>
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<ol class="breadcrumb" role="navigation" aria-label="breadcrumbs navigation">
+  <li><a href="../..">Docs</a> &raquo;</li>
+  
+    
+      
+        <li>Getopt &raquo;</li>
+      
+    
+  
+  <li class="active">Fetching Options and Arguments</li>
+</ol>
+
+<nav class="hidden-lg">
+  <ul class="pager">
+    <li class="previous">
+      <a rel="prev" href="../rules/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next">
+      <a rel="next" href="../configuration/">Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav>
+
+<h1 id="fetching-options-and-arguments">Fetching Options and Arguments</h1>
+<p>After you have declared the options that the <code>Zend\Console\Getopt</code> object should
+recognize, and supplied arguments from the command-line or an array, you can
+query the object to find out which options were specified by a user in a given
+command-line invocation of your program. The class implements magic methods so
+you can query for options by name.</p>
+<p>The parsing of the data is deferred until the first query you make against the
+<code>Zend\Console\Getopt</code> object to find out if an option was given.  This allows
+you to use several method calls to configure the options, arguments, help
+strings, and configuration options before parsing takes place.</p>
+<h2 id="handling-getopt-exceptions">Handling Getopt Exceptions</h2>
+<p>If the user gave any invalid options on the command-line, the parsing function
+throws a <code>Zend\Console\Exception\RuntimeException</code>. You should catch this
+exception in your application code. You can use the <code>parse()</code> method to force
+the object to parse the arguments. This is useful because you can invoke
+<code>parse()</code> in a <code>try</code> block; if it passes, you can be sure that the parsing won't
+throw an exception again. The exception thrown has a custom method
+<code>getUsageMessage()</code> which returns as a string the formatted set of usage
+messages for all declared options.</p>
+<h3 id="catching-getopt-exceptions">Catching Getopt Exceptions</h3>
+<pre class="codehilite"><code class="language-php">try {
+    $opts = new Zend\Console\Getopt('abp:');
+    $opts-&gt;parse();
+} catch (Zend\Console\Exception\RuntimeException $e) {
+    echo $e-&gt;getUsageMessage();
+    exit;
+}</code></pre>
+
+
+<p>Cases where parsing throws an exception include:</p>
+<ul>
+<li>Option given is not recognized.</li>
+<li>Option requires a parameter but none was given.</li>
+<li>Option parameter is of the wrong type; e.g. a non-numeric string when an
+  integer was required.</li>
+</ul>
+<h2 id="fetching-options-by-name">Fetching Options by Name</h2>
+<p>You can use the <code>getOption()</code> method to query the value of an option. If the
+option had a parameter, this method returns the value of the parameter. If the
+option had no parameter but the user did specify it on the command-line, the
+method returns <code>TRUE</code>. Otherwise the method returns <code>NULL</code>.</p>
+<h3 id="using-getoption">Using getOption()</h3>
+<pre class="codehilite"><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
+$b = $opts-&gt;getOption('b');
+$p_parameter = $opts-&gt;getOption('p');</code></pre>
+
+
+<p>Alternatively, you can use the property overloading via the magic <code>__isset()</code> and
+<code>__get()</code> methods, allowing you to test for and retrieve values as if they were
+property names.</p>
+<h3 id="using-property-overloading">Using property overloading</h3>
+<pre class="codehilite"><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
+if (isset($opts-&gt;b)) {
+    echo &quot;I got the b option.\n&quot;;
+}
+$p_parameter = $opts-&gt;p; // null if not set</code></pre>
+
+
+<blockquote>
+<h3 id="using-aliases">Using aliases</h3>
+<p>If your options are declared with aliases, you may use any of the aliases for
+an option when retrieving its value.</p>
+</blockquote>
+<h2 id="reporting-options">Reporting Options</h2>
+<p>There are several methods to report the full set of options given by the user on the current
+command-line.</p>
+<ul>
+<li>As a string: use the <code>toString()</code> method. The options are returned as a
+  space-separated string of <code>flag=value</code> pairs. The value of an option that does
+  not have a parameter is the literal string "<code>TRUE</code>".</li>
+<li>As an array: use the <code>toArray()</code> method. The options are returned in a simple
+  integer-indexed array of strings, the flag strings followed by parameter
+  strings, if any.</li>
+<li>As a string containing JSON data: use the <code>toJson()</code> method.</li>
+<li>As a string containing XML data: use the <code>toXml()</code> method.</li>
+</ul>
+<p>In all of the above dumping methods, the flag strings are the first strings in
+the corresponding list of aliases. For example, if the option aliases were
+declared like <code>verbose|v</code>, then the first string, <code>verbose</code>, is used as the
+canonical name of the option. The name of the option flag does not include any
+preceding dashes.</p>
+<h2 id="fetching-non-option-arguments">Fetching Non-option Arguments</h2>
+<p>After option arguments and their parameters have been parsed from the
+command-line, there may be additional arguments remaining. You can query these
+arguments using the <code>getRemainingArgs()</code> method.  This method returns an array
+of the strings that were not part of any options.</p>
+<h3 id="using-getremainingargs">Using getRemainingArgs()</h3>
+<pre class="codehilite"><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
+$opts-&gt;setArguments(['-p', 'p_parameter', 'filename']);
+$args = $opts-&gt;getRemainingArgs(); // returns ['filename']</code></pre>
+
+
+<p><code>Zend\Console\Getopt</code> supports the GNU convention that an argument consisting of
+a double-dash signifies the end of options. Any arguments following this
+signifier must be treated as non-option arguments. This is useful if you might
+have a non-option argument that begins with a dash. For example: <code>rm --
+-filename-with-dash</code>.</p>
+
+<hr />
+
+<nav>
+  <ul class="pager">
+    <li class="previous">
+      <a rel="prev" href="../rules/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next">
+      <a rel="next" href="../configuration/">Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav></div>
+        
+    </div>
+    <!-- content:end -->
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>Copyright (c) 2016 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a><br></small>
+        </p>
+        <p><small><a href="http://framework.zend.com">Learn more about Zend Framework</a></small></p>
+    </footer>
+
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/prism-zf.js"></script>
+
+    <script>var base_url = '../..';</script>
+    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+    <script src="../../js/base.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

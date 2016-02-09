@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    <title>Console Adapters - zend-console</title>
+
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/zf.css" rel="stylesheet">
+    <link href="../css/prism-zf.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <span class="navbar-brand">
+              <a href="http://framework.zend.com"><img src="../img/zf-logo-mark.png" height="28" alt="Zend Framework" /></a>
+              <a href="..">zend-console</a>
+            </span>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../intro/">Intro</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li class="active">
+    <a href="./">Console Adapters</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../prompts/">Console Prompts</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../routes/">Routes</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">MVC Integration <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../mvc/routing/">MVC Routing</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mvc/modules/">Console-Aware Modules</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mvc/controllers/">Console-Aware Controllers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Getopt <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../getopt/intro/">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../getopt/rules/">Declaring Rules</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../getopt/fetching/">Fetching Options and Arguments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../getopt/configuration/">Configuration</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="prev" href="../intro/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../prompts/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/zendframework/zend-console">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <!-- content:begin -->
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#console-adapters">Console adapters</a></li>
+        
+            <li><a href="#retrieving-the-console-adapter">Retrieving the console adapter</a></li>
+        
+            <li><a href="#using-the-console-adapter">Using the console adapter</a></li>
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<ol class="breadcrumb" role="navigation" aria-label="breadcrumbs navigation">
+  <li><a href="..">Docs</a> &raquo;</li>
+  
+    
+      
+        <li>Reference &raquo;</li>
+      
+    
+  
+  <li class="active">Console Adapters</li>
+</ol>
+
+<nav class="hidden-lg">
+  <ul class="pager">
+    <li class="previous">
+      <a rel="prev" href="../intro/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next">
+      <a rel="next" href="../prompts/">Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav>
+
+<h1 id="console-adapters">Console adapters</h1>
+<p>zend-console's console abstraction layer works around various bugs and limitations
+in operating systems, including:</p>
+<ul>
+<li>display of colorized text.</li>
+<li>discovery and calculation of console window size.</li>
+<li>discovery of console charset.</li>
+<li>basic line drawing capabilities.</li>
+</ul>
+<p>Console adapters implement <code>Zend\Console\Adapter\AdapterInterface</code>, and you
+should typehint against that interface for purposes of working with console
+capabilities. Adapters are included for:</p>
+<ul>
+<li>Posix (*nix-based systems)</li>
+<li>Windows (and Windows ANSI; for use with <code>command.bat</code>)</li>
+<li>Virtual (which provides Windows PowerShell compatibility)</li>
+</ul>
+<h2 id="retrieving-the-console-adapter">Retrieving the console adapter</h2>
+<p>While you may know your current environment, you will want to write your code in
+such a way that the console adapter is specific to whatever environment it is
+run within. As such, you likely should never instantiate an adapter directly.
+zend-console, and the zend-mvc integration, provide tools for retrieving an
+appropriate adapter for the current environment in a generic way.</p>
+<h3 id="standalone">Standalone</h3>
+<p>zend-console provides a factory for creating and returning the console adapter
+specific to your environment:</p>
+<pre class="codehilite"><code class="language-php">use Zend\Console\Console;
+use Zend\Console\Exception\ExceptionInterface as ConsoleException;
+
+try {
+    $console = Console::getInstance();
+} catch (ConsoleException $e) {
+    // Could not get console adapter; most likely we are not running inside a
+    // console window.
+}</code></pre>
+
+
+<p>This returns a <code>Zend\Console\Adapter\AdapterInterface</code> implementation suitable
+for your current environment.</p>
+<blockquote>
+<h4 id="exceptions">Exceptions</h4>
+<p>For practical and security reasons, <code>Console::getInstance()</code> will always throw
+an exception if you attempt to get console instance in a non-console
+environment (i.e. when running on a HTTP server). You can override this
+behavior by manually instantiating one of the <code>Zend\Console\Adapter\*</code>
+classes; you should do this only as a last resort, however!</p>
+</blockquote>
+<h3 id="zend-mvc">zend-mvc</h3>
+<p>If you are using MVC controllers you can obtain Console adapter instance using
+the <code>ServiceManager</code>.</p>
+<pre class="codehilite"><code class="language-php">namespace Application;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Console\Adapter\AdapterInterface as Console;
+use Zend\Console\Exception\RuntimeException;
+
+class ConsoleController extends AbstractActionController
+{
+    public function testAction()
+    {
+        $console = $this-&gt;getServiceLocator()-&gt;get('console');
+        if (! $console instanceof Console) {
+            throw new RuntimeException('Cannot obtain console adapter. Are we running in a
+console?');
+        }
+    }
+}</code></pre>
+
+
+<p>If you extend <code>AbstractConsoleController</code>, you can use the <code>getConsole()</code> method
+instead:</p>
+<pre class="codehilite"><code class="language-php">namespace Application;
+
+use Zend\Mvc\Controller\AbstractConsoleController;
+use Zend\Console\Exception\RuntimeException;
+
+class ConsoleController extends AbstractConsoleController
+{
+    public function testAction()
+    {
+        $console = $this-&gt;getConsole();
+    }
+}</code></pre>
+
+
+<blockquote>
+<h4 id="use-dependency-injection">Use dependency injection</h4>
+<p>We recommend using dependency injection. Instead of pulling the console
+adapter from the service manager, inject it from within your controller's
+factory. This is essentially what happens when extending
+<code>AbstractConsoleController</code> already.</p>
+</blockquote>
+<h2 id="using-the-console-adapter">Using the console adapter</h2>
+<p><code>Zend\Console\Adapter\AdapterInterface</code> describes a rich set of capabilities.
+Below is a sampling.</p>
+<h3 id="window-size-and-title">Window size and title</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$console-&gt;getWidth()</code></td>
+<td>(int) Get real console window width in characters.</td>
+</tr>
+<tr>
+<td><code>$console-&gt;getHeight()</code></td>
+<td>(int) Get real console window height in characters.</td>
+</tr>
+<tr>
+<td><code>$console-&gt;getSize()</code></td>
+<td>(array) Returns <code>[$width, $height]</code> with current console window dimensions.</td>
+</tr>
+<tr>
+<td><code>$console-&gt;getTitle()</code></td>
+<td>(string) Get console window title.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h4 id="multibyte-sequences">Multibyte sequences</h4>
+<p>For UTF-8 enabled consoles, dimensions represent the number of multibyte
+characters (real characters).</p>
+<h4 id="virtual-buffer-sizes">Virtual buffer sizes</h4>
+<p>On consoles with virtual buffers (e.g. MS Windows Command Prompt), width and
+height represent visible (real) size, without scrolling the window. For
+example, if the window scrolling width is 120 chars, but its real, visible
+width is 80 chars, <code>getWidth()</code> will return <code>80</code>.</p>
+</blockquote>
+<h3 id="character-set">Character set</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$console-&gt;isUtf8()</code></td>
+<td>(boolean) Is the console UTF-8 compatible (can it display unicode strings)?</td>
+</tr>
+<tr>
+<td><code>$console-&gt;getCharset()</code></td>
+<td>(<code>Zend\Console\Charset\CharsetInterface</code>) This method will return an instance of one of the <code>Zend\Console\Charset\*</code> classes representing the readable charset present for line-drawing. It is automatically detected by the adapter.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="writing-to-the-console">Writing to the console</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$console-&gt;write(string $text, $color = null, $bgColor = null)</code></td>
+<td>Write <code>$text</code> to the console, optionally using foreground <code>$color</code> and background <code>$bgColor</code>.  Color values must be one of the <code>Zend\Console\ColorInterface</code> constants.</td>
+</tr>
+<tr>
+<td><code>$console-&gt;writeLine(string $text, $color = null, $bgColor = null)</code></td>
+<td>Write a single line of <code>$text</code> to the console. This method will output an environment-specific newline character at the end of the text, moving the console cursor to next line.</td>
+</tr>
+<tr>
+<td><code>$console-&gt;writeAt(string $text, int $x, int $y, $color = null, $bgColor = null)</code></td>
+<td>Write <code>$text</code> at the specified <code>$x</code> and <code>$y</code> coordinates of console window. The top left corner of the screen has coordinates of <code>$x = 1; $y = 1</code>. To retrieve the far-right and bottom coordinates, use the <code>getWidth()</code> and <code>getHeight()</code> methods.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="reading-from-the-console">Reading from the console</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$console-&gt;readChar(string $mask = null)</code></td>
+<td>(string) Read a single character from the console. Optional <code>(string) $mask</code> can be provided to force entering only a selected set of characters. For example, to read a single digit, we can use the following syntax: <code>$digit = $console-&gt;readChar('0123456789');</code>.</td>
+</tr>
+<tr>
+<td><code>$console-&gt;readLine(int $maxLength = 2048)</code></td>
+<td>(string) Read a single line of input from console. Optional <code>(int) $maxLength</code> can be used to limit the length of data that will be read. The line will be returned <strong>without trailing newline characters</strong>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="miscellaneous">Miscellaneous</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$console-&gt;hideCursor()</code></td>
+<td>Hide blinking cursor from the console.</td>
+</tr>
+<tr>
+<td><code>$console-&gt;showCursor()</code></td>
+<td>Show blinking cursor in the console.</td>
+</tr>
+<tr>
+<td><code>$console-&gt;clear()</code></td>
+<td>Clear the screen.</td>
+</tr>
+<tr>
+<td><code>$console-&gt;clearLine()</code></td>
+<td>Clear the line that the cursor currently sits at.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<nav>
+  <ul class="pager">
+    <li class="previous">
+      <a rel="prev" href="../intro/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next">
+      <a rel="next" href="../prompts/">Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav></div>
+        
+    </div>
+    <!-- content:end -->
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>Copyright (c) 2016 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a><br></small>
+        </p>
+        <p><small><a href="http://framework.zend.com">Learn more about Zend Framework</a></small></p>
+    </footer>
+
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../js/prism-zf.js"></script>
+
+    <script>var base_url = '..';</script>
+    <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+    <script src="../js/base.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

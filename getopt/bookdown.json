@@ -1,0 +1,10 @@
+{
+    "title": "Getopt",
+    "content": [
+        {"Introduction": "intro.md"},
+        {"Declaring Rules": "rules.md"},
+        {"Fetching Options and Arguments": "fetching.md"},
+        {"Configuration": "configuration.md"}
+    ]
+}
+
