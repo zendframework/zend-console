@@ -39,13 +39,13 @@ This prompt is best used for a **yes** / **no** type of choices.
 Confirm( string $text, string $yesChar = 'y', string $noChar = 'n' )
 ```
 
-**$text**  
+##### $text
 (string) The text to show with the prompt
 
-**$yesChar**  
+##### $yesChar
 (string) The char that corresponds with YES choice. Defaults to `y`.
 
-**$noChar**  
+##### $noChar
 (string) The char that corresponds with NO choice. Defaults to `n`.
 
 Example usage:
@@ -74,13 +74,13 @@ Line(
 )
 ```
 
-**$text**  
+##### $text
 (string) The text to show with the prompt
 
-**$allowEmpty**  
+##### $allowEmpty
 (boolean) Can this prompt be skipped, by pressing \[ENTER\] ? (default fo false)
 
-**$maxLength**  
+##### $maxLength
 (integer) Maximum length of the input. Anything above this limit will be truncated.
 
 Example usage:
@@ -114,19 +114,19 @@ Char(
 )
 ```
 
-**$text**  
+##### $text
 (string) The text to show with the prompt
 
-**$allowedChars**  
+##### $allowedChars
 (string) A list of allowed keys that can be pressed.
 
-**$ignoreCase**  
+##### $ignoreCase
 (boolean) Ignore the case of chars pressed (default to true)
 
-**$allowEmpty**  
+##### $allowEmpty
 (boolean) Can this prompt be skipped, by pressing \[ENTER\] ? (default fo false)
 
-**$echo**  
+##### $echo
 (boolean) Should the selection be displayed on the screen ?
 
 Example usage:
@@ -164,16 +164,16 @@ Select(
 )
 ```
 
-**$text**  
+##### $text
 (string) The text to show with the prompt
 
-**$options**  
+##### $options
 (array) An associative array with keys strokes (chars) and their displayed values.
 
-**$allowEmpty**  
+##### $allowEmpty
 (boolean) Can this prompt be skipped, by pressing \[ENTER\] ? (default fo false)
 
-**$echo**  
+##### $echo
 (boolean) Should the selection be displayed on the screen ?
 
 Example usage:
@@ -211,10 +211,10 @@ Password(
 )
 ```
 
-**$promptText**  
+##### $promptText
 (string) The text to show with the prompt
 
-**$echo**  
+##### $echo
 (bool) Display \* in place of characters. Can be skipped, defaults to true
 
 Example usage:
