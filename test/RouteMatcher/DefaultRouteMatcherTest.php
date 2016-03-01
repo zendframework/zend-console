@@ -1307,14 +1307,6 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
      */
     public function testParamsCanBeValidated($routeDefinition, $validators, $arguments, $shouldMatch)
     {
-        if (! class_exists(Digits::class)) {
-            $this->markTestSkipped(sprintf(
-                '%s is skipped due to a dependency on zend-validator; update once that component '
-                . 'is forwards-compatible with zend-stdlib and zend-servicemanager v3',
-                __METHOD__
-            ));
-        }
-
         $matcher = new DefaultRouteMatcher($routeDefinition, [], [], [], null, $validators);
         $match = $matcher->match($arguments);
         if ($shouldMatch === false) {
