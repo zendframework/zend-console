@@ -1,8 +1,0 @@
-{
-    "title": "MVC Integration",
-    "content": [
-        {"Console-Aware Modules": "modules.md"},
-        {"Console-Aware Controllers": "controllers.md"}
-    ]
-}
-
