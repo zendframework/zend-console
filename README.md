@@ -7,4 +7,4 @@
 
 
 - File issues at https://github.com/zendframework/zend-console/issues
-- Documentation is at http://framework.zend.com/manual/current/en/index.html#zend-console
+- Documentation is at https://zendframework.github.io/zend-console/
