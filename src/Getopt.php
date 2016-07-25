@@ -368,8 +368,7 @@ class Getopt
 
     /**
      * Define additional option rules.
-     * These are appended to the rules defined when the constructor was called.
-     *
+     * These are appended to the rules defined when the constructor was called.k;
      * @param  array $rules
      * @return self
      */
@@ -382,6 +381,7 @@ class Getopt
                     $this->_addRulesModeZend($rules);
                     break;
                 }
+                break;
             // intentional fallthrough
             case self::MODE_GNU:
                 $this->_addRulesModeGnu($rules);
