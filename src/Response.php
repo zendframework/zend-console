@@ -33,8 +33,8 @@ class Response extends Message implements ResponseInterface
     /**
      * Set the error level that will be returned to shell.
      *
-     * @param int   $errorLevel
-     * @return Response
+     * @param int $errorLevel
+     * @return Response Provides a fluent interface
      */
     public function setErrorLevel($errorLevel)
     {
@@ -59,7 +59,7 @@ class Response extends Message implements ResponseInterface
     /**
      * Send content
      *
-     * @return Response
+     * @return Response Provides a fluent interface
      * @deprecated
      */
     public function sendContent()

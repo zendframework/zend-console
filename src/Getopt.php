@@ -301,7 +301,7 @@ class Getopt
      *
      * @param  array $argv
      * @throws Exception\InvalidArgumentException When not given an array as parameter
-     * @return self
+     * @return Getopt Provides a fluent interface
      */
     public function addArguments($argv)
     {
@@ -319,7 +319,7 @@ class Getopt
      *
      * @param  array $argv
      * @throws Exception\InvalidArgumentException When not given an array as parameter
-     * @return self
+     * @return Getopt Provides a fluent interface
      */
     public function setArguments($argv)
     {
@@ -337,7 +337,7 @@ class Getopt
      * the behavior of Zend\Console\Getopt.
      *
      * @param  array $getoptConfig
-     * @return self
+     * @return Getopt Provides a fluent interface
      */
     public function setOptions($getoptConfig)
     {
@@ -356,7 +356,7 @@ class Getopt
      *
      * @param  string $configKey
      * @param  string $configValue
-     * @return self
+     * @return Getopt Provides a fluent interface
      */
     public function setOption($configKey, $configValue)
     {
@@ -371,7 +371,7 @@ class Getopt
      * These are appended to the rules defined when the constructor was called.
      *
      * @param  array $rules
-     * @return self
+     * @return Getopt Provides a fluent interface
      */
     public function addRules($rules)
     {
@@ -600,7 +600,7 @@ class Getopt
      *
      * @param  array $aliasMap
      * @throws Exception\ExceptionInterface
-     * @return self
+     * @return Getopt Provides a fluent interface
      */
     public function setAliases($aliasMap)
     {
@@ -630,7 +630,7 @@ class Getopt
      * mapping option name (short or long) to the help string.
      *
      * @param  array $helpMap
-     * @return self
+     * @return Getopt Provides a fluent interface
      */
     public function setHelp($helpMap)
     {
@@ -651,7 +651,7 @@ class Getopt
      * Also find option parameters, and remaining arguments after
      * all options have been parsed.
      *
-     * @return self
+     * @return Getopt Provides a fluent interface
      */
     public function parse()
     {
@@ -696,13 +696,13 @@ class Getopt
     /**
      * @param string   $option   The name of the property which, if present, will call the passed
      *                           callback with the value of this parameter.
-     * @param callable $callback The callback that will be called for this option. The first
+     * @param \Closure $callback The callback that will be called for this option. The first
      *                           parameter will be the value of getOption($option), the second
      *                           parameter will be a reference to $this object. If the callback returns
      *                           false then an Exception\RuntimeException will be thrown indicating that
      *                           there is a parse issue with this option.
      *
-     * @return self
+     * @return Getopt Provides a fluent interface
      */
     public function setOptionCallback($option, \Closure $callback)
     {
