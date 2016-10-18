@@ -428,6 +428,14 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                     'alternatives'  => $options,
                     'hasValue'      => false,
                 ];
+            } elseif (preg_match('/\G\[ *?\.\.\.(?P<name>[a-zA-Z][a-zA-Z0-9\_\-\:]*?) *?\](?: +|$)/s', $def, $m, 0, $pos)) {
+                $item = [
+                    'name'       => $m['name'],
+                    'literal'    => false,
+                    'required'   => false,
+                    'catchAll'   => true,
+                    'hasValue'   => true,
+                ];
             } else {
                 throw new Exception\InvalidArgumentException(
                     'Cannot understand Console route at "' . substr($def, $pos) . '"'
@@ -486,9 +494,18 @@ class DefaultRouteMatcher implements RouteMatcherInterface
          * Extract positional and named parts
          */
         $positional = $named = [];
+        $catchAll = null;
         foreach ($this->parts as &$part) {
-            if ($part['positional']) {
+            if (isset($part['positional']) && $part['positional']) {
                 $positional[] = &$part;
+            } elseif (isset($part['catchAll']) && $part['catchAll']) {
+                if (null !== $catchAll) {
+                    throw new Exception\InvalidArgumentException(
+                        'Cannot define more than one catchAll parameter'
+                    );
+                }
+                $catchAll = &$part;
+                $matches[$catchAll['name']] = [];
             } else {
                 $named[] = &$part;
             }
@@ -653,7 +670,9 @@ class DefaultRouteMatcher implements RouteMatcherInterface
          */
         foreach ($params as $param) {
             if (preg_match('#^\-+#', $param)) {
-                return; // there is an unrecognized flag
+                if (null === $catchAll) {
+                    return; // there is an unrecognized flag
+                }
             }
         }
 
@@ -734,7 +753,13 @@ class DefaultRouteMatcher implements RouteMatcherInterface
          * Check if we have consumed all positional parameters
          */
         if ($argPos < count($params)) {
-            return; // there are extraneous params that were not consumed
+            if (null !== $catchAll) {
+                for ($i = $argPos; $i < count($params); $i++) {
+                    $matches[$catchAll['name']][] = $params[$i];
+                }
+            } else {
+                return; // there are extraneous params that were not consumed
+            }
         }
 
         /*

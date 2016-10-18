@@ -932,6 +932,16 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
                 ['baz'],
                 null,
             ],
+            'catchall' => [
+                'catchall [...params]',
+                ['catchall', 'foo', 'bar', '--xyzzy'],
+                ['params' => ['foo', 'bar', '--xyzzy']],
+            ],
+            'catchall-with-flag' => [
+                'catchall [--flag] [...params]',
+                ['catchall', 'foo', '--flag', 'bar', '--xyzzy'],
+                ['params' => ['foo', 'bar', '--xyzzy'], 'flag' => true],
+            ],
         ];
     }
 
@@ -953,10 +963,17 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
             $this->assertInternalType('array', $match);
 
             foreach ($params as $key => $value) {
+                if ($value === null) {
+                    $msg = "Param $key is not present";
+                } elseif (is_array($value)) {
+                    $msg = "Values in array $key do not match";
+                } else {
+                    $msg = "Param $key is present and is equal to $value";
+                }
                 $this->assertEquals(
                     $value,
                     isset($match[$key])?$match[$key]:null,
-                    $value === null ? "Param $key is not present" : "Param $key is present and is equal to $value"
+                    $msg
                 );
             }
         }
