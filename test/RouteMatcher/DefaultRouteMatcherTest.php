@@ -10,6 +10,7 @@
 
 namespace ZendTest\Console\RouteMatcher;
 
+use Zend\Console\Exception\InvalidArgumentException;
 use Zend\Console\RouteMatcher\DefaultRouteMatcher;
 use Zend\Validator\Digits;
 use Zend\Validator\StringLength;
@@ -1416,5 +1417,21 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
         new DefaultRouteMatcher('<foo>', [], [], [], [], [
             new \stdClass()
         ]);
+    }
+
+    public function testIllegalRouteDefinitions()
+    {
+        $badRoutes = [
+            '[...catchall1] [...catchall2]' => 'Cannot define more than one catchAll parameter',
+            '[...catchall] [positional]' => 'Positional parameters must come before catchAlls',
+        ];
+        foreach ($badRoutes as $route => $msg) {
+            try {
+                new DefaultRouteMatcher($route);
+                $this->fail('Expected exception (' . $msg . ') not thrown!');
+            } catch (InvalidArgumentException $ex) {
+                $this->assertEquals($msg, $ex->getMessage());
+            }
+        }
     }
 }

@@ -104,6 +104,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
         $length = strlen($def);
         $parts  = [];
         $unnamedGroupCounter = 1;
+        $catchAllCount = 0;
 
         while ($pos < $length) {
             /**
@@ -429,6 +430,12 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                     'hasValue'      => false,
                 ];
             } elseif (preg_match('/\G\[ *?\.\.\.(?P<name>[a-zA-Z][a-zA-Z0-9\_\-\:]*?) *?\](?: +|$)/s', $def, $m, 0, $pos)) {
+                if ($catchAllCount > 0) {
+                    throw new Exception\InvalidArgumentException(
+                        'Cannot define more than one catchAll parameter'
+                    );
+                }
+                $catchAllCount++;
                 $item = [
                     'name'       => $m['name'],
                     'literal'    => false,
@@ -442,6 +449,11 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                 );
             }
 
+            if (!empty($item['positional']) && $catchAllCount > 0) {
+                throw new Exception\InvalidArgumentException(
+                    'Positional parameters must come before catchAlls'
+                );
+            }
             $pos += strlen($m[0]);
             $parts[] = $item;
         }
@@ -499,11 +511,6 @@ class DefaultRouteMatcher implements RouteMatcherInterface
             if (isset($part['positional']) && $part['positional']) {
                 $positional[] = &$part;
             } elseif (isset($part['catchAll']) && $part['catchAll']) {
-                if (null !== $catchAll) {
-                    throw new Exception\InvalidArgumentException(
-                        'Cannot define more than one catchAll parameter'
-                    );
-                }
                 $catchAll = &$part;
                 $matches[$catchAll['name']] = [];
             } else {
