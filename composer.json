@@ -37,5 +37,16 @@
     "suggest": {
         "zendframework/zend-filter": "To support DefaultRouteMatcher usage",
         "zendframework/zend-validator": "To support DefaultRouteMatcher usage"
+    },
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "test": "phpunit --colors=always",
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
+        "upload-coverage": "coveralls -v"
     }
 }
