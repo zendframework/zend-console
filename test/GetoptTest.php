@@ -92,8 +92,8 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
         $opts = new Getopt('abp:', ['-a', '-p', 'p_arg']);
         $this->assertEquals(
             $opts->toXml(),
-            "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<options><option flag=\"a\"/>
-            <option flag=\"p\" parameter=\"p_arg\"/></options>\n"
+            "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<options><option flag=\"a\"/>"
+            . "<option flag=\"p\" parameter=\"p_arg\"/></options>\n"
         );
     }
 
@@ -323,8 +323,8 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
             $message = preg_replace('/ /', '_', $message);
             $this->assertEquals(
                 $message,
-                "Usage:_<progname>_[_options_]\n--apple|-a_[_<string>_]_________________apple\
-                n--banana1|--banana2|--banana3|--banana4_banana\n--pear_<string>_________________________pear\n"
+                "Usage:_<progname>_[_options_]\n--apple|-a_[_<string>_]_________________apple\n"
+                . "--banana1|--banana2|--banana3|--banana4_banana\n--pear_<string>_________________________pear\n"
             );
         }
     }
@@ -489,12 +489,12 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
             [ // rules
                 'man-bear|m-s' => 'ManBear with dash',
                 'man-bear-pig|b=s' => 'ManBearPid with dash',
-                ],
+            ],
             [ // arguments
                 '--man-bear-pig=mbp',
                 '--man-bear',
                 'foobar'
-                ]
+            ]
         );
 
         $opts->parse();
