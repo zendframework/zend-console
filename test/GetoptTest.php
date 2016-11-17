@@ -381,7 +381,8 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
         $message = preg_replace('/ /', '_', $message);
         $this->assertEquals(
             $message,
-            "Usage:_<progname>_[_options_]\n-a________________apple\n-b_______________banana\n-p_<string>________pear\n"
+            "Usage:_<progname>_[_options_]\n-a___________________apple\n-b___________________banana\n"
+            . "-p_<string>__________pear\n"
         );
     }
 
@@ -401,7 +402,8 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
         $message = preg_replace('/ /', '_', $message);
         $this->assertEquals(
             $message,
-            "Usage:_<progname>_[_options_]\n-a________________apple\n-b________________banana\n-p_<string>_______pear\n"
+            "Usage:_<progname>_[_options_]\n-a___________________apple\n-b___________________banana\n"
+            . "-p_<string>__________pear\n"
         );
     }
 
