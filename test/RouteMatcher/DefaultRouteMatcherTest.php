@@ -370,12 +370,12 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
             'mandatory-literal-namedAlternative-match-1' => [
                 'foo ( bar | baz ):altGroup',
                 ['foo','bar'],
-                ['foo' => null, 'altGroup'=>'bar', 'bar' => true, 'baz' => false]
+                ['foo' => null, 'altGroup' => 'bar', 'bar' => true, 'baz' => false]
             ],
             'mandatory-literal-namedAlternative-match-2' => [
                 'foo ( bar |   baz   ):altGroup9',
                 ['foo','baz'],
-                ['foo' => null, 'altGroup9'=>'baz', 'bar' => false, 'baz' => true]
+                ['foo' => null, 'altGroup9' => 'baz', 'bar' => false, 'baz' => true]
             ],
             'mandatory-literal-namedAlternative-mismatch' => [
                 'foo ( bar |   baz   ):altGroup9',
@@ -437,7 +437,7 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
             'optional-literal-namedAlternative-mismatch' => [
                 'foo [ bar | baz ]:altGroup9',
                 ['foo'],
-                ['foo' => null, 'altGroup9'=> null, 'bar' => false, 'baz' => false]
+                ['foo' => null, 'altGroup9' => null, 'bar' => false, 'baz' => false]
             ],
 
             // -- value params
@@ -955,7 +955,7 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
             foreach ($params as $key => $value) {
                 $this->assertEquals(
                     $value,
-                    isset($match[$key])?$match[$key]:null,
+                    isset($match[$key]) ? $match[$key] : null,
                     $value === null ? "Param $key is not present" : "Param $key is present and is equal to $value"
                 );
             }
@@ -1066,7 +1066,7 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
             foreach ($params as $key => $value) {
                 $this->assertSame(
                     $value,
-                    isset($match[$key])?$match[$key]:null,
+                    isset($match[$key]) ? $match[$key] : null,
                     $value === null ? "Param $key is not present" : "Param $key is present and is equal to '$value'"
                 );
             }
@@ -1246,7 +1246,7 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
             foreach ($params as $key => $value) {
                 $this->assertEquals(
                     $value,
-                    isset($match[$key])?$match[$key]:null,
+                    isset($match[$key]) ? $match[$key] : null,
                     $value === null ? "Param $key is not present" : "Param $key is present and is equal to $value"
                 );
             }
@@ -1379,7 +1379,7 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
         foreach ($params as $key => $value) {
             $this->assertEquals(
                 $value,
-                isset($match[$key])?$match[$key]:null,
+                isset($match[$key]) ? $match[$key] : null,
                 $value === null ? "Param $key is not present" : "Param $key is present and is equal to $value"
             );
         }
