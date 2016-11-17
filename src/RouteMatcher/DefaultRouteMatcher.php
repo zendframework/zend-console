@@ -691,7 +691,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
              */
             if ($part['literal']) {
                 if ((isset($part['alternatives'])
-                    && ! in_array($value, $part['alternatives'])) 
+                    && ! in_array($value, $part['alternatives']))
                     || (! isset($part['alternatives']) && $value != $part['name'])
                 ) {
                     return;
