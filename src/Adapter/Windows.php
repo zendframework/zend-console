@@ -99,7 +99,7 @@ class Windows extends Virtual
     protected function runProbeCommand()
     {
         exec(
-            'echo $size = $Host.ui.rawui.windowsize; write $($size.width)'
+            'echo $size = $Host.ui.rawui.windowsize; write $($size.width) '
             . '$($size.height) | powershell -NonInteractive -NoProfile -NoLogo -OutputFormat Text -Command -',
             $output,
             $return
