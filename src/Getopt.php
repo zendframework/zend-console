@@ -739,9 +739,10 @@ class Getopt
      *
      * @param  mixed &$argv
      */
-    // @codingStandardsIgnoreStart  
+    // @codingStandardsIgnoreStart
     protected function _parseLongOption(&$argv)
     {
+        // @codingStandardsIgnoreEnd
         $optionWithParam = ltrim(array_shift($argv), '-');
         $l = explode('=', $optionWithParam, 2);
         $flag = array_shift($l);
@@ -759,8 +760,10 @@ class Getopt
      *
      * @param  mixed &$argv
      */
+    // @codingStandardsIgnoreStart
     protected function _parseShortOptionCluster(&$argv)
     {
+        // @codingStandardsIgnoreEnd
         $flagCluster = ltrim(array_shift($argv), '-');
         foreach (str_split($flagCluster) as $flag) {
             $this->_parseSingleOption($flag, $argv);
@@ -774,8 +777,10 @@ class Getopt
      * @param  mixed  $argv
      * @throws Exception\ExceptionInterface
      */
+    // @codingStandardsIgnoreStart
     protected function _parseSingleOption($flag, &$argv)
     {
+        // @codingStandardsIgnoreEnd
         if ($this->getoptConfig[self::CONFIG_IGNORECASE]) {
             $flag = strtolower($flag);
         }
@@ -842,8 +847,10 @@ class Getopt
      * @throws Exception\RuntimeException
      * @return void
      */
+    // @codingStandardsIgnoreStart
     protected function _setNumericOptionValue($value)
     {
+        // @codingStandardsIgnoreEnd
         if (! $this->getoptConfig[self::CONFIG_NUMERIC_FLAGS]) {
             throw new Exception\RuntimeException("Using of numeric flags are deny by configuration");
         }
@@ -865,8 +872,10 @@ class Getopt
      * @param  string $flag
      * @param  string $value
      */
+    // @codingStandardsIgnoreStart
     protected function _setSingleOptionValue($flag, $value)
     {
+        // @codingStandardsIgnoreEnd
         if (true === $value && $this->getoptConfig[self::CONFIG_CUMULATIVE_FLAGS]) {
             // For boolean values we have to create new flag, or increase number of flags' usage count
             return $this->_setBooleanFlagValue($flag);
@@ -895,8 +904,10 @@ class Getopt
      *
      * @param  string $flag
      */
+    // @codingStandardsIgnoreStart
     protected function _setBooleanFlagValue($flag)
     {
+        // @codingStandardsIgnoreEnd
         $this->options[$flag] = array_key_exists($flag, $this->options)
             ? (int) $this->options[$flag] + 1
             : true;
@@ -912,8 +923,10 @@ class Getopt
      * @throws Exception\ExceptionInterface
      * @return bool
      */
+    // @codingStandardsIgnoreStart
     protected function _checkParameterType($flag, $param)
     {
+        // @codingStandardsIgnoreEnd
         $type = 'string';
         if (isset($this->rules[$flag]['paramType'])) {
             $type = $this->rules[$flag]['paramType'];
@@ -947,8 +960,10 @@ class Getopt
      *
      * @param  string $rules
      */
+    // @codingStandardsIgnoreStart
     protected function _addRulesModeGnu($rules)
     {
+        // @codingStandardsIgnoreEnd
         $ruleArray = [];
 
         /**
@@ -981,8 +996,10 @@ class Getopt
      * @param  array $rules
      * @throws Exception\ExceptionInterface
      */
+    // @codingStandardsIgnoreStart
     protected function _addRulesModeZend($rules)
     {
+        // @codingStandardsIgnoreEnd
         foreach ($rules as $ruleCode => $helpMessage) {
             // this may have to translate the long parm type if there
             // are any complaints that =string will not work (even though that use
@@ -1055,4 +1072,3 @@ class Getopt
         }
     }
 }
-// @codingStandardsIgnoreEnd
