@@ -47,7 +47,7 @@ class Select extends Char
             $this->setPromptText($promptText);
         }
 
-        if (!count($options)) {
+        if (! count($options)) {
             throw new Exception\BadMethodCallException(
                 'Cannot construct a "select" prompt without any options'
             );
@@ -119,13 +119,13 @@ class Select extends Char
      */
     public function setOptions($options)
     {
-        if (!is_array($options) && !$options instanceof \Traversable) {
+        if (! is_array($options) && ! $options instanceof \Traversable) {
             throw new Exception\BadMethodCallException(
                 'Please specify an array or Traversable object as options'
             );
         }
 
-        if (!is_array($options)) {
+        if (! is_array($options)) {
             $this->options = [];
             foreach ($options as $k => $v) {
                 $this->options[$k] = $v;

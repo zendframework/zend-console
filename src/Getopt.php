@@ -205,7 +205,7 @@ class Getopt
      */
     public function __construct($rules, $argv = null, $getoptConfig = [])
     {
-        if (!isset($_SERVER['argv'])) {
+        if (! isset($_SERVER['argv'])) {
             $errorDescription = (ini_get('register_argc_argv') == false)
                 ? "argv is not available, because ini option 'register_argc_argv' is set Off"
                 : '$_SERVER["argv"] is not set, but Zend\Console\Getopt cannot work without this information.';
@@ -215,7 +215,7 @@ class Getopt
         $this->progname = $_SERVER['argv'][0];
         $this->setOptions($getoptConfig);
         $this->addRules($rules);
-        if (!is_array($argv)) {
+        if (! is_array($argv)) {
             $argv = array_slice($_SERVER['argv'], 1);
         }
         if (isset($argv)) {
@@ -305,7 +305,7 @@ class Getopt
      */
     public function addArguments($argv)
     {
-        if (!is_array($argv)) {
+        if (! is_array($argv)) {
             throw new Exception\InvalidArgumentException("Parameter #1 to addArguments should be an array");
         }
         $this->argv = array_merge($this->argv, $argv);
@@ -323,7 +323,7 @@ class Getopt
      */
     public function setArguments($argv)
     {
-        if (!is_array($argv)) {
+        if (! is_array($argv)) {
             throw new Exception\InvalidArgumentException("Parameter #1 to setArguments should be an array");
         }
         $this->argv = $argv;
@@ -609,7 +609,7 @@ class Getopt
                 $flag = strtolower($flag);
                 $alias = strtolower($alias);
             }
-            if (!isset($this->ruleMap[$flag])) {
+            if (! isset($this->ruleMap[$flag])) {
                 continue;
             }
             $flag = $this->ruleMap[$flag];
@@ -635,7 +635,7 @@ class Getopt
     public function setHelp($helpMap)
     {
         foreach ($helpMap as $flag => $help) {
-            if (!isset($this->ruleMap[$flag])) {
+            if (! isset($this->ruleMap[$flag])) {
                 continue;
             }
             $flag = $this->ruleMap[$flag];
@@ -672,7 +672,7 @@ class Getopt
             }
             if (substr($argv[0], 0, 2) == '--') {
                 $this->_parseLongOption($argv);
-            } elseif (substr($argv[0], 0, 1) == '-' && ('-' != $argv[0] || count($argv) >1)) {
+            } elseif (substr($argv[0], 0, 1) == '-' && ('-' != $argv[0] || count($argv) > 1)) {
                 $this->_parseShortOptionCluster($argv);
             } elseif ($this->getoptConfig[self::CONFIG_PARSEALL]) {
                 $this->remainingArgs[] = array_shift($argv);
@@ -739,8 +739,10 @@ class Getopt
      *
      * @param  mixed &$argv
      */
+    // @codingStandardsIgnoreStart
     protected function _parseLongOption(&$argv)
     {
+        // @codingStandardsIgnoreEnd
         $optionWithParam = ltrim(array_shift($argv), '-');
         $l = explode('=', $optionWithParam, 2);
         $flag = array_shift($l);
@@ -758,8 +760,10 @@ class Getopt
      *
      * @param  mixed &$argv
      */
+    // @codingStandardsIgnoreStart
     protected function _parseShortOptionCluster(&$argv)
     {
+        // @codingStandardsIgnoreEnd
         $flagCluster = ltrim(array_shift($argv), '-');
         foreach (str_split($flagCluster) as $flag) {
             $this->_parseSingleOption($flag, $argv);
@@ -773,8 +777,10 @@ class Getopt
      * @param  mixed  $argv
      * @throws Exception\ExceptionInterface
      */
+    // @codingStandardsIgnoreStart
     protected function _parseSingleOption($flag, &$argv)
     {
+        // @codingStandardsIgnoreEnd
         if ($this->getoptConfig[self::CONFIG_IGNORECASE]) {
             $flag = strtolower($flag);
         }
@@ -784,9 +790,9 @@ class Getopt
             return $this->_setNumericOptionValue($flag);
         }
 
-        if (!isset($this->ruleMap[$flag])) {
+        if (! isset($this->ruleMap[$flag])) {
             // Don't throw Exception for flag-like param in case when freeform flags are allowed
-            if (!$this->getoptConfig[self::CONFIG_FREEFORM_FLAGS]) {
+            if (! $this->getoptConfig[self::CONFIG_FREEFORM_FLAGS]) {
                 throw new Exception\RuntimeException(
                     "Option \"$flag\" is not recognized.",
                     $this->getUsageMessage()
@@ -841,9 +847,11 @@ class Getopt
      * @throws Exception\RuntimeException
      * @return void
      */
+    // @codingStandardsIgnoreStart
     protected function _setNumericOptionValue($value)
     {
-        if (!$this->getoptConfig[self::CONFIG_NUMERIC_FLAGS]) {
+        // @codingStandardsIgnoreEnd
+        if (! $this->getoptConfig[self::CONFIG_NUMERIC_FLAGS]) {
             throw new Exception\RuntimeException("Using of numeric flags are deny by configuration");
         }
 
@@ -864,8 +872,10 @@ class Getopt
      * @param  string $flag
      * @param  string $value
      */
+    // @codingStandardsIgnoreStart
     protected function _setSingleOptionValue($flag, $value)
     {
+        // @codingStandardsIgnoreEnd
         if (true === $value && $this->getoptConfig[self::CONFIG_CUMULATIVE_FLAGS]) {
             // For boolean values we have to create new flag, or increase number of flags' usage count
             return $this->_setBooleanFlagValue($flag);
@@ -874,11 +884,11 @@ class Getopt
         // Split multiple values, if necessary
         // Filter empty values from splited array
         $separator = $this->getoptConfig[self::CONFIG_PARAMETER_SEPARATOR];
-        if (is_string($value) && !empty($separator) && is_string($separator) && substr_count($value, $separator)) {
+        if (is_string($value) && ! empty($separator) && is_string($separator) && substr_count($value, $separator)) {
             $value = array_filter(explode($separator, $value));
         }
 
-        if (!array_key_exists($flag, $this->options)) {
+        if (! array_key_exists($flag, $this->options)) {
             $this->options[$flag] = $value;
         } elseif ($this->getoptConfig[self::CONFIG_CUMULATIVE_PARAMETERS]) {
             $this->options[$flag] = (array) $this->options[$flag];
@@ -894,8 +904,10 @@ class Getopt
      *
      * @param  string $flag
      */
+    // @codingStandardsIgnoreStart
     protected function _setBooleanFlagValue($flag)
     {
+        // @codingStandardsIgnoreEnd
         $this->options[$flag] = array_key_exists($flag, $this->options)
             ? (int) $this->options[$flag] + 1
             : true;
@@ -911,8 +923,10 @@ class Getopt
      * @throws Exception\ExceptionInterface
      * @return bool
      */
+    // @codingStandardsIgnoreStart
     protected function _checkParameterType($flag, $param)
     {
+        // @codingStandardsIgnoreEnd
         $type = 'string';
         if (isset($this->rules[$flag]['paramType'])) {
             $type = $this->rules[$flag]['paramType'];
@@ -946,8 +960,10 @@ class Getopt
      *
      * @param  string $rules
      */
+    // @codingStandardsIgnoreStart
     protected function _addRulesModeGnu($rules)
     {
+        // @codingStandardsIgnoreEnd
         $ruleArray = [];
 
         /**
@@ -980,8 +996,10 @@ class Getopt
      * @param  array $rules
      * @throws Exception\ExceptionInterface
      */
+    // @codingStandardsIgnoreStart
     protected function _addRulesModeZend($rules)
     {
+        // @codingStandardsIgnoreEnd
         foreach ($rules as $ruleCode => $helpMessage) {
             // this may have to translate the long parm type if there
             // are any complaints that =string will not work (even though that use
