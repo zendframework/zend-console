@@ -308,9 +308,9 @@ class DefaultRouteMatcher implements RouteMatcherInterface
 
                 // prepare item
                 $item = [
-                    'name'          => isset(
-                        $m['groupName']
-                    ) ? $m['groupName'] : 'unnamedGroup' . $unnamedGroupCounter++,
+                    'name'          => isset($m['groupName'])
+                        ? $m['groupName']
+                        : 'unnamedGroup' . $unnamedGroupCounter++,
                     'literal'       => true,
                     'required'      => false,
                     'positional'    => true,
@@ -346,9 +346,9 @@ class DefaultRouteMatcher implements RouteMatcherInterface
 
                 // prepare item
                 $item = [
-                    'name'          => isset(
-                        $m['groupName']
-                    ) ? $m['groupName'] : 'unnamedGroupAt' . $unnamedGroupCounter++,
+                    'name'          => isset($m['groupName'])
+                        ? $m['groupName']
+                        : 'unnamedGroupAt' . $unnamedGroupCounter++,
                     'literal'       => true,
                     'required'      => true,
                     'positional'    => true,
@@ -389,9 +389,9 @@ class DefaultRouteMatcher implements RouteMatcherInterface
 
                 // prepare item
                 $item = [
-                    'name'          => isset(
-                        $m['groupName']
-                    ) ? $m['groupName'] : 'unnamedGroupAt' . $unnamedGroupCounter++,
+                    'name'          => isset($m['groupName'])
+                        ? $m['groupName']
+                        : 'unnamedGroupAt' . $unnamedGroupCounter++,
                     'literal'       => false,
                     'required'      => true,
                     'positional'    => false,
@@ -432,9 +432,9 @@ class DefaultRouteMatcher implements RouteMatcherInterface
 
                 // prepare item
                 $item = [
-                    'name'          => isset(
-                        $m['groupName']
-                    ) ? $m['groupName'] : 'unnamedGroupAt' . $unnamedGroupCounter++,
+                    'name'          => isset($m['groupName'])
+                        ? $m['groupName']
+                        : 'unnamedGroupAt' . $unnamedGroupCounter++,
                     'literal'       => false,
                     'required'      => false,
                     'positional'    => false,
@@ -618,8 +618,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
              * Validate the value against constraints
              */
             if ($part['hasValue'] && isset($this->constraints[$part['name']])) {
-                if (! preg_match($this->constraints[$part['name']], $value)
-                ) {
+                if (! preg_match($this->constraints[$part['name']], $value)) {
                     // constraint failed
                     return;
                 }
@@ -691,8 +690,9 @@ class DefaultRouteMatcher implements RouteMatcherInterface
              * Check if literal param matches
              */
             if ($part['literal']) {
-                if ((isset($part['alternatives']) && ! in_array($value, $part['alternatives'])) ||
-                    (! isset($part['alternatives']) && $value != $part['name'])
+                if ((isset($part['alternatives'])
+                    && ! in_array($value, $part['alternatives'])) 
+                    || (! isset($part['alternatives']) && $value != $part['name'])
                 ) {
                     return;
                 }
@@ -702,8 +702,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
              * Validate the value against constraints
              */
             if ($part['hasValue'] && isset($this->constraints[$part['name']])) {
-                if (! preg_match($this->constraints[$part['name']], $value)
-                ) {
+                if (! preg_match($this->constraints[$part['name']], $value)) {
                     // constraint failed
                     return;
                 }
