@@ -631,7 +631,7 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
                     'baz' => true
                 ]
             ],
-            // group with group name diferent than options (short)
+            // group with group name different than options (short)
             'group-1' => [
                 'group [-t|--test]:testgroup',
                 ['group', '-t'],
@@ -640,7 +640,7 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
                     'testgroup' => true,
                 ]
             ],
-            // group with group name diferent than options (long)
+            // group with group name different than options (long)
             'group-2' => [
                 'group [-t|--test]:testgroup',
                 ['group', '--test'],
