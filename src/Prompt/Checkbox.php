@@ -47,8 +47,12 @@ final class Checkbox extends AbstractPrompt
      * @param array|Transversable $options    Allowed options
      * @param bool                $echo       True to display selected option?
      */
-    public function __construct($promptText = 'Please select one option (Enter to finish) ', $options = [], $ignoreCase = true, $echo = false)
-    {
+    public function __construct(
+        $promptText = 'Please select one option (Enter to finish) ',
+        $options = [],
+        $ignoreCase = true,
+        $echo = false
+    ) {
         $this->promptText = (string) $promptText;
 
         $this->setOptions($options);
@@ -128,7 +132,7 @@ final class Checkbox extends AbstractPrompt
         /**
          * Normalize the mask if case is irrelevant
          */
-        if (!$this->ignoreCase) {
+        if (! $this->ignoreCase) {
             return $mask;
         }
 
