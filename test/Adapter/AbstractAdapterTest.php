@@ -9,12 +9,13 @@
 
 namespace ZendTest\Console\Adapter;
 
+use PHPUnit\Framework\TestCase;
 use ZendTest\Console\TestAssets\ConsoleAdapter;
 
 /**
  * @group      Zend_Console
  */
-class AbstractAdapterTest extends \PHPUnit_Framework_TestCase
+class AbstractAdapterTest extends TestCase
 {
     /**
      * @var ConsoleAdapter

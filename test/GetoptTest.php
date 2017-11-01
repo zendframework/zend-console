@@ -9,12 +9,13 @@
 
 namespace ZendTest\Console;
 
+use PHPUnit\Framework\TestCase;
 use Zend\Console\Getopt;
 
 /**
  * @group      Zend_Console
  */
-class GetoptTest extends \PHPUnit_Framework_TestCase
+class GetoptTest extends TestCase
 {
     public function setUp()
     {
@@ -99,16 +100,15 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
 
     public function testGetoptExceptionForMissingFlag()
     {
-        $this->setExpectedException(
-            '\Zend\Console\Exception\InvalidArgumentException',
-            'Blank flag not allowed in rule'
-        );
+        $this->expectException('\Zend\Console\Exception\InvalidArgumentException');
+        $this->expectExceptionMessage('Blank flag not allowed in rule');
         $opts = new Getopt(['|a' => 'Apple option']);
     }
 
     public function testGetoptExceptionForKeyWithDuplicateFlagsViaOrOperator()
     {
-        $this->setExpectedException('\Zend\Console\Exception\InvalidArgumentException', 'defined more than once');
+        $this->expectException('\Zend\Console\Exception\InvalidArgumentException');
+        $this->expectExceptionMessage('defined more than once');
         $opts = new Getopt(
             ['apple|apple' => 'apple-option']
         );
@@ -116,7 +116,8 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
 
     public function testGetoptExceptionForKeysThatDuplicateFlags()
     {
-        $this->setExpectedException('\Zend\Console\Exception\InvalidArgumentException', 'defined more than once');
+        $this->expectException('\Zend\Console\Exception\InvalidArgumentException');
+        $this->expectExceptionMessage('defined more than once');
         $opts = new Getopt(
             ['a' => 'Apple option', 'apple|a' => 'Apple option']
         );
@@ -150,7 +151,8 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
             ],
             ['--apple']
         );
-        $this->setExpectedException('\Zend\Console\Exception\RuntimeException', 'requires a parameter');
+        $this->expectException('\Zend\Console\Exception\RuntimeException');
+        $this->expectExceptionMessage('requires a parameter');
         $opts->parse();
     }
 
@@ -250,7 +252,8 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
     public function testGetoptAddSetNonArrayArguments()
     {
         $opts = new Getopt('abp:', ['-foo']);
-        $this->setExpectedException('\Zend\Console\Exception\InvalidArgumentException', 'should be an array');
+        $this->expectException('\Zend\Console\Exception\InvalidArgumentException');
+        $this->expectExceptionMessage('should be an array');
         $opts->setArguments('-a');
     }
 
@@ -277,7 +280,8 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
             ['-a', '--', '--fakeflag'],
             [Getopt::CONFIG_DASHDASH => false]
         );
-        $this->setExpectedException('\Zend\Console\Exception\RuntimeException', 'not recognized');
+        $this->expectException('\Zend\Console\Exception\RuntimeException');
+        $this->expectExceptionMessage('not recognized');
         $opts->parse();
     }
 
@@ -352,7 +356,8 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
         $opts = new Getopt('abp:', ['--apple']);
         $opts->setAliases(['a' => 'apple']);
 
-        $this->setExpectedException('\Zend\Console\Exception\InvalidArgumentException', 'defined more than once');
+        $this->expectException('\Zend\Console\Exception\InvalidArgumentException');
+        $this->expectExceptionMessage('defined more than once');
         $opts->setAliases(['b' => 'apple']);
     }
 
@@ -362,7 +367,8 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
         $opts->setAliases(['c' => 'cumquat']);
         $opts->setArguments(['-c']);
 
-        $this->setExpectedException('\Zend\Console\Exception\RuntimeException', 'not recognized');
+        $this->expectException('\Zend\Console\Exception\RuntimeException');
+        $this->expectExceptionMessage('not recognized');
         $opts->parse();
     }
 
@@ -537,7 +543,7 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
     {
         $opts = new Getopt("abp:", ["-", "file1"]);
 
-        $this->setExpectedException('\Zend\Console\Exception\RuntimeException');
+        $this->expectException('\Zend\Console\Exception\RuntimeException');
         $opts->parse();
     }
 
@@ -677,7 +683,7 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
             ['red', 'green', '-3']
         );
 
-        $this->setExpectedException('\Zend\Console\Exception\RuntimeException');
+        $this->expectException('\Zend\Console\Exception\RuntimeException');
         $opts->parse();
     }
 
@@ -700,7 +706,7 @@ class GetoptTest extends \PHPUnit_Framework_TestCase
             [Getopt::CONFIG_NUMERIC_FLAGS => true]
         );
 
-        $this->setExpectedException('\Zend\Console\Exception\RuntimeException');
+        $this->expectException('\Zend\Console\Exception\RuntimeException');
         $opts->parse();
     }
 

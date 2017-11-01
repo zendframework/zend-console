@@ -9,13 +9,14 @@
 
 namespace ZendTest\Console\Color;
 
+use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use Zend\Console\Color\Xterm256;
 
 /**
  * @group      Zend_Console
  */
-class Xterm256Test extends \PHPUnit_Framework_TestCase
+class Xterm256Test extends TestCase
 {
     public function invalidHexCodes()
     {

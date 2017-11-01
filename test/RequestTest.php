@@ -9,12 +9,13 @@
 
 namespace ZendTest\Console;
 
+use PHPUnit\Framework\TestCase;
 use Zend\Console\Request;
 
 /**
  * @group      Zend_Console
  */
-class RequestTest extends \PHPUnit_Framework_TestCase
+class RequestTest extends TestCase
 {
     public function setUp()
     {

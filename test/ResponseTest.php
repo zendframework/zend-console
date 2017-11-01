@@ -9,12 +9,13 @@
 
 namespace ZendTest\Console;
 
+use PHPUnit\Framework\TestCase;
 use Zend\Console\Response;
 
 /**
  * @group      Zend_Console
  */
-class ResponseTest extends \PHPUnit_Framework_TestCase
+class ResponseTest extends TestCase
 {
     /**
      * @var Response
