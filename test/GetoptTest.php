@@ -532,7 +532,7 @@ class GetoptTest extends TestCase
         $opts = new Getopt('abp:', ['-']);
         $opts->parse();
 
-        $this->assertEquals(1, count($opts->getRemainingArgs()));
+        $this->assertCount(1, $opts->getRemainingArgs());
         $this->assertEquals(['-'], $opts->getRemainingArgs());
     }
 
