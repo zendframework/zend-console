@@ -529,11 +529,11 @@ class GetoptTest extends TestCase
      */
     public function testUsingDashWithoutOptionNameAsLastArgumentIsRecognizedAsRemainingArgument()
     {
-        $opts = new Getopt("abp:", ["-"]);
+        $opts = new Getopt('abp:', ['-']);
         $opts->parse();
 
         $this->assertEquals(1, count($opts->getRemainingArgs()));
-        $this->assertEquals(["-"], $opts->getRemainingArgs());
+        $this->assertEquals(['-'], $opts->getRemainingArgs());
     }
 
     /**
@@ -541,7 +541,7 @@ class GetoptTest extends TestCase
      */
     public function testUsingDashWithoutOptionNotAsLastArgumentThrowsException()
     {
-        $opts = new Getopt("abp:", ["-", "file1"]);
+        $opts = new Getopt('abp:', ['-', 'file1']);
 
         $this->expectException('\Zend\Console\Exception\RuntimeException');
         $opts->parse();
