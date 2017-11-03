@@ -12,9 +12,9 @@ namespace ZendTest\Console\RouteMatcher;
 
 use PHPUnit\Framework\TestCase;
 use Zend\Console\RouteMatcher\DefaultRouteMatcher;
+use Zend\Filter\FilterInterface;
 use Zend\Validator\Digits;
 use Zend\Validator\StringLength;
-use Zend\Filter\FilterInterface;
 
 /**
  * @category   Zend

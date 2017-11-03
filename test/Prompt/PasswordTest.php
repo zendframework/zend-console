@@ -11,8 +11,8 @@ namespace ZendTest\Console\Prompt;
 
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
-use Zend\Console\Prompt\Password;
 use Zend\Console\Adapter\AbstractAdapter;
+use Zend\Console\Prompt\Password;
 
 /**
  * Tests for {@see \Zend\Console\Prompt\Password}
