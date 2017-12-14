@@ -9,12 +9,13 @@
 
 namespace ZendTest\Console;
 
+use PHPUnit\Framework\TestCase;
 use Zend\Console\Response;
 
 /**
  * @group      Zend_Console
  */
-class ResponseTest extends \PHPUnit_Framework_TestCase
+class ResponseTest extends TestCase
 {
     /**
      * @var Response
@@ -67,7 +68,8 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     public function testSetContentWithExit()
     {
         if (!function_exists('set_exit_overload')) {
-            $this->markTestSkipped("Install ext/test_helpers to test method with exit : https://github.com/sebastianbergmann/php-test-helpers.");
+            $this->markTestSkipped("Install ext/test_helpers to test method with exit :
+            https://github.com/sebastianbergmann/php-test-helpers.");
         }
 
         $self = $this;

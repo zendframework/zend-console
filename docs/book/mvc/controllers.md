@@ -224,7 +224,7 @@ class IndexController extends AbstractActionController
             // display a web page with users list
             return new ViewModel($result);
         }
-        
+
         if ($request instanceof ConsoleRequest) {
             // ... prepare console output and return it ...
             return $result;
@@ -236,7 +236,7 @@ class IndexController extends AbstractActionController
 ```
 
 > ### AbstractConsoleController
-> 
+>
 > One way to ensure you always receive a console request instance is to extend
 > `Zend\Mvc\Controller\AbstractConsoleController`. This controller instance also
 > exposes a new method, `getConsole()`, providing you access to the console

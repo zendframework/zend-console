@@ -10,8 +10,8 @@
 namespace Zend\Console\RouteMatcher;
 
 use Zend\Console\Exception;
-use Zend\Validator\ValidatorInterface;
 use Zend\Filter\FilterInterface;
+use Zend\Validator\ValidatorInterface;
 
 class DefaultRouteMatcher implements RouteMatcherInterface
 {
@@ -71,8 +71,10 @@ class DefaultRouteMatcher implements RouteMatcherInterface
 
         if ($filters !== null) {
             foreach ($filters as $name => $filter) {
-                if (!$filter instanceof FilterInterface) {
-                    throw new Exception\InvalidArgumentException('Cannot use ' . gettype($filters) . ' as filter for ' . __CLASS__);
+                if (! $filter instanceof FilterInterface) {
+                    throw new Exception\InvalidArgumentException(
+                        'Cannot use ' . gettype($filters) . ' as filter for ' . __CLASS__
+                    );
                 }
                 $this->filters[$name] = $filter;
             }
@@ -80,8 +82,10 @@ class DefaultRouteMatcher implements RouteMatcherInterface
 
         if ($validators !== null) {
             foreach ($validators as $name => $validator) {
-                if (!$validator instanceof ValidatorInterface) {
-                    throw new Exception\InvalidArgumentException('Cannot use ' . gettype($validator) . ' as validator for ' . __CLASS__);
+                if (! $validator instanceof ValidatorInterface) {
+                    throw new Exception\InvalidArgumentException(
+                        'Cannot use ' . gettype($validator) . ' as validator for ' . __CLASS__
+                    );
                 }
                 $this->validators[$name] = $validator;
             }
@@ -118,8 +122,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                     'positional' => true,
                     'hasValue'   => true,
                 ];
-            }
-            /**
+            } /**
              * Mandatory value param, i.e.
              *   SOMETHING
              */
@@ -131,8 +134,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                     'positional' => true,
                     'hasValue'   => true,
                 ];
-            }
-            /**
+            } /**
              * Optional literal param, i.e.
              *    [something]
              */
@@ -144,8 +146,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                     'positional' => true,
                     'hasValue'   => false,
                 ];
-            }
-            /**
+            } /**
              * Optional value param, syntax 2, i.e.
              *    [<something>]
              */
@@ -157,8 +158,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                     'positional' => true,
                     'hasValue'   => true,
                 ];
-            }
-            /**
+            } /**
              * Mandatory value param, i.e.
              *    <something>
              */
@@ -170,8 +170,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                     'positional' => true,
                     'hasValue'   => true,
                 ];
-            }
-            /**
+            } /**
              * Mandatory literal param, i.e.
              *   something
              */
@@ -183,28 +182,36 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                     'positional' => true,
                     'hasValue'   => false,
                 ];
-            }
-            /**
+            } /**
              * Mandatory long param
              *    --param=
              *    --param=whatever
              */
-            elseif (preg_match('/\G--(?P<name>[a-zA-Z0-9][a-zA-Z0-9\_\-]+)(?P<hasValue>=\S*?)?(?: +|$)/s', $def, $m, 0, $pos)) {
+            elseif (preg_match(
+                '/\G--(?P<name>[a-zA-Z0-9][a-zA-Z0-9\_\-]+)(?P<hasValue>=\S*?)?(?: +|$)/s',
+                $def,
+                $m,
+                0,
+                $pos
+            )) {
                 $item = [
                     'name'       => $m['name'],
                     'short'      => false,
                     'literal'    => false,
                     'required'   => true,
                     'positional' => false,
-                    'hasValue'   => !empty($m['hasValue']),
+                    'hasValue'   => ! empty($m['hasValue']),
                 ];
-            }
-            /**
+            } /**
              * Optional long flag
              *    [--param]
              */
             elseif (preg_match(
-                '/\G\[ *?--(?P<name>[a-zA-Z0-9][a-zA-Z0-9\_\-]+) *?\](?: +|$)/s', $def, $m, 0, $pos
+                '/\G\[ *?--(?P<name>[a-zA-Z0-9][a-zA-Z0-9\_\-]+) *?\](?: +|$)/s',
+                $def,
+                $m,
+                0,
+                $pos
             )) {
                 $item = [
                     'name'       => $m['name'],
@@ -214,14 +221,17 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                     'positional' => false,
                     'hasValue'   => false,
                 ];
-            }
-            /**
+            } /**
              * Optional long param
              *    [--param=]
              *    [--param=whatever]
              */
             elseif (preg_match(
-                '/\G\[ *?--(?P<name>[a-zA-Z0-9][a-zA-Z0-9\_\-]+)(?P<hasValue>=\S*?)? *?\](?: +|$)/s', $def, $m, 0, $pos
+                '/\G\[ *?--(?P<name>[a-zA-Z0-9][a-zA-Z0-9\_\-]+)(?P<hasValue>=\S*?)? *?\](?: +|$)/s',
+                $def,
+                $m,
+                0,
+                $pos
             )) {
                 $item = [
                     'name'       => $m['name'],
@@ -229,10 +239,9 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                     'literal'    => false,
                     'required'   => false,
                     'positional' => false,
-                    'hasValue'   => !empty($m['hasValue']),
+                    'hasValue'   => ! empty($m['hasValue']),
                 ];
-            }
-            /**
+            } /**
              * Mandatory short param
              *    -a
              *    -a=i
@@ -246,26 +255,30 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                     'literal'    => false,
                     'required'   => true,
                     'positional' => false,
-                    'hasValue'  => !empty($m['type']) ? $m['type'] : null,
+                    'hasValue'  => ! empty($m['type']) ? $m['type'] : null,
                 ];
-            }
-            /**
+            } /**
              * Optional short param
              *    [-a]
              *    [-a=n]
              *    [-a=s]
              */
-            elseif (preg_match('/\G\[ *?-(?P<name>[a-zA-Z0-9])(?:=(?P<type>[ns]))? *?\](?: +|$)/s', $def, $m, 0, $pos)) {
+            elseif (preg_match(
+                '/\G\[ *?-(?P<name>[a-zA-Z0-9])(?:=(?P<type>[ns]))? *?\](?: +|$)/s',
+                $def,
+                $m,
+                0,
+                $pos
+            )) {
                 $item = [
                     'name'       => $m['name'],
                     'short'      => true,
                     'literal'    => false,
                     'required'   => false,
                     'positional' => false,
-                    'hasValue'  => !empty($m['type']) ? $m['type'] : null,
+                    'hasValue'  => ! empty($m['type']) ? $m['type'] : null,
                 ];
-            }
-            /**
+            } /**
              * Optional literal param alternative
              *    [ something | somethingElse | anotherOne ]
              *    [ something | somethingElse | anotherOne ]:namedGroup
@@ -285,8 +298,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                 \]
                 (?:\:(?P<groupName>[a-zA-Z0-9]+))?
                 (?:\ +|$)
-                /sx', $def, $m, 0, $pos
-            )
+                /sx', $def, $m, 0, $pos)
             ) {
                 // extract available options
                 $options = preg_split('/ *\| */', trim($m['options']), 0, PREG_SPLIT_NO_EMPTY);
@@ -296,16 +308,16 @@ class DefaultRouteMatcher implements RouteMatcherInterface
 
                 // prepare item
                 $item = [
-                    'name'          => isset($m['groupName']) ? $m['groupName'] : 'unnamedGroup' . $unnamedGroupCounter++,
+                    'name'          => isset($m['groupName'])
+                        ? $m['groupName']
+                        : 'unnamedGroup' . $unnamedGroupCounter++,
                     'literal'       => true,
                     'required'      => false,
                     'positional'    => true,
                     'alternatives'  => $options,
                     'hasValue'      => false,
                 ];
-            }
-
-            /**
+            } /**
              * Required literal param alternative
              *    ( something | somethingElse | anotherOne )
              *    ( something | somethingElse | anotherOne ):namedGroup
@@ -325,8 +337,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                 \)
                 (?:\:(?P<groupName>[a-zA-Z0-9]+))?
                 (?:\ +|$)
-                /sx', $def, $m, 0, $pos
-            )) {
+                /sx', $def, $m, 0, $pos)) {
                 // extract available options
                 $options = preg_split('/ *\| */', trim($m['options']), 0, PREG_SPLIT_NO_EMPTY);
 
@@ -335,15 +346,16 @@ class DefaultRouteMatcher implements RouteMatcherInterface
 
                 // prepare item
                 $item = [
-                    'name'          => isset($m['groupName']) ? $m['groupName']:'unnamedGroupAt' . $unnamedGroupCounter++,
+                    'name'          => isset($m['groupName'])
+                        ? $m['groupName']
+                        : 'unnamedGroupAt' . $unnamedGroupCounter++,
                     'literal'       => true,
                     'required'      => true,
                     'positional'    => true,
                     'alternatives'  => $options,
                     'hasValue'      => false,
                 ];
-            }
-            /**
+            } /**
              * Required long/short flag alternative
              *    ( --something | --somethingElse | --anotherOne | -s | -a )
              *    ( --something | --somethingElse | --anotherOne | -s | -a ):namedGroup
@@ -363,8 +375,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                 \)
                 (?:\:(?P<groupName>[a-zA-Z0-9]+))?
                 (?:\ +|$)
-                /sx', $def, $m, 0, $pos
-            )) {
+                /sx', $def, $m, 0, $pos)) {
                 // extract available options
                 $options = preg_split('/ *\| */', trim($m['options']), 0, PREG_SPLIT_NO_EMPTY);
 
@@ -378,15 +389,16 @@ class DefaultRouteMatcher implements RouteMatcherInterface
 
                 // prepare item
                 $item = [
-                    'name'          => isset($m['groupName']) ? $m['groupName']:'unnamedGroupAt' . $unnamedGroupCounter++,
+                    'name'          => isset($m['groupName'])
+                        ? $m['groupName']
+                        : 'unnamedGroupAt' . $unnamedGroupCounter++,
                     'literal'       => false,
                     'required'      => true,
                     'positional'    => false,
                     'alternatives'  => $options,
                     'hasValue'      => false,
                 ];
-            }
-            /**
+            } /**
              * Optional flag alternative
              *    [ --something | --somethingElse | --anotherOne | -s | -a ]
              *    [ --something | --somethingElse | --anotherOne | -s | -a ]:namedGroup
@@ -406,8 +418,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                 \]
                 (?:\:(?P<groupName>[a-zA-Z0-9]+))?
                 (?:\ +|$)
-                /sx', $def, $m, 0, $pos
-            )) {
+                /sx', $def, $m, 0, $pos)) {
                 // extract available options
                 $options = preg_split('/ *\| */', trim($m['options']), 0, PREG_SPLIT_NO_EMPTY);
 
@@ -421,7 +432,9 @@ class DefaultRouteMatcher implements RouteMatcherInterface
 
                 // prepare item
                 $item = [
-                    'name'          => isset($m['groupName']) ? $m['groupName']:'unnamedGroupAt' . $unnamedGroupCounter++,
+                    'name'          => isset($m['groupName'])
+                        ? $m['groupName']
+                        : 'unnamedGroupAt' . $unnamedGroupCounter++,
                     'literal'       => false,
                     'required'      => false,
                     'positional'    => false,
@@ -563,15 +576,13 @@ class DefaultRouteMatcher implements RouteMatcherInterface
             }
 
 
-            if (!$param) {
+            if (! $param) {
                 /*
                  * Drop out if that was a mandatory param
                  */
                 if ($part['required']) {
                     return;
-                }
-
-                /*
+                } /*
                  * Continue to next positional param
                  */
                 else {
@@ -583,7 +594,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
             /*
              * Value for flags is always boolean
              */
-            if ($param && !$part['hasValue']) {
+            if ($param && ! $part['hasValue']) {
                 $value = true;
             }
 
@@ -591,7 +602,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
              * Try to retrieve value if it is expected
              */
             if ((null === $value || "" === $value) && $part['hasValue']) {
-                if ($x < count($params)+1 && isset($params[$x])) {
+                if ($x < count($params) + 1 && isset($params[$x])) {
                     // retrieve value from adjacent param
                     $value = $params[$x];
 
@@ -607,9 +618,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
              * Validate the value against constraints
              */
             if ($part['hasValue'] && isset($this->constraints[$part['name']])) {
-                if (
-                    !preg_match($this->constraints[$part['name']], $value)
-                ) {
+                if (! preg_match($this->constraints[$part['name']], $value)) {
                     // constraint failed
                     return;
                 }
@@ -630,17 +639,17 @@ class DefaultRouteMatcher implements RouteMatcherInterface
             if (isset($part['alternatives'])) {
                 if ($part['hasValue']) {
                     foreach ($part['alternatives'] as $alt) {
-                        if ($alt === $matchedName && !isset($matches[$alt])) {
+                        if ($alt === $matchedName && ! isset($matches[$alt])) {
                             $matches[$alt] = $value;
-                        } elseif (!isset($matches[$alt])) {
+                        } elseif (! isset($matches[$alt])) {
                             $matches[$alt] = null;
                         }
                     }
                 } else {
                     foreach ($part['alternatives'] as $alt) {
-                        if ($alt === $matchedName && !isset($matches[$alt])) {
-                            $matches[$alt] = isset($this->defaults[$alt])? $this->defaults[$alt] : true;
-                        } elseif (!isset($matches[$alt])) {
+                        if ($alt === $matchedName && ! isset($matches[$alt])) {
+                            $matches[$alt] = isset($this->defaults[$alt]) ? $this->defaults[$alt] : true;
+                        } elseif (! isset($matches[$alt])) {
                             $matches[$alt] = false;
                         }
                     }
@@ -665,7 +674,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
             /*
              * Check if param exists
              */
-            if (!isset($params[$argPos])) {
+            if (! isset($params[$argPos])) {
                 if ($part['required']) {
                     // cannot find required positional param
                     return;
@@ -681,9 +690,9 @@ class DefaultRouteMatcher implements RouteMatcherInterface
              * Check if literal param matches
              */
             if ($part['literal']) {
-                if (
-                    (isset($part['alternatives']) && !in_array($value, $part['alternatives'])) ||
-                    (!isset($part['alternatives']) && $value != $part['name'])
+                if ((isset($part['alternatives'])
+                    && ! in_array($value, $part['alternatives']))
+                    || (! isset($part['alternatives']) && $value != $part['name'])
                 ) {
                     return;
                 }
@@ -693,9 +702,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
              * Validate the value against constraints
              */
             if ($part['hasValue'] && isset($this->constraints[$part['name']])) {
-                if (
-                    !preg_match($this->constraints[$part['name']], $value)
-                ) {
+                if (! preg_match($this->constraints[$part['name']], $value)) {
                     // constraint failed
                     return;
                 }
@@ -710,7 +717,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                 // from all alternatives set matching parameter to TRUE and the rest to FALSE
                 foreach ($part['alternatives'] as $alt) {
                     if ($alt == $value) {
-                        $matches[$alt] = isset($this->defaults[$alt])? $this->defaults[$alt] : true;
+                        $matches[$alt] = isset($this->defaults[$alt]) ? $this->defaults[$alt] : true;
                     } else {
                         $matches[$alt] = false;
                     }
@@ -718,10 +725,10 @@ class DefaultRouteMatcher implements RouteMatcherInterface
 
                 // set alternatives group value
                 $matches[$part['name']] = $value;
-            } elseif (!$part['required']) {
+            } elseif (! $part['required']) {
                 // set optional parameter flag
                 $name = $part['name'];
-                $matches[$name] = isset($this->defaults[$name])? $this->defaults[$name] : true;
+                $matches[$name] = isset($this->defaults[$name]) ? $this->defaults[$name] : true;
             }
 
             /*
@@ -741,14 +748,14 @@ class DefaultRouteMatcher implements RouteMatcherInterface
          * Any optional flags that were not entered have value false
          */
         foreach ($this->parts as &$part) {
-            if (!$part['required'] && !$part['hasValue']) {
-                if (!isset($matches[$part['name']])) {
+            if (! $part['required'] && ! $part['hasValue']) {
+                if (! isset($matches[$part['name']])) {
                     $matches[$part['name']] = false;
                 }
                 // unset alternatives also should be false
                 if (isset($part['alternatives'])) {
                     foreach ($part['alternatives'] as $alt) {
-                        if (!isset($matches[$alt])) {
+                        if (! isset($matches[$alt])) {
                             $matches[$alt] = false;
                         }
                     }
@@ -771,7 +778,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
             }
         }
 
-        if (!$valid) {
+        if (! $valid) {
             return;
         }
 

@@ -18,7 +18,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#19](https://github.com/zendframework/zend-console/pull/19) updated link
+  to the documentation in the [README](README.md)
 
 ## 2.6.1 - TBD
 

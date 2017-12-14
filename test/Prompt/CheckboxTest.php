@@ -9,6 +9,7 @@
 
 namespace ZendTest\Console\Prompt;
 
+use PHPUnit\Framework\TestCase;
 use Zend\Console\Prompt\Checkbox;
 use ZendTest\Console\TestAssets\ConsoleAdapter;
 
@@ -16,7 +17,7 @@ use ZendTest\Console\TestAssets\ConsoleAdapter;
  * @group      Zend_Console
  * @covers \Zend\Console\Prompt\Checkbox
  */
-class CheckboxTest extends \PHPUnit_Framework_TestCase
+class CheckboxTest extends TestCase
 {
     /**
      * @var ConsoleAdapter

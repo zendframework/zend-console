@@ -11,9 +11,9 @@ namespace Zend\Console\Adapter;
 
 use ReflectionClass;
 use Zend\Console\Charset;
-use Zend\Console\Exception;
 use Zend\Console\Color\Xterm256;
 use Zend\Console\ColorInterface as Color;
+use Zend\Console\Exception;
 
 /**
  * @todo Add GNU readline support
@@ -133,7 +133,7 @@ class Posix extends AbstractAdapter
          * Try to read console size from "tput" command
          */
         $result = exec('tput cols', $output, $return);
-        if (!$return && is_numeric($result)) {
+        if (! $return && is_numeric($result)) {
             return $width = (int) $result;
         }
 
@@ -159,7 +159,7 @@ class Posix extends AbstractAdapter
 
         // Try to read console size from "tput" command
         $result = exec('tput lines', $output, $return);
-        if (!$return && is_numeric($result)) {
+        if (! $return && is_numeric($result)) {
             return $height = (int) $result;
         }
 
@@ -174,7 +174,7 @@ class Posix extends AbstractAdapter
     protected function runModeCommand()
     {
         exec('mode', $output, $return);
-        if ($return || !count($output)) {
+        if ($return || ! count($output)) {
             $this->modeResult = '';
         } else {
             $this->modeResult = trim(implode('', $output));
@@ -391,7 +391,7 @@ class Posix extends AbstractAdapter
         }
 
         if ($color !== null) {
-            if (!isset(static::$ansiColorMap[$type][$color])) {
+            if (! isset(static::$ansiColorMap[$type][$color])) {
                 throw new Exception\BadMethodCallException(sprintf(
                     'Unknown color "%s". Please use one of the Zend\Console\ColorInterface constants '
                     . 'or use Zend\Console\Color\Xterm256::calculate',
