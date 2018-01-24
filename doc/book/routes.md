@@ -423,30 +423,30 @@ Param type                        | Example route definition    | Explanation
 :---                              | :---                        | :---
 **Literal params**                |                             |
 Literal                           | `foo bar`                   | "foo" followed by "bar"
-Literal alternative               | `foo (bar|baz)`             | "foo" followed by "bar" or "baz"
+Literal alternative               | `foo (bar\|baz)`             | "foo" followed by "bar" or "baz"
 Literal, optional                 | `foo [bar]`                 | "foo", optional "bar"
-Literal, optional alternative     | `foo [bar|baz]`             | "foo", optional "bar" or "baz"
+Literal, optional alternative     | `foo [bar\|baz]`             | "foo", optional "bar" or "baz"
 **Flags**                         |                             |
 Flag long                         | `foo --bar`                 | "foo" as first parameter, "--bar" flag before or after
 Flag long, optional               | `foo [--bar]`               | "foo" as first parameter, optional "--bar" flag before or after
-Flag long, optional, alternative  | `foo [--bar|--baz]`         | "foo" as first parameter, optional "--bar" or "--baz", before or after
+Flag long, optional, alternative  | `foo [--bar\|--baz]`         | "foo" as first parameter, optional "--bar" or "--baz", before or after
 Flag short                        | `foo -b`                    | "foo" as first parameter, "-b" flag before or after
 Flag short, optional              | `foo [-b]`                  | "foo" as first parameter, optional "-b" flag before or after
 Flag short, optional, alternative | `foo [-b|-z]`               | "foo" as first parameter, optional "-b" or "-z", before or after
-Flag long/short alternative       | `foo [--bar|-b]`            | "foo" as first parameter, optional "--bar" or "-b" before or after
+Flag long/short alternative       | `foo [--bar\|-b]`            | "foo" as first parameter, optional "--bar" or "-b" before or after
 **Value parameters**              |                             |
 Value positional param            | `foo <bar>`                 | "foo" followed by any text (stored as "bar" param)
 Value positional param, optional  | `foo [<bar>]`               | "foo", optionally followed by any text (stored as "bar" param)
 Value Flag                        | `foo --bar=`                | "foo" as first parameter, "--bar" with a value, before or after
 Value Flag, optional              | `foo [--bar=]`              | "foo" as first parameter, optionally "--bar" with a value, before or after
 **Parameter groups**              |                             |
-Literal params group              | `foo (bar|baz):myParam`     | "foo" followed by "bar" or "baz" (stored as "myParam" param)
-Literal optional params group     | `foo [bar|baz]:myParam`     | "foo" followed by optional "bar" or "baz" (stored as "myParam" param)
-Long flags group                  | `foo (--bar|--baz):myParam` | "foo", "bar" or "baz" flag before or after (stored as "myParam" param)
-Long optional flags group         | `foo [--bar|--baz]:myParam` | "foo", optional "bar" or "baz" flag before or after (as "myParam" param)
-Short flags group                 | `foo (-b|-z):myParam`       | "foo", "-b" or "-z" flag before or after (stored as "myParam" param)
-Short optional flags group        | `foo [-b|-z]:myParam`       | "foo", optional "-b" or "-z" flag before or after (stored as "myParam" param)
+Literal params group              | `foo (bar\|baz):myParam`     | "foo" followed by "bar" or "baz" (stored as "myParam" param)
+Literal optional params group     | `foo [bar\|baz]:myParam`     | "foo" followed by optional "bar" or "baz" (stored as "myParam" param)
+Long flags group                  | `foo (--bar\|--baz):myParam` | "foo", "bar" or "baz" flag before or after (stored as "myParam" param)
+Long optional flags group         | `foo [--bar\|--baz]:myParam` | "foo", optional "bar" or "baz" flag before or after (as "myParam" param)
+Short flags group                 | `foo (-b\|-z):myParam`       | "foo", "-b" or "-z" flag before or after (stored as "myParam" param)
+Short optional flags group        | `foo [-b\|-z]:myParam`       | "foo", optional "-b" or "-z" flag before or after (stored as "myParam" param)
 **Catch-all parameters**          |                             |
 Simple catch-all                  | `foo [...bar]`              | "foo" followed by any number of params, stored as array in "bar" param
-Literal alternative w/ catch-all  | `foo (bar|baz) [...xyzzy]`  | "foo" followed by "bar" or "baz", with extra input stored as "xyzzy" param
+Literal alternative w/ catch-all  | `foo (bar\|baz) [...xyzzy]`  | "foo" followed by "bar" or "baz", with extra input stored as "xyzzy" param
 Value param w/ catch-all          | `foo <bar> [...baz]`        | "foo", with first parameter stored as "bar" and remainder stored as "baz"
