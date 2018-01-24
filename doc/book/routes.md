@@ -104,6 +104,7 @@ Routing strings consist of one or more of the following:
 - [Positional value parameters](#positional-value-parameters) (e.g. `create <modelName> [<destination>]`)
 - [Value flags](#value-flag-parameters) (e.g. `--name=NAME [--method=METHOD]`)
 - [Named literal alternative groups](#grouping-literal-alternatives) (e.g., `(all|some|none):filter`)
+- [Catch-all parameters](#catch-all-parameters) (e.g. `[...params]`)
 
 ### Literal parameters
 
@@ -395,6 +396,27 @@ switch ($params['filter']) {
 }
 ```
 
+### Catch-all Parameters
+
+When a route may receive a variable number of parameters (for example, to
+implement a feature like echo, or to process an arbitrary list of files),
+you can use a catch-all parameter to collect all parameters that are not
+matched by another part of the route. These collected values can be accessed
+as a single parameter (whose name is defined in the route) containing an array.
+
+When used, the catch-all parameter must come after all positional value
+parameters. You can only use one catch-all parameter per route.
+
+Example:
+
+```
+say [loudly|softly]:volume [...words]
+```
+
+If the user entered the command line `say loudly I am here`, the 'volume'
+parameter would contain `'loudly'` and the 'words' parameter would contain
+`['I', 'am', 'here']`.
+
 ## Console routes cheat-sheet
 
 Param type                        | Example route definition    | Explanation
@@ -424,3 +446,7 @@ Long flags group                  | `foo (--bar|--baz):myParam` | "foo", "bar" o
 Long optional flags group         | `foo [--bar|--baz]:myParam` | "foo", optional "bar" or "baz" flag before or after (as "myParam" param)
 Short flags group                 | `foo (-b|-z):myParam`       | "foo", "-b" or "-z" flag before or after (stored as "myParam" param)
 Short optional flags group        | `foo [-b|-z]:myParam`       | "foo", optional "-b" or "-z" flag before or after (stored as "myParam" param)
+**Catch-all parameters**          |                             |
+Simple catch-all                  | `foo [...bar]`              | "foo" followed by any number of params, stored as array in "bar" param
+Literal alternative w/ catch-all  | `foo (bar|baz) [...xyzzy]`  | "foo" followed by "bar" or "baz", with extra input stored as "xyzzy" param
+Value param w/ catch-all          | `foo <bar> [...baz]`        | "foo", with first parameter stored as "bar" and remainder stored as "baz"
