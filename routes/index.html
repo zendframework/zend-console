@@ -1,39 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zend\Console">  
     <link rel="shortcut icon" href="../img/favicon.ico">
 
     <title>Routes - zend-console</title>
 
-    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
-    <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    <link href="../css/base.css" rel="stylesheet">
-    <link href="../css/zf-web.css" rel="stylesheet">
-    <link href="../css/zf.css" rel="stylesheet">
-    <link href="../css/prism-zf.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
-    <script>
-    WebFont.load({
-        google: {
-            families: ['Open Sans', 'PT Sans']
-        }
-    });
-    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/styles-482aa2add1.css">
 
     
 </head>
@@ -57,8 +37,8 @@
 
             <!-- Main title -->
             <span class="navbar-brand">
-              <a class="logo-link" href="http://framework.zend.com" data-toggle="tooltip" data-placement="bottom" title="Zend Framework"><img src="../img/zf-logo-mark.svg" height="28" alt="Zend Framework" /></a>
-              <a href="..">zend-console</a>
+                <a class="logo-link" href="https://framework.zend.com/" data-toggle="tooltip" data-placement="bottom" title="Go to the ZF homepage"><img src="../img/zf-logo-mark.svg" height="28" alt="Zend Framework" /></a>
+                <a href="..">zend-console</a>
             </span>
         </div>
 
@@ -69,9 +49,12 @@
                 <ul class="nav navbar-nav">
                 
                 
+                
                     <li >
                         <a href="..">Home</a>
                     </li>
+                
+                
                 
                 
                 
@@ -81,30 +64,40 @@
                 
                 
                 
+                
+                
                     <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
+
 <li >
     <a href="../adapter/">Console Adapters</a>
 </li>
 
+
                         
                             
+
 <li >
     <a href="../prompts/">Console Prompts</a>
 </li>
 
+
                         
                             
+
 <li class="active">
     <a href="./">Routes</a>
 </li>
 
+
                         
                         </ul>
                     </li>
+                
+                
                 
                 
                 
@@ -113,25 +106,33 @@
                         <ul class="dropdown-menu">
                         
                             
+
 <li >
     <a href="../mvc/routing/">MVC Routing</a>
 </li>
 
+
                         
                             
+
 <li >
     <a href="../mvc/modules/">Console-Aware Modules</a>
 </li>
 
+
                         
                             
+
 <li >
     <a href="../mvc/controllers/">Console-Aware Controllers</a>
 </li>
 
+
                         
                         </ul>
                     </li>
+                
+                
                 
                 
                 
@@ -140,31 +141,40 @@
                         <ul class="dropdown-menu">
                         
                             
+
 <li >
     <a href="../getopt/intro/">Introduction</a>
 </li>
 
+
                         
                             
+
 <li >
     <a href="../getopt/rules/">Declaring Rules</a>
 </li>
 
+
                         
                             
+
 <li >
     <a href="../getopt/fetching/">Fetching Options and Arguments</a>
 </li>
 
+
                         
                             
+
 <li >
     <a href="../getopt/configuration/">Configuration</a>
 </li>
 
+
                         
                         </ul>
                     </li>
+                
                 
                 
                 </ul>
@@ -232,11 +242,11 @@
         <div class="col-md-9" role="main">
 
 <ol class="breadcrumb" role="navigation" aria-label="breadcrumbs navigation">
-  <li><a href="..">zend-console</a> &raquo;</li>
+  <li><a href="..">zend-console</a></li>
   
     
       
-        <li>Reference &raquo;</li>
+        <li>Reference</li>
       
     
   
@@ -274,7 +284,6 @@ interface RouteMatcherInterface
     public function match($params);
 }</code></pre>
 
-
 <p>Applications are expected to retrieve arguments from the console and pass them to
 the routing implementation as an array; the routing implementation will then
 return either a <code>null</code> value (meaning failure to match), or an associative array
@@ -299,7 +308,6 @@ Its constructor expects:</p>
         array $filters = null,
         array $validators = null
     )</code></pre>
-
 
 <p>The arguments are as follows:</p>
 <ul>
@@ -343,10 +351,8 @@ zf-console both provide methods for aggregating routes.</p>
 they are provided in the route. For example:</p>
 <pre class="codehilite"><code>show users</code></pre>
 
-
 <p>This route will <strong>only</strong> match for the following command line</p>
 <pre class="codehilite"><code class="language-bash">$ zf show users</code></pre>
-
 
 <p>It expects the <strong>mandatory literal parameters</strong> <code>show users</code>. It will not match
 if there are any more parameters, or if either one of the two words is missing.
@@ -354,15 +360,12 @@ The order of words is also enforced.</p>
 <p>You can also provide <strong>optional literal parameters</strong>. As an example:</p>
 <pre class="codehilite"><code>show [all] users</code></pre>
 
-
 <p>The above route will match each of the following:</p>
 <pre class="codehilite"><code class="language-bash">$ zf show users
 $ zf show all users</code></pre>
 
-
 <p>You can also provide <strong>parameter alternatives</strong>:</p>
 <pre class="codehilite"><code class="language-php">show [all|deleted|locked|admin] users</code></pre>
-
 
 <p>The above route will match both with and without the second parameter; if
 provided, however, it must be one of the words listed. This enables matching any
@@ -372,7 +375,6 @@ $ zf show locked users
 $ zf show admin users
 # etc.</code></pre>
 
-
 <blockquote>
 <h4 id="whitespace-is-ignored">Whitespace is ignored</h4>
 <p>Whitespaces in route definitions are ignored. If you separate your parameters
@@ -380,7 +382,6 @@ with more spaces, or separate alternatives and pipe characters with spaces,
 the parser will ignore the whitespace.
 The above route definition is equivalent to:</p>
 <pre class="codehilite"><code>show [  all | deleted | locked | admin  ]   users</code></pre>
-
 
 <p>As such, you can use whitespace for readability.</p>
 </blockquote>
@@ -392,7 +393,6 @@ provide them in any order.</p>
 <p>The following is a route with <strong>optional long flags</strong>:</p>
 <pre class="codehilite"><code>check users [--verbose] [--fast] [--thorough]</code></pre>
 
-
 <p>The above route will match commands like:</p>
 <pre class="codehilite"><code class="language-bash">$ zf check users
 $ zf check users --fast
@@ -400,11 +400,9 @@ $ zf check users --verbose --thorough
 $ zf check users --thorough --fast
 # etc</code></pre>
 
-
 <p>You can also define one or more <strong>mandatory long flags</strong>, and group them as an
 alternative:</p>
 <pre class="codehilite"><code class="language-php">check users (--suspicious|--expired) [--verbose] [--fast] [--thorough]</code></pre>
-
 
 <p>The above will only match if we provide either the <code>--suspicious</code> or <code>--expired</code>
 flag:</p>
@@ -412,18 +410,15 @@ flag:</p>
 $ zf check users --expired --fast
 $ zf check users --verbose --thorough --suspicious</code></pre>
 
-
 <p><strong>Short flags</strong> are also available, and may be grouped with long flags for
 convenience:</p>
 <pre class="codehilite"><code>check users [--verbose|-v] [--fast|-f] [--thorough|-t]</code></pre>
-
 
 <p>Now we can use short versions of our flags:</p>
 <pre class="codehilite"><code class="language-bash">$ zf check users -f
 $ zf check users -v --thorough
 $ zf check users -t -f -v
 # etc.</code></pre>
-
 
 <h3 id="positional-value-parameters">Positional value parameters</h3>
 <p>Value parameters capture any text-based input, and come in two forms: positional
@@ -433,26 +428,21 @@ the command line, and are denoted using angle brackets (<code>&lt;&gt;</code>).<
 <p>Consider the following:</p>
 <pre class="codehilite"><code>delete user &lt;userEmail&gt;</code></pre>
 
-
 <p>This route will match the following commands:</p>
 <pre class="codehilite"><code class="language-bash">$ zf delete user john@acme.org
 $ zf delete user betty@acme.org</code></pre>
-
 
 <p>When matched, the router will return the value under the key we provided in the
 route definition. If using the <code>DefaultRouteMatcher</code> standalone, this would be:</p>
 <pre class="codehilite"><code class="language-php">$matches = $route-&gt;match($argv);
 $userEmail = $matches['userEmail'];</code></pre>
 
-
 <p>Under zend-mvc, you will pull the parameter from the request:</p>
 <pre class="codehilite"><code class="language-php">$userEmail = $this-&gt;getRequest()-&gt;getParam('userEmail');</code></pre>
-
 
 <p>You can also define <strong>optional positional value parameters</strong> by surrounding the
 parameter with square brackets:</p>
 <pre class="codehilite"><code>delete user [&lt;userEmail&gt;]</code></pre>
-
 
 <p>In this case, the <code>userEmail</code> parameter will not be required for the route to
 match. If it is not provided, the <code>userEmail</code> parameter will not be present in
@@ -460,10 +450,8 @@ the matched parameters.</p>
 <p>You can define any number of positional value parameters:</p>
 <pre class="codehilite"><code>create user &lt;firstName&gt; &lt;lastName&gt; &lt;email&gt; &lt;position&gt;</code></pre>
 
-
 <p>This allows us to capture commands such as the following:</p>
 <pre class="codehilite"><code class="language-bash">$ zf create user Johnny Bravo john@acme.org Entertainer</code></pre>
-
 
 <blockquote>
 <h4 id="escaping">Escaping</h4>
@@ -473,7 +461,6 @@ with two names and a complex position description, we would issue the command
 like this:</p>
 <pre class="codehilite"><code class="language-bash">$ zf create user &quot;Johnan Tom&quot; Bravo john@acme.org &quot;Head of the Entertainment Department&quot;</code></pre>
 
-
 </blockquote>
 <h3 id="value-flag-parameters">Value flag parameters</h3>
 <p>Positional value parameters are only matched if they appear in the exact order described in the
@@ -481,7 +468,6 @@ route. If we do not want to enforce the order of parameters, we can define <stro
 <p><strong>Value flags</strong> can be defined and matched in <em>any</em> order, and can receive any
 text-based value.</p>
 <pre class="codehilite"><code>find user [--id=] [--firstName=] [--lastName=] [--email=] [--position=]</code></pre>
-
 
 <p>The above route will match for any of the following routes:</p>
 <pre class="codehilite"><code class="language-bash">$ zf find user
@@ -492,7 +478,6 @@ $ zf find user --lastName Bravo --firstName Johny
 $ zf find user --position=Executive --firstName=Bob
 $ zf find user --position &quot;Head of the Entertainment Department&quot;
 # etc.</code></pre>
-
 
 <p>As noted, the order of flags is irrelevant for the parser.</p>
 <blockquote>
@@ -507,7 +492,6 @@ values.</p>
 <strong>mandatory value flags</strong> by omitting the square brackets:</p>
 <pre class="codehilite"><code>rename user --id= [--firstName=] [--lastName=]</code></pre>
 
-
 <p>In the above example, the <code>--id</code> parameter <strong>is required</strong> for the route to
 match. The following commands will work with this route:</p>
 <pre class="codehilite"><code class="language-bash">$ zf rename user --id 123
@@ -515,15 +499,12 @@ $ zf rename user --id 123 --firstName Jonathan
 $ zf rename user --id=123 --lastName=Bravo
 # etc.</code></pre>
 
-
 <h3 id="grouping-literal-alternatives">Grouping literal alternatives</h3>
 <p>In the flags section, we demonstrated grouping alternative flags:</p>
 <pre class="codehilite"><code>check users (--suspicious|--expired) [--verbose] [--fast] [--thorough]</code></pre>
 
-
 <p>This can also be done with literals:</p>
 <pre class="codehilite"><code>show (all|deleted|locked|admin) &lt;group&gt;</code></pre>
-
 
 <p>However, this makes checking for which alternative was used quite difficult:</p>
 <pre class="codehilite"><code class="language-php">switch (true) {
@@ -536,11 +517,9 @@ $ zf rename user --id=123 --lastName=Bravo
     /* etc. */
 }</code></pre>
 
-
 <p>To simplify this, you can <em>assign a name to the grouped alternatives</em>. Do this
 with the verbiage <code>:groupname</code> following the group:</p>
 <pre class="codehilite"><code>show (all|deleted|locked|admin):filter &lt;group&gt;</code></pre>
-
 
 <p>The above names the group "filter". When a group is provided a name, you can
 then retrieve the group name parameter, which will be set to the alternative
@@ -555,141 +534,140 @@ used:</p>
     /* etc. */
 }</code></pre>
 
-
 <h2 id="console-routes-cheat-sheet">Console routes cheat-sheet</h2>
 <div class="table-responsive"><table>
 <thead>
 <tr>
 <th align="left">Param type</th>
-<th>Example route definition</th>
-<th>Explanation</th>
+<th align="left">Example route definition</th>
+<th align="left">Explanation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td align="left"><strong>Literal params</strong></td>
-<td></td>
-<td></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left">Literal</td>
-<td><code>foo bar</code></td>
-<td>"foo" followed by "bar"</td>
+<td align="left"><code>foo bar</code></td>
+<td align="left">"foo" followed by "bar"</td>
 </tr>
 <tr>
 <td align="left">Literal alternative</td>
-<td><code>foo (bar|baz)</code></td>
-<td>"foo" followed by "bar" or "baz"</td>
+<td align="left"><code>foo (bar|baz)</code></td>
+<td align="left">"foo" followed by "bar" or "baz"</td>
 </tr>
 <tr>
 <td align="left">Literal, optional</td>
-<td><code>foo [bar]</code></td>
-<td>"foo", optional "bar"</td>
+<td align="left"><code>foo [bar]</code></td>
+<td align="left">"foo", optional "bar"</td>
 </tr>
 <tr>
 <td align="left">Literal, optional alternative</td>
-<td><code>foo [bar|baz]</code></td>
-<td>"foo", optional "bar" or "baz"</td>
+<td align="left"><code>foo [bar|baz]</code></td>
+<td align="left">"foo", optional "bar" or "baz"</td>
 </tr>
 <tr>
 <td align="left"><strong>Flags</strong></td>
-<td></td>
-<td></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left">Flag long</td>
-<td><code>foo --bar</code></td>
-<td>"foo" as first parameter, "--bar" flag before or after</td>
+<td align="left"><code>foo --bar</code></td>
+<td align="left">"foo" as first parameter, "--bar" flag before or after</td>
 </tr>
 <tr>
 <td align="left">Flag long, optional</td>
-<td><code>foo [--bar]</code></td>
-<td>"foo" as first parameter, optional "--bar" flag before or after</td>
+<td align="left"><code>foo [--bar]</code></td>
+<td align="left">"foo" as first parameter, optional "--bar" flag before or after</td>
 </tr>
 <tr>
 <td align="left">Flag long, optional, alternative</td>
-<td><code>foo [--bar|--baz]</code></td>
-<td>"foo" as first parameter, optional "--bar" or "--baz", before or after</td>
+<td align="left"><code>foo [--bar|--baz]</code></td>
+<td align="left">"foo" as first parameter, optional "--bar" or "--baz", before or after</td>
 </tr>
 <tr>
 <td align="left">Flag short</td>
-<td><code>foo -b</code></td>
-<td>"foo" as first parameter, "-b" flag before or after</td>
+<td align="left"><code>foo -b</code></td>
+<td align="left">"foo" as first parameter, "-b" flag before or after</td>
 </tr>
 <tr>
 <td align="left">Flag short, optional</td>
-<td><code>foo [-b]</code></td>
-<td>"foo" as first parameter, optional "-b" flag before or after</td>
+<td align="left"><code>foo [-b]</code></td>
+<td align="left">"foo" as first parameter, optional "-b" flag before or after</td>
 </tr>
 <tr>
 <td align="left">Flag short, optional, alternative</td>
-<td><code>foo [-b|-z]</code></td>
-<td>"foo" as first parameter, optional "-b" or "-z", before or after</td>
+<td align="left"><code>foo [-b|-z]</code></td>
+<td align="left">"foo" as first parameter, optional "-b" or "-z", before or after</td>
 </tr>
 <tr>
 <td align="left">Flag long/short alternative</td>
-<td><code>foo [--bar|-b]</code></td>
-<td>"foo" as first parameter, optional "--bar" or "-b" before or after</td>
+<td align="left"><code>foo [--bar|-b]</code></td>
+<td align="left">"foo" as first parameter, optional "--bar" or "-b" before or after</td>
 </tr>
 <tr>
 <td align="left"><strong>Value parameters</strong></td>
-<td></td>
-<td></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left">Value positional param</td>
-<td><code>foo &lt;bar&gt;</code></td>
-<td>"foo" followed by any text (stored as "bar" param)</td>
+<td align="left"><code>foo &lt;bar&gt;</code></td>
+<td align="left">"foo" followed by any text (stored as "bar" param)</td>
 </tr>
 <tr>
 <td align="left">Value positional param, optional</td>
-<td><code>foo [&lt;bar&gt;]</code></td>
-<td>"foo", optionally followed by any text (stored as "bar" param)</td>
+<td align="left"><code>foo [&lt;bar&gt;]</code></td>
+<td align="left">"foo", optionally followed by any text (stored as "bar" param)</td>
 </tr>
 <tr>
 <td align="left">Value Flag</td>
-<td><code>foo --bar=</code></td>
-<td>"foo" as first parameter, "--bar" with a value, before or after</td>
+<td align="left"><code>foo --bar=</code></td>
+<td align="left">"foo" as first parameter, "--bar" with a value, before or after</td>
 </tr>
 <tr>
 <td align="left">Value Flag, optional</td>
-<td><code>foo [--bar=]</code></td>
-<td>"foo" as first parameter, optionally "--bar" with a value, before or after</td>
+<td align="left"><code>foo [--bar=]</code></td>
+<td align="left">"foo" as first parameter, optionally "--bar" with a value, before or after</td>
 </tr>
 <tr>
 <td align="left"><strong>Parameter groups</strong></td>
-<td></td>
-<td></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left">Literal params group</td>
-<td><code>foo (bar|baz):myParam</code></td>
-<td>"foo" followed by "bar" or "baz" (stored as "myParam" param)</td>
+<td align="left"><code>foo (bar|baz):myParam</code></td>
+<td align="left">"foo" followed by "bar" or "baz" (stored as "myParam" param)</td>
 </tr>
 <tr>
 <td align="left">Literal optional params group</td>
-<td><code>foo [bar|baz]:myParam</code></td>
-<td>"foo" followed by optional "bar" or "baz" (stored as "myParam" param)</td>
+<td align="left"><code>foo [bar|baz]:myParam</code></td>
+<td align="left">"foo" followed by optional "bar" or "baz" (stored as "myParam" param)</td>
 </tr>
 <tr>
 <td align="left">Long flags group</td>
-<td><code>foo (--bar|--baz):myParam</code></td>
-<td>"foo", "bar" or "baz" flag before or after (stored as "myParam" param)</td>
+<td align="left"><code>foo (--bar|--baz):myParam</code></td>
+<td align="left">"foo", "bar" or "baz" flag before or after (stored as "myParam" param)</td>
 </tr>
 <tr>
 <td align="left">Long optional flags group</td>
-<td><code>foo [--bar|--baz]:myParam</code></td>
-<td>"foo", optional "bar" or "baz" flag before or after (as "myParam" param)</td>
+<td align="left"><code>foo [--bar|--baz]:myParam</code></td>
+<td align="left">"foo", optional "bar" or "baz" flag before or after (as "myParam" param)</td>
 </tr>
 <tr>
 <td align="left">Short flags group</td>
-<td><code>foo (-b|-z):myParam</code></td>
-<td>"foo", "-b" or "-z" flag before or after (stored as "myParam" param)</td>
+<td align="left"><code>foo (-b|-z):myParam</code></td>
+<td align="left">"foo", "-b" or "-z" flag before or after (stored as "myParam" param)</td>
 </tr>
 <tr>
 <td align="left">Short optional flags group</td>
-<td><code>foo [-b|-z]:myParam</code></td>
-<td>"foo", optional "-b" or "-z" flag before or after (stored as "myParam" param)</td>
+<td align="left"><code>foo [-b|-z]:myParam</code></td>
+<td align="left">"foo", optional "-b" or "-z" flag before or after (stored as "myParam" param)</td>
 </tr>
 </tbody>
 </table></div>
@@ -718,7 +696,7 @@ used:</p>
             <div class="col-lg-3">
               <p>
                 <strong>Zend Framework</strong><br />
-                <a href="http://framework.zend.com/">framework.zend.com</a><br />
+                <a href="https://framework.zend.com/">framework.zend.com</a><br />
                 <a href="https://docs.zendframework.com">docs.zendframework.com</a><br />
                 <a href="https://packages.zendframework.com">packages.zendframework.com</a><br />
                 <a href="https://apigility.org">apigility.org</a><br />
@@ -739,14 +717,15 @@ used:</p>
                 <h4>Copyright</h4>
                 <div class="hline-w"></div>
 
-                <p>&copy; 2006-2016 by <a href="http://www.zend.com">Zend</a>, a <a href="http://www.roguewave.com/">Rogue Wave Company</a>.</p>
+                <p>&copy; 2006-2017 by <a href="https://www.zend.com/">Zend</a>, a <a href="https://www.roguewave.com/">Rogue Wave Company</a>.</p>
             </div>
 
             <div class="col-lg-4">
                 <h4>Contacts</h4>
                 <div class="hline-w"></div>
                 <p>
-                    <a href="irc://irc.freenode.net/zftalk" class="btn-social btn-outline" alt="IRC" title="IRC"><i class="fa fa-comment"></i></a>
+                    <a href="https://discourse.zendframework.com" class="btn-social btn-outline" alt="Forum" title="Forum"><i class="fa fa-comments"></i></a>
+                    <a href="https://zendframework-slack.herokuapp.com" class="btn-social btn-outline" alt="Slack" title="Slack"><i class="fa fa-slack"></i></a>
                     <a href="https://github.com/zendframework" class="btn-social btn-outline" alt="Github" title="Github"><i class="fa fa-github"></i></a>
                     <a href="https://twitter.com/zfdevteam" class="btn-social btn-outline" alt="Twitter" title="Twitter"><i class="fa fa-twitter"></i></a>
                 </p>
@@ -755,14 +734,11 @@ used:</p>
     </div>
 </div>
 
-
-    <script src="../js/jquery-1.10.2.min.js"></script>
-    <script src="../js/bootstrap-3.0.3.min.js"></script>
-    <script src="../js/prism-zf.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
     <script>var base_url = '..';</script>
+    <script src="../js/scripts-0b6185f4a5.js"></script>
     <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
-    <script src="../js/base.js"></script>
 
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
         <div class="modal-dialog">
@@ -794,7 +770,7 @@ used:</p>
     <div class="zf-components">
   <div class="zf-components-grid">
     <div class="zf-logo">
-      <a href="http://framework.zend.com" data-toggle="tooltip" data-placement="bottom" title="Go to the ZF homepage"><img src="../img/zf-logo-mark.svg" alt="Zend Framework" width="250" /></a>
+      <a href="https://framework.zend.com" data-toggle="tooltip" data-placement="bottom" title="Go to the ZF homepage"><img src="../img/zf-logo-mark.svg" alt="Zend Framework" width="250" /></a>
     </div>
 
     <div class="component-list"></div>
@@ -803,112 +779,7 @@ used:</p>
   </div>
 </div>
 
-    <script>
-  // Prepare the component list dropdown for display
-  $(function () {
-    var components = $(".zf-components"),
-        componentList = components.find(".component-list"),
-        sidebar = $(".bs-sidebar.affix"),
-        sidebarInitialPos = sidebar.css("position"),
-        hidden,
-        componentToggle = $(".component-toggle"),
-        navbar = $(".navbar-fixed-top"),
-        rollUpLink = $(".zf-components-rollup a");
+</body>
 
-    // Initial setup on document load
-    components.insertBefore(navbar);
-    $(".zf-logo a").tooltip();
-    componentToggle.tooltip();
-    rollUpLink.attr({ href: "#", alt: "Hide component list" });
-
-    // Cast initial sidebar position value
-    if (undefined === sidebarInitialPos) {
-      sidebarInitialPos = "fixed";
-    }
-
-    // Setup onclick events to toggle list
-    componentToggle.click(toggleComponentList);
-    rollUpLink.click(toggleComponentList);
-
-    // Toggle the component list display
-    function toggleComponentList(event) {
-      event.preventDefault();
-
-      if (hidden === undefined) {
-        // Not loaded yet; load and display.
-        loadComponentList();
-        return;
-      }
-
-      if (hidden) {
-        // Hidden; display.
-        showComponentList();
-        return;
-      }
-
-      // Currently visible; hide
-      hideComponentList();
-    }
-
-    // Show the component list
-    function showComponentList() {
-      navbar.css({position: "relative"});
-      sidebar.css({position: "relative"});
-      components
-        .css({"margin-top": "-" + components.outerHeight() + "px"})
-        .show()
-        .animate({"margin-top": 0}, {
-          complete: function () {
-            componentToggle
-              .data("placement", "top")
-              .attr("data-original-title", "Hide component list");
-            hidden = false;
-          },
-          queue: false
-        });
-    }
-
-    // Hide the component list
-    function hideComponentList() {
-      components.animate({"margin-top": "-" + components.outerHeight() + "px"}, {
-        complete: function () {
-          navbar.css({position: "fixed"});
-          sidebar.css({position: sidebarInitialPos});
-          componentToggle
-            .data("placement", "bottom")
-            .attr("data-original-title", "Show component list");
-          components.hide();
-          hidden = true;
-        },
-        queue: false
-      });
-      sidebar.animate({ top: sidebarInitialTop + "px" }, { queue: false});
-    }
-
-    // Inject a component into the componet list DOM.
-    function injectComponent(index, component) {
-      componentList.append('<div class="component"><h4><a href="' + component.url + '">' + component.name + '</a></h4><p>' + component.description + '</p></div>');
-    }
-
-    // Parse the component list, build the DOM, and display it.
-    function parseComponentList(components) {
-      $.each(components, injectComponent);
-      showComponentList();
-    }
-
-    // Fetch the component list and display it.
-    function loadComponentList () {
-      $.ajax({
-        url: "//docs.zendframework.com/zf-mkdoc-theme/scripts/zf-component-list.json",
-        dataType: "text json",
-        success: parseComponentList,
-        error: function (e) {
-          console.log("Error occurred with XHR call", e);
-        }
-      });
-    }
-  });
-</script>
-    </body>
 
 </html>
