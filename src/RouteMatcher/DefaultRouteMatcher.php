@@ -442,7 +442,13 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                     'alternatives'  => $options,
                     'hasValue'      => false,
                 ];
-            } elseif (preg_match('/\G\[ *?\.\.\.(?P<name>[a-zA-Z][a-zA-Z0-9\_\-\:]*?) *?\](?: +|$)/s', $def, $m, 0, $pos)) {
+            } elseif (preg_match(
+                '/\G\[ *?\.\.\.(?P<name>[a-zA-Z][a-zA-Z0-9\_\-\:]*?) *?\](?: +|$)/s',
+                $def,
+                $m,
+                0,
+                $pos
+            )) {
                 if ($catchAllCount > 0) {
                     throw new Exception\InvalidArgumentException(
                         'Cannot define more than one catchAll parameter'
@@ -462,7 +468,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                 );
             }
 
-            if (!empty($item['positional']) && $catchAllCount > 0) {
+            if (! empty($item['positional']) && $catchAllCount > 0) {
                 throw new Exception\InvalidArgumentException(
                     'Positional parameters must come before catchAlls'
                 );
