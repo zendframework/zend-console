@@ -2,9 +2,15 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 2.7.0 - TBD
+## 2.7.0 - 2018-01-25
 
 ### Added
+
+- [#32](https://github.com/zendframework/zend-console/pull/32) adds a new route
+  match type, the "catch-all". Such types are always optional (thus, appear in
+  `[]` sets), and are specified using `...` within: `command [...options]`.
+
+  Parameters matched this way will always be returned as an array of values.
 
 - [#39](https://github.com/zendframework/zend-console/pull/39) adds support for
   PHP 7.2.
