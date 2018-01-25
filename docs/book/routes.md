@@ -111,7 +111,7 @@ Routing strings consist of one or more of the following:
 *Literal parameters* are expected to appear on the command line exactly the way
 they are provided in the route. For example:
 
-```
+```text
 show users
 ```
 
@@ -127,7 +127,7 @@ The order of words is also enforced.
 
 You can also provide **optional literal parameters**. As an example:
 
-```
+```text
 show [all] users
 ```
 
@@ -178,7 +178,7 @@ provide them in any order.
 
 The following is a route with **optional long flags**:
 
-```
+```text
 check users [--verbose] [--fast] [--thorough]
 ```
 
@@ -211,7 +211,7 @@ $ zf check users --verbose --thorough --suspicious
 **Short flags** are also available, and may be grouped with long flags for
 convenience:
 
-```
+```text
 check users [--verbose|-v] [--fast|-f] [--thorough|-t]
 ```
 
@@ -234,7 +234,7 @@ the command line, and are denoted using angle brackets (`<>`).
 
 Consider the following:
 
-```
+```text
 delete user <userEmail>
 ```
 
@@ -262,7 +262,7 @@ $userEmail = $this->getRequest()->getParam('userEmail');
 You can also define **optional positional value parameters** by surrounding the
 parameter with square brackets:
 
-```
+```text
 delete user [<userEmail>]
 ```
 
@@ -272,7 +272,7 @@ the matched parameters.
 
 You can define any number of positional value parameters:
 
-```
+```text
 create user <firstName> <lastName> <email> <position>
 ```
 
@@ -301,7 +301,7 @@ route. If we do not want to enforce the order of parameters, we can define **val
 **Value flags** can be defined and matched in *any* order, and can receive any
 text-based value.
 
-```
+```text
 find user [--id=] [--firstName=] [--lastName=] [--email=] [--position=]
 ```
 
@@ -331,7 +331,7 @@ As noted, the order of flags is irrelevant for the parser.
 In the previous example, all value flags are optional. You may also define
 **mandatory value flags** by omitting the square brackets:
 
-```
+```text
 rename user --id= [--firstName=] [--lastName=]
 ```
 
@@ -349,13 +349,13 @@ $ zf rename user --id=123 --lastName=Bravo
 
 In the flags section, we demonstrated grouping alternative flags:
 
-```
+```text
 check users (--suspicious|--expired) [--verbose] [--fast] [--thorough]
 ```
 
 This can also be done with literals:
 
-```
+```text
 show (all|deleted|locked|admin) <group>
 ```
 
@@ -376,7 +376,7 @@ switch (true) {
 To simplify this, you can *assign a name to the grouped alternatives*. Do this
 with the verbiage `:groupname` following the group:
 
-```
+```text
 show (all|deleted|locked|admin):filter <group>
 ```
 
@@ -398,6 +398,8 @@ switch ($params['filter']) {
 
 ### Catch-all Parameters
 
+- Since 2.7.0
+
 When a route may receive a variable number of parameters (for example, to
 implement a feature like echo, or to process an arbitrary list of files),
 you can use a catch-all parameter to collect all parameters that are not
@@ -409,7 +411,7 @@ parameters. You can only use one catch-all parameter per route.
 
 Example:
 
-```
+```text
 say [loudly|softly]:volume [...words]
 ```
 
@@ -423,30 +425,30 @@ Param type                        | Example route definition    | Explanation
 :---                              | :---                        | :---
 **Literal params**                |                             |
 Literal                           | `foo bar`                   | "foo" followed by "bar"
-Literal alternative               | `foo (bar\|baz)`             | "foo" followed by "bar" or "baz"
+Literal alternative               | `foo (bar|baz)`             | "foo" followed by "bar" or "baz"
 Literal, optional                 | `foo [bar]`                 | "foo", optional "bar"
-Literal, optional alternative     | `foo [bar\|baz]`             | "foo", optional "bar" or "baz"
+Literal, optional alternative     | `foo [bar|baz]`             | "foo", optional "bar" or "baz"
 **Flags**                         |                             |
 Flag long                         | `foo --bar`                 | "foo" as first parameter, "--bar" flag before or after
 Flag long, optional               | `foo [--bar]`               | "foo" as first parameter, optional "--bar" flag before or after
-Flag long, optional, alternative  | `foo [--bar\|--baz]`         | "foo" as first parameter, optional "--bar" or "--baz", before or after
+Flag long, optional, alternative  | `foo [--bar|--baz]`         | "foo" as first parameter, optional "--bar" or "--baz", before or after
 Flag short                        | `foo -b`                    | "foo" as first parameter, "-b" flag before or after
 Flag short, optional              | `foo [-b]`                  | "foo" as first parameter, optional "-b" flag before or after
 Flag short, optional, alternative | `foo [-b|-z]`               | "foo" as first parameter, optional "-b" or "-z", before or after
-Flag long/short alternative       | `foo [--bar\|-b]`            | "foo" as first parameter, optional "--bar" or "-b" before or after
+Flag long/short alternative       | `foo [--bar|-b]`            | "foo" as first parameter, optional "--bar" or "-b" before or after
 **Value parameters**              |                             |
 Value positional param            | `foo <bar>`                 | "foo" followed by any text (stored as "bar" param)
 Value positional param, optional  | `foo [<bar>]`               | "foo", optionally followed by any text (stored as "bar" param)
 Value Flag                        | `foo --bar=`                | "foo" as first parameter, "--bar" with a value, before or after
 Value Flag, optional              | `foo [--bar=]`              | "foo" as first parameter, optionally "--bar" with a value, before or after
 **Parameter groups**              |                             |
-Literal params group              | `foo (bar\|baz):myParam`     | "foo" followed by "bar" or "baz" (stored as "myParam" param)
-Literal optional params group     | `foo [bar\|baz]:myParam`     | "foo" followed by optional "bar" or "baz" (stored as "myParam" param)
-Long flags group                  | `foo (--bar\|--baz):myParam` | "foo", "bar" or "baz" flag before or after (stored as "myParam" param)
-Long optional flags group         | `foo [--bar\|--baz]:myParam` | "foo", optional "bar" or "baz" flag before or after (as "myParam" param)
-Short flags group                 | `foo (-b\|-z):myParam`       | "foo", "-b" or "-z" flag before or after (stored as "myParam" param)
-Short optional flags group        | `foo [-b\|-z]:myParam`       | "foo", optional "-b" or "-z" flag before or after (stored as "myParam" param)
+Literal params group              | `foo (bar|baz):myParam`     | "foo" followed by "bar" or "baz" (stored as "myParam" param)
+Literal optional params group     | `foo [bar|baz]:myParam`     | "foo" followed by optional "bar" or "baz" (stored as "myParam" param)
+Long flags group                  | `foo (--bar|--baz):myParam` | "foo", "bar" or "baz" flag before or after (stored as "myParam" param)
+Long optional flags group         | `foo [--bar|--baz]:myParam` | "foo", optional "bar" or "baz" flag before or after (as "myParam" param)
+Short flags group                 | `foo (-b|-z):myParam`       | "foo", "-b" or "-z" flag before or after (stored as "myParam" param)
+Short optional flags group        | `foo [-b|-z]:myParam`       | "foo", optional "-b" or "-z" flag before or after (stored as "myParam" param)
 **Catch-all parameters**          |                             |
 Simple catch-all                  | `foo [...bar]`              | "foo" followed by any number of params, stored as array in "bar" param
-Literal alternative w/ catch-all  | `foo (bar\|baz) [...xyzzy]`  | "foo" followed by "bar" or "baz", with extra input stored as "xyzzy" param
+Literal alternative w/ catch-all  | `foo (bar|baz) [...xyzzy]`  | "foo" followed by "bar" or "baz", with extra input stored as "xyzzy" param
 Value param w/ catch-all          | `foo <bar> [...baz]`        | "foo", with first parameter stored as "bar" and remainder stored as "baz"
