@@ -10,7 +10,9 @@
 
 namespace ZendTest\Console\RouteMatcher;
 
+use PHPUnit\Framework\TestCase;
 use Zend\Console\RouteMatcher\DefaultRouteMatcher;
+use Zend\Filter\FilterInterface;
 use Zend\Validator\Digits;
 use Zend\Validator\StringLength;
 
@@ -20,7 +22,7 @@ use Zend\Validator\StringLength;
  * @subpackage UnitTests
  * @group      Zend_Console
  */
-class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
+class DefaultRouteMatcherTest extends TestCase
 {
     public static function routeProvider()
     {
@@ -1318,7 +1320,9 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
 
     public function routeFiltersProvider()
     {
-        $genericFilter = $this->getMock('Zend\Filter\FilterInterface', ['filter']);
+        $genericFilter = $this->getMockBuilder(FilterInterface::class)
+            ->setMethods(['filter'])
+            ->getMock();
         $genericFilter->expects($this->once())->method('filter')
             ->with('foobar')->will($this->returnValue('foobaz'));
 
@@ -1387,7 +1391,7 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
 
     public function testConstructorDoesNotAcceptInvalidFilters()
     {
-        $this->setExpectedException('Zend\Console\Exception\InvalidArgumentException');
+        $this->expectException('Zend\Console\Exception\InvalidArgumentException');
         new DefaultRouteMatcher('<foo>', [], [], [], [
             new \stdClass()
         ]);
@@ -1395,7 +1399,7 @@ class DefaultRouteMatcherTest extends \PHPUnit_Framework_TestCase
 
     public function testConstructorDoesNotAcceptInvalidValidators()
     {
-        $this->setExpectedException('Zend\Console\Exception\InvalidArgumentException');
+        $this->expectException('Zend\Console\Exception\InvalidArgumentException');
         new DefaultRouteMatcher('<foo>', [], [], [], [], [
             new \stdClass()
         ]);

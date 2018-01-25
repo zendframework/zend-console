@@ -9,13 +9,14 @@
 
 namespace ZendTest\Console\Prompt;
 
+use PHPUnit\Framework\TestCase;
 use Zend\Console\Prompt\Line;
 use ZendTest\Console\TestAssets\ConsoleAdapter;
 
 /**
  * @group      Zend_Console
  */
-class LineTest extends \PHPUnit_Framework_TestCase
+class LineTest extends TestCase
 {
     /**
      * @var ConsoleAdapter

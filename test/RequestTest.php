@@ -9,12 +9,13 @@
 
 namespace ZendTest\Console;
 
+use PHPUnit\Framework\TestCase;
 use Zend\Console\Request;
 
 /**
  * @group      Zend_Console
  */
-class RequestTest extends \PHPUnit_Framework_TestCase
+class RequestTest extends TestCase
 {
     public function setUp()
     {
@@ -31,7 +32,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $request = new Request();
         $params = $request->getParams();
 
-        $this->assertEquals(2, count($params));
+        $this->assertCount(2, $params);
         $this->assertEquals($params->toArray(), ['foo' => 'baz', 'bar']);
         $this->assertEquals($request->getParam('foo'), 'baz');
         $this->assertEquals($request->getScriptName(), 'foo.php');

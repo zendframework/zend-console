@@ -2,7 +2,7 @@
 
 zend-mvc integrates with zend-console; the integration also works with modules
 loaded with the
-[Module Manager](http://framework.zend.com/manual/current/en/modules/zend.module-manager.intro.html).
+[Module Manager](https://docs.zendframework.com/zend-modulemanager/intro/).
 
 zend-mvc ships with a console-specific `RouteNotFoundStrategy` which is responsible for displaying console usage information when:
 

@@ -9,13 +9,14 @@
 
 namespace ZendTest\Console\Prompt;
 
+use PHPUnit\Framework\TestCase;
 use Zend\Console\Prompt\Confirm;
 use ZendTest\Console\TestAssets\ConsoleAdapter;
 
 /**
  * @group      Zend_Console
  */
-class ConfirmTest extends \PHPUnit_Framework_TestCase
+class ConfirmTest extends TestCase
 {
     /**
      * @var ConsoleAdapter
