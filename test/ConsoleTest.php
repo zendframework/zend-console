@@ -9,12 +9,13 @@
 
 namespace ZendTest\Console;
 
+use PHPUnit\Framework\TestCase;
 use Zend\Console\Console;
 
 /**
  * @group      Zend_Console
  */
-class ConsoleTest extends \PHPUnit_Framework_TestCase
+class ConsoleTest extends TestCase
 {
     public function setUp()
     {
@@ -61,7 +62,7 @@ class ConsoleTest extends \PHPUnit_Framework_TestCase
     public function testCanNotGetInstanceInNoConsoleMode()
     {
         Console::overrideIsConsole(false);
-        $this->setExpectedException('Zend\Console\Exception\RuntimeException');
+        $this->expectException('Zend\Console\Exception\RuntimeException');
         Console::getInstance();
     }
 
