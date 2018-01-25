@@ -6,24 +6,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#39](https://github.com/zendframework/zend-console/pull/39) adds support for
+  PHP 7.2.
 
-### Deprecated
-
-- Nothing.
-
-### Removed
-
-- Nothing.
-
-### Fixed
-
-- [#19](https://github.com/zendframework/zend-console/pull/19) updated link
-  to the documentation in the [README](README.md)
-
-## 2.6.1 - TBD
-
-### Added
+### Changed
 
 - Nothing.
 
@@ -33,7 +19,11 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- Nothing.
+- [#39](https://github.com/zendframework/zend-console/pull/39) removes support
+  for PHP 5.5.
+
+- [#39](https://github.com/zendframework/zend-console/pull/39) removes support
+  for HHVM.
 
 ### Fixed
 
