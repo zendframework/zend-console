@@ -345,11 +345,12 @@ zf-console both provide methods for aggregating routes.</p>
 <li><a href="#positional-value-parameters">Positional value parameters</a> (e.g. <code>create &lt;modelName&gt; [&lt;destination&gt;]</code>)</li>
 <li><a href="#value-flag-parameters">Value flags</a> (e.g. <code>--name=NAME [--method=METHOD]</code>)</li>
 <li><a href="#grouping-literal-alternatives">Named literal alternative groups</a> (e.g., <code>(all|some|none):filter</code>)</li>
+<li><a href="#catch-all-parameters">Catch-all parameters</a> (e.g. <code>[...params]</code>)</li>
 </ul>
 <h3 id="literal-parameters">Literal parameters</h3>
 <p><em>Literal parameters</em> are expected to appear on the command line exactly the way
 they are provided in the route. For example:</p>
-<pre class="codehilite"><code>show users</code></pre>
+<pre class="codehilite"><code class="language-text">show users</code></pre>
 
 <p>This route will <strong>only</strong> match for the following command line</p>
 <pre class="codehilite"><code class="language-bash">$ zf show users</code></pre>
@@ -358,7 +359,7 @@ they are provided in the route. For example:</p>
 if there are any more parameters, or if either one of the two words is missing.
 The order of words is also enforced.</p>
 <p>You can also provide <strong>optional literal parameters</strong>. As an example:</p>
-<pre class="codehilite"><code>show [all] users</code></pre>
+<pre class="codehilite"><code class="language-text">show [all] users</code></pre>
 
 <p>The above route will match each of the following:</p>
 <pre class="codehilite"><code class="language-bash">$ zf show users
@@ -391,7 +392,7 @@ of optional and/or mandatory flags.</p>
 <p>Flag order is ignored; they can be defined in any order, and the user can
 provide them in any order.</p>
 <p>The following is a route with <strong>optional long flags</strong>:</p>
-<pre class="codehilite"><code>check users [--verbose] [--fast] [--thorough]</code></pre>
+<pre class="codehilite"><code class="language-text">check users [--verbose] [--fast] [--thorough]</code></pre>
 
 <p>The above route will match commands like:</p>
 <pre class="codehilite"><code class="language-bash">$ zf check users
@@ -412,7 +413,7 @@ $ zf check users --verbose --thorough --suspicious</code></pre>
 
 <p><strong>Short flags</strong> are also available, and may be grouped with long flags for
 convenience:</p>
-<pre class="codehilite"><code>check users [--verbose|-v] [--fast|-f] [--thorough|-t]</code></pre>
+<pre class="codehilite"><code class="language-text">check users [--verbose|-v] [--fast|-f] [--thorough|-t]</code></pre>
 
 <p>Now we can use short versions of our flags:</p>
 <pre class="codehilite"><code class="language-bash">$ zf check users -f
@@ -426,7 +427,7 @@ and flags (which we've already discussed).</p>
 <p><strong>Positional value parameters</strong> are expected to appear in an <em>exact</em> position on
 the command line, and are denoted using angle brackets (<code>&lt;&gt;</code>).</p>
 <p>Consider the following:</p>
-<pre class="codehilite"><code>delete user &lt;userEmail&gt;</code></pre>
+<pre class="codehilite"><code class="language-text">delete user &lt;userEmail&gt;</code></pre>
 
 <p>This route will match the following commands:</p>
 <pre class="codehilite"><code class="language-bash">$ zf delete user john@acme.org
@@ -442,13 +443,13 @@ $userEmail = $matches['userEmail'];</code></pre>
 
 <p>You can also define <strong>optional positional value parameters</strong> by surrounding the
 parameter with square brackets:</p>
-<pre class="codehilite"><code>delete user [&lt;userEmail&gt;]</code></pre>
+<pre class="codehilite"><code class="language-text">delete user [&lt;userEmail&gt;]</code></pre>
 
 <p>In this case, the <code>userEmail</code> parameter will not be required for the route to
 match. If it is not provided, the <code>userEmail</code> parameter will not be present in
 the matched parameters.</p>
 <p>You can define any number of positional value parameters:</p>
-<pre class="codehilite"><code>create user &lt;firstName&gt; &lt;lastName&gt; &lt;email&gt; &lt;position&gt;</code></pre>
+<pre class="codehilite"><code class="language-text">create user &lt;firstName&gt; &lt;lastName&gt; &lt;email&gt; &lt;position&gt;</code></pre>
 
 <p>This allows us to capture commands such as the following:</p>
 <pre class="codehilite"><code class="language-bash">$ zf create user Johnny Bravo john@acme.org Entertainer</code></pre>
@@ -467,7 +468,7 @@ like this:</p>
 route. If we do not want to enforce the order of parameters, we can define <strong>value flags</strong>.</p>
 <p><strong>Value flags</strong> can be defined and matched in <em>any</em> order, and can receive any
 text-based value.</p>
-<pre class="codehilite"><code>find user [--id=] [--firstName=] [--lastName=] [--email=] [--position=]</code></pre>
+<pre class="codehilite"><code class="language-text">find user [--id=] [--firstName=] [--lastName=] [--email=] [--position=]</code></pre>
 
 <p>The above route will match for any of the following routes:</p>
 <pre class="codehilite"><code class="language-bash">$ zf find user
@@ -490,7 +491,7 @@ values.</p>
 </blockquote>
 <p>In the previous example, all value flags are optional. You may also define
 <strong>mandatory value flags</strong> by omitting the square brackets:</p>
-<pre class="codehilite"><code>rename user --id= [--firstName=] [--lastName=]</code></pre>
+<pre class="codehilite"><code class="language-text">rename user --id= [--firstName=] [--lastName=]</code></pre>
 
 <p>In the above example, the <code>--id</code> parameter <strong>is required</strong> for the route to
 match. The following commands will work with this route:</p>
@@ -501,10 +502,10 @@ $ zf rename user --id=123 --lastName=Bravo
 
 <h3 id="grouping-literal-alternatives">Grouping literal alternatives</h3>
 <p>In the flags section, we demonstrated grouping alternative flags:</p>
-<pre class="codehilite"><code>check users (--suspicious|--expired) [--verbose] [--fast] [--thorough]</code></pre>
+<pre class="codehilite"><code class="language-text">check users (--suspicious|--expired) [--verbose] [--fast] [--thorough]</code></pre>
 
 <p>This can also be done with literals:</p>
-<pre class="codehilite"><code>show (all|deleted|locked|admin) &lt;group&gt;</code></pre>
+<pre class="codehilite"><code class="language-text">show (all|deleted|locked|admin) &lt;group&gt;</code></pre>
 
 <p>However, this makes checking for which alternative was used quite difficult:</p>
 <pre class="codehilite"><code class="language-php">switch (true) {
@@ -519,7 +520,7 @@ $ zf rename user --id=123 --lastName=Bravo
 
 <p>To simplify this, you can <em>assign a name to the grouped alternatives</em>. Do this
 with the verbiage <code>:groupname</code> following the group:</p>
-<pre class="codehilite"><code>show (all|deleted|locked|admin):filter &lt;group&gt;</code></pre>
+<pre class="codehilite"><code class="language-text">show (all|deleted|locked|admin):filter &lt;group&gt;</code></pre>
 
 <p>The above names the group "filter". When a group is provided a name, you can
 then retrieve the group name parameter, which will be set to the alternative
@@ -534,6 +535,23 @@ used:</p>
     /* etc. */
 }</code></pre>
 
+<h3 id="catch-all-parameters">Catch-all Parameters</h3>
+<ul>
+<li>Since 2.7.0</li>
+</ul>
+<p>When a route may receive a variable number of parameters (for example, to
+implement a feature like echo, or to process an arbitrary list of files),
+you can use a catch-all parameter to collect all parameters that are not
+matched by another part of the route. These collected values can be accessed
+as a single parameter (whose name is defined in the route) containing an array.</p>
+<p>When used, the catch-all parameter must come after all positional value
+parameters. You can only use one catch-all parameter per route.</p>
+<p>Example:</p>
+<pre class="codehilite"><code class="language-text">say [loudly|softly]:volume [...words]</code></pre>
+
+<p>If the user entered the command line <code>say loudly I am here</code>, the 'volume'
+parameter would contain <code>'loudly'</code> and the 'words' parameter would contain
+<code>['I', 'am', 'here']</code>.</p>
 <h2 id="console-routes-cheat-sheet">Console routes cheat-sheet</h2>
 <div class="table-responsive"><table>
 <thead>
@@ -668,6 +686,26 @@ used:</p>
 <td align="left">Short optional flags group</td>
 <td align="left"><code>foo [-b|-z]:myParam</code></td>
 <td align="left">"foo", optional "-b" or "-z" flag before or after (stored as "myParam" param)</td>
+</tr>
+<tr>
+<td align="left"><strong>Catch-all parameters</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Simple catch-all</td>
+<td align="left"><code>foo [...bar]</code></td>
+<td align="left">"foo" followed by any number of params, stored as array in "bar" param</td>
+</tr>
+<tr>
+<td align="left">Literal alternative w/ catch-all</td>
+<td align="left"><code>foo (bar|baz) [...xyzzy]</code></td>
+<td align="left">"foo" followed by "bar" or "baz", with extra input stored as "xyzzy" param</td>
+</tr>
+<tr>
+<td align="left">Value param w/ catch-all</td>
+<td align="left"><code>foo &lt;bar&gt; [...baz]</code></td>
+<td align="left">"foo", with first parameter stored as "bar" and remainder stored as "baz"</td>
 </tr>
 </tbody>
 </table></div>
