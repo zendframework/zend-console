@@ -11,6 +11,7 @@
 namespace ZendTest\Console\RouteMatcher;
 
 use PHPUnit\Framework\TestCase;
+use Zend\Console\Exception\InvalidArgumentException;
 use Zend\Console\RouteMatcher\DefaultRouteMatcher;
 use Zend\Filter\FilterInterface;
 use Zend\Validator\Digits;
@@ -934,6 +935,16 @@ class DefaultRouteMatcherTest extends TestCase
                 ['baz'],
                 null,
             ],
+            'catchall' => [
+                'catchall [...params]',
+                ['catchall', 'foo', 'bar', '--xyzzy'],
+                ['params' => ['foo', 'bar', '--xyzzy']],
+            ],
+            'catchall-with-flag' => [
+                'catchall [--flag] [...params]',
+                ['catchall', 'foo', '--flag', 'bar', '--xyzzy'],
+                ['params' => ['foo', 'bar', '--xyzzy'], 'flag' => true],
+            ],
         ];
     }
 
@@ -955,10 +966,17 @@ class DefaultRouteMatcherTest extends TestCase
             $this->assertInternalType('array', $match);
 
             foreach ($params as $key => $value) {
+                if ($value === null) {
+                    $msg = "Param $key is not present";
+                } elseif (is_array($value)) {
+                    $msg = "Values in array $key do not match";
+                } else {
+                    $msg = "Param $key is present and is equal to $value";
+                }
                 $this->assertEquals(
                     $value,
                     isset($match[$key]) ? $match[$key] : null,
-                    $value === null ? "Param $key is not present" : "Param $key is present and is equal to $value"
+                    $msg
                 );
             }
         }
@@ -1403,5 +1421,21 @@ class DefaultRouteMatcherTest extends TestCase
         new DefaultRouteMatcher('<foo>', [], [], [], [], [
             new \stdClass()
         ]);
+    }
+
+    public function testIllegalRouteDefinitions()
+    {
+        $badRoutes = [
+            '[...catchall1] [...catchall2]' => 'Cannot define more than one catchAll parameter',
+            '[...catchall] [positional]' => 'Positional parameters must come before catchAlls',
+        ];
+        foreach ($badRoutes as $route => $msg) {
+            try {
+                new DefaultRouteMatcher($route);
+                $this->fail('Expected exception (' . $msg . ') not thrown!');
+            } catch (InvalidArgumentException $ex) {
+                $this->assertEquals($msg, $ex->getMessage());
+            }
+        }
     }
 }
