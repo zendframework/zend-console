@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 2.7.0 - TBD
+
+### Added
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#19](https://github.com/zendframework/zend-console/pull/19) updated link
+  to the documentation in the [README](README.md)
+
 ## 2.6.1 - TBD
 
 ### Added
