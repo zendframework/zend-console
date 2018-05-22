@@ -3,7 +3,7 @@
         {
             "location": "/",
             "text": "zend-console\n\n\n\n\n\n\nZend\\Console\n is a component to design and implement console applications in PHP.\n\n\n\n\nFile issues at https://github.com/zendframework/zend-console/issues\n\n\nDocumentation is at https://docs.zendframework.com/zend-console/",
-            "title": "Home"
+            "title": "zend-console"
         },
         {
             "location": "/#zend-console",
