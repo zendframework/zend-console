@@ -86,6 +86,15 @@ class DefaultRouteMatcherTest extends TestCase
                 ['--baz'],
                 null
             ],
+            'mandatory-long-flag-alternative-duplicates' => [
+                '(--foo | --foo | --bar)',
+                ['--foo'],
+                [
+                    'foo' => true,
+                    'bar' => false,
+                    'baz' => null,
+                ]
+            ],
 
             // -- mandatory short flags
             'mandatory-short-flag-no-match' => [
@@ -372,6 +381,11 @@ class DefaultRouteMatcherTest extends TestCase
             ],
             'mandatory-literal-namedAlternative-match-1' => [
                 'foo ( bar | baz ):altGroup',
+                ['foo','bar'],
+                ['foo' => null, 'altGroup' => 'bar', 'bar' => true, 'baz' => false]
+            ],
+            'mandatory-literal-namedAlternative-match-1-duplicates' => [
+                'foo ( bar | bar | baz ):altGroup',
                 ['foo','bar'],
                 ['foo' => null, 'altGroup' => 'bar', 'bar' => true, 'baz' => false]
             ],
