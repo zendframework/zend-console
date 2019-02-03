@@ -1,8 +1,5 @@
 # MVC Routing
 
-## Deprecated
-For MVC routing zend-console is dependent on [zend-mvc-console](https://docs.zendframework.com/zend-mvc-console/) which will not be maintained long term. We strongly urge developers to start migrating their MVC-based console tooling to use other libraries, such as [zf-console](https://github.com/zfcampus/zf-console) from [Zend Framework Campus](https://github.com/zfcampus).
-
 zend-mvc provides integration with zend-console, routing command line arguments
 to the appropriate action controller and action method that will handle the
 request. Actions can perform any number of tasks prior to returning a result to
