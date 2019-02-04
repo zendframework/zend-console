@@ -670,9 +670,9 @@ class Getopt
                     break;
                 }
             }
-            if (substr($argv[0], 0, 2) == '--') {
+            if (0 === strpos($argv[0], '--')) {
                 $this->_parseLongOption($argv);
-            } elseif (substr($argv[0], 0, 1) == '-' && ('-' != $argv[0] || count($argv) > 1)) {
+            } elseif (0 === strpos($argv[0], '-') && ('-' != $argv[0] || count($argv) > 1)) {
                 $this->_parseShortOptionCluster($argv);
             } elseif ($this->getoptConfig[self::CONFIG_PARSEALL]) {
                 $this->remainingArgs[] = array_shift($argv);
@@ -823,7 +823,7 @@ class Getopt
                 }
                 break;
             case 'optional':
-                if (count($argv) > 0 && substr($argv[0], 0, 1) != '-') {
+                if (count($argv) > 0 && 0 !== strpos($argv[0], '-')) {
                     $param = array_shift($argv);
                     $this->_checkParameterType($realFlag, $param);
                 } else {
@@ -979,7 +979,7 @@ class Getopt
                 $flag = strtolower($flag);
             }
             $r['alias'][] = $flag;
-            if (substr($rule, 1, 1) == ':') {
+            if (1 === strpos($rule, ':', 1)) {
                 $r['param'] = 'required';
                 $r['paramType'] = 'string';
             } else {
