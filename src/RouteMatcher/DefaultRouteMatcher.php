@@ -305,7 +305,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                 $options = preg_split('/ *\| */', trim($m['options']), 0, PREG_SPLIT_NO_EMPTY);
 
                 // remove dupes
-                array_unique($options);
+                $options = array_unique($options);
 
                 // prepare item
                 $item = [
@@ -343,7 +343,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                 $options = preg_split('/ *\| */', trim($m['options']), 0, PREG_SPLIT_NO_EMPTY);
 
                 // remove dupes
-                array_unique($options);
+                $options = array_unique($options);
 
                 // prepare item
                 $item = [
@@ -381,7 +381,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                 $options = preg_split('/ *\| */', trim($m['options']), 0, PREG_SPLIT_NO_EMPTY);
 
                 // remove dupes
-                array_unique($options);
+                $options = array_unique($options);
 
                 // remove prefix
                 array_walk($options, function (&$val) {
@@ -424,7 +424,7 @@ class DefaultRouteMatcher implements RouteMatcherInterface
                 $options = preg_split('/ *\| */', trim($m['options']), 0, PREG_SPLIT_NO_EMPTY);
 
                 // remove dupes
-                array_unique($options);
+                $options = array_unique($options);
 
                 // remove prefix
                 array_walk($options, function (&$val) {
