@@ -1,8 +1,8 @@
 docs_dir: docs/book
 site_dir: docs/html
 pages:
-    - index.md
-    - Intro: intro.md
+    - Home: index.md
+    - Introduction: intro.md
     - Reference:
       - 'Console Adapters': adapter.md
       - 'Console Prompts': prompts.md
@@ -19,4 +19,4 @@ pages:
 site_name: zend-console
 site_description: Zend\Console
 repo_url: 'https://github.com/zendframework/zend-console'
-copyright: 'Copyright (c) 2005-2017 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a>'
+copyright: 'Copyright (c) 2005-2019 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a>'
