@@ -22,7 +22,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#44](https://github.com/zendframework/zend-console/pull/44) fixes usage of `array_unique()` within the `DefaultRouteMatcher` to
+  properly re-assign the array when invoked.
 
 ## 2.7.1 - TBD
 
