@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Zend\Console">  
-    <link rel="shortcut icon" href="../img/favicon.ico">
+    <link rel="shortcut icon" href="//img/favicon.ico">
 
-    <title>Console Adapters - zend-console - Zend Framework Docs</title>
+    <title>zend-console - Zend Framework Docs</title>
 
-    <link rel="stylesheet" href="../css/styles-f3b53f5ceb.css">
+    <link rel="stylesheet" href="//css/styles-f3b53f5ceb.css">
 </head>
 <body id="page-top">
 
@@ -31,7 +31,7 @@
             
             <span class="navbar-brand">
                 <a class="logo-link" href="https://framework.zend.com/" data-tooltip data-placement="bottom" title="Go to the ZF homepage">
-                    <img src="../img/zend-framework-logo.svg" height="28" alt="Zend Framework">
+                    <img src="//img/zend-framework-logo.svg" height="28" alt="Zend Framework">
                 </a>
             </span>
         </div>
@@ -66,7 +66,7 @@
                     
     <div class="subnavigation hidden-print">
         <h4 class="subnavigation__title">
-            <a href="..">zend-console</a>
+            <a href="/.">zend-console</a>
         </h4>
 
         <h5 class="subnavigation__subtitle">Table of Contents</h5>
@@ -75,7 +75,7 @@
             
                 
                     <li class="subnavigation__list-item ">
-                        <a href="../intro/" class="subnavigation__link">Introduction</a>
+                        <a href="/intro/" class="subnavigation__link">Introduction</a>
                     </li>
                 
             
@@ -85,20 +85,20 @@
                         <ul class="subnavigation__list">
                             
                                 
-    <li class="subnavigation__list-item subnavigation__list-item--active">
-        <a href="./" class="subnavigation__link">Console Adapters</a>
+    <li class="subnavigation__list-item ">
+        <a href="/adapter/" class="subnavigation__link">Console Adapters</a>
     </li>
 
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../prompts/" class="subnavigation__link">Console Prompts</a>
+        <a href="/prompts/" class="subnavigation__link">Console Prompts</a>
     </li>
 
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../routes/" class="subnavigation__link">Routes</a>
+        <a href="/routes/" class="subnavigation__link">Routes</a>
     </li>
 
                             
@@ -113,19 +113,19 @@
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../mvc/routing/" class="subnavigation__link">MVC Routing</a>
+        <a href="/mvc/routing/" class="subnavigation__link">MVC Routing</a>
     </li>
 
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../mvc/modules/" class="subnavigation__link">Console-Aware Modules</a>
+        <a href="/mvc/modules/" class="subnavigation__link">Console-Aware Modules</a>
     </li>
 
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../mvc/controllers/" class="subnavigation__link">Console-Aware Controllers</a>
+        <a href="/mvc/controllers/" class="subnavigation__link">Console-Aware Controllers</a>
     </li>
 
                             
@@ -140,25 +140,25 @@
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../getopt/intro/" class="subnavigation__link">Introduction</a>
+        <a href="/getopt/intro/" class="subnavigation__link">Introduction</a>
     </li>
 
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../getopt/rules/" class="subnavigation__link">Declaring Rules</a>
+        <a href="/getopt/rules/" class="subnavigation__link">Declaring Rules</a>
     </li>
 
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../getopt/fetching/" class="subnavigation__link">Fetching Options and Arguments</a>
+        <a href="/getopt/fetching/" class="subnavigation__link">Fetching Options and Arguments</a>
     </li>
 
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../getopt/configuration/" class="subnavigation__link">Configuration</a>
+        <a href="/getopt/configuration/" class="subnavigation__link">Configuration</a>
     </li>
 
                             
@@ -235,308 +235,18 @@
             <div class="col-md-9 col-xs-12 content" role="main">
             <!-- content:begin -->
                 
-                    <ol class="breadcrumb" role="navigation" aria-label="breadcrumbs navigation">
-    <li><a href="https://framework.zend.com/">Home</a></li>
 
-    
-        <li><a href="https://docs.zendframework.com/">Documentation</a></li>
-
-        
-            <li><a href="..">zend-console</a></li>
-
-            
-                
-                    <li>Reference</li>
-                
-            
-
-            <li class="active">Console Adapters</li>
-        
-    
-</ol>
-
-
-    
-        <h2 class="chapter__headline">Reference</h2>
-    
-
-    
-    
-
-    
-    
-        <div class="toc">
-            <h6 class="toc__headline">In This Article</h6>
-            <ul class="toc__list">
-                
-                    <li class="toc__entry">
-                        <a href="#retrieving-the-console-adapter" class="toc__link">Retrieving the console adapter</a>
-                    </li>
-                
-                    <li class="toc__entry">
-                        <a href="#using-the-console-adapter" class="toc__link">Using the console adapter</a>
-                    </li>
-                
-            </ul>
-        </div>
-    
-
-
-    <h1 id="console-adapters">Console adapters</h1>
-<p>zend-console's console abstraction layer works around various bugs and limitations
-in operating systems, including:</p>
-<ul>
-<li>display of colorized text.</li>
-<li>discovery and calculation of console window size.</li>
-<li>discovery of console charset.</li>
-<li>basic line drawing capabilities.</li>
-</ul>
-<p>Console adapters implement <code>Zend\Console\Adapter\AdapterInterface</code>, and you
-should typehint against that interface for purposes of working with console
-capabilities. Adapters are included for:</p>
-<ul>
-<li>Posix (*nix-based systems)</li>
-<li>Windows (and Windows ANSI; for use with <code>command.bat</code>)</li>
-<li>Virtual (which provides Windows PowerShell compatibility)</li>
-</ul>
-<h2 id="retrieving-the-console-adapter">Retrieving the console adapter</h2>
-<p>While you may know your current environment, you will want to write your code in
-such a way that the console adapter is specific to whatever environment it is
-run within. As such, you likely should never instantiate an adapter directly.
-zend-console, and the zend-mvc integration, provide tools for retrieving an
-appropriate adapter for the current environment in a generic way.</p>
-<h3 id="standalone">Standalone</h3>
-<p>zend-console provides a factory for creating and returning the console adapter
-specific to your environment:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Console\Console;
-use Zend\Console\Exception\ExceptionInterface as ConsoleException;
-
-try {
-    $console = Console::getInstance();
-} catch (ConsoleException $e) {
-    // Could not get console adapter; most likely we are not running inside a
-    // console window.
-}</code></pre>
-
-<p>This returns a <code>Zend\Console\Adapter\AdapterInterface</code> implementation suitable
-for your current environment.</p>
+<h1 class="content__title">404</h1>
 <blockquote>
-<h4 id="exceptions">Exceptions</h4>
-<p>For practical and security reasons, <code>Console::getInstance()</code> will always throw
-an exception if you attempt to get console instance in a non-console
-environment (i.e. when running on a HTTP server). You can override this
-behavior by manually instantiating one of the <code>Zend\Console\Adapter\*</code>
-classes; you should do this only as a last resort, however!</p>
+    <h3>Something went wrong!</h3>
+    <p>
+        We're sorry, but the page you are looking for does not exist.
+    </p>
 </blockquote>
-<h3 id="zend-mvc">zend-mvc</h3>
-<p>If you are using MVC controllers you can obtain Console adapter instance using
-the <code>ServiceManager</code>.</p>
-<pre class="codehilite"><code class="language-php">namespace Application;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Console\Adapter\AdapterInterface as Console;
-use Zend\Console\Exception\RuntimeException;
-
-class ConsoleController extends AbstractActionController
-{
-    public function testAction()
-    {
-        $console = $this-&gt;getServiceLocator()-&gt;get('console');
-        if (! $console instanceof Console) {
-            throw new RuntimeException('Cannot obtain console adapter. Are we running in a
-console?');
-        }
-    }
-}</code></pre>
-
-<p>If you extend <code>AbstractConsoleController</code>, you can use the <code>getConsole()</code> method
-instead:</p>
-<pre class="codehilite"><code class="language-php">namespace Application;
-
-use Zend\Mvc\Controller\AbstractConsoleController;
-use Zend\Console\Exception\RuntimeException;
-
-class ConsoleController extends AbstractConsoleController
-{
-    public function testAction()
-    {
-        $console = $this-&gt;getConsole();
-    }
-}</code></pre>
-
-<blockquote>
-<h4 id="use-dependency-injection">Use dependency injection</h4>
-<p>We recommend using dependency injection. Instead of pulling the console
-adapter from the service manager, inject it from within your controller's
-factory. This is essentially what happens when extending
-<code>AbstractConsoleController</code> already.</p>
-</blockquote>
-<h2 id="using-the-console-adapter">Using the console adapter</h2>
-<p><code>Zend\Console\Adapter\AdapterInterface</code> describes a rich set of capabilities.
-Below is a sampling.</p>
-<h3 id="window-size-and-title">Window size and title</h3>
-<div class="table-responsive"><table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>$console-&gt;getWidth()</code></td>
-<td>(int) Get real console window width in characters.</td>
-</tr>
-<tr>
-<td><code>$console-&gt;getHeight()</code></td>
-<td>(int) Get real console window height in characters.</td>
-</tr>
-<tr>
-<td><code>$console-&gt;getSize()</code></td>
-<td>(array) Returns <code>[$width, $height]</code> with current console window dimensions.</td>
-</tr>
-<tr>
-<td><code>$console-&gt;getTitle()</code></td>
-<td>(string) Get console window title.</td>
-</tr>
-</tbody>
-</table></div>
-<blockquote>
-<h4 id="multibyte-sequences">Multibyte sequences</h4>
-<p>For UTF-8 enabled consoles, dimensions represent the number of multibyte
-characters (real characters).</p>
-<h4 id="virtual-buffer-sizes">Virtual buffer sizes</h4>
-<p>On consoles with virtual buffers (e.g. MS Windows Command Prompt), width and
-height represent visible (real) size, without scrolling the window. For
-example, if the window scrolling width is 120 chars, but its real, visible
-width is 80 chars, <code>getWidth()</code> will return <code>80</code>.</p>
-</blockquote>
-<h3 id="character-set">Character set</h3>
-<div class="table-responsive"><table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>$console-&gt;isUtf8()</code></td>
-<td>(boolean) Is the console UTF-8 compatible (can it display unicode strings)?</td>
-</tr>
-<tr>
-<td><code>$console-&gt;getCharset()</code></td>
-<td>(<code>Zend\Console\Charset\CharsetInterface</code>) This method will return an instance of one of the <code>Zend\Console\Charset\*</code> classes representing the readable charset present for line-drawing. It is automatically detected by the adapter.</td>
-</tr>
-</tbody>
-</table></div>
-<h3 id="writing-to-the-console">Writing to the console</h3>
-<div class="table-responsive"><table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>$console-&gt;write(string $text, $color = null, $bgColor = null)</code></td>
-<td>Write <code>$text</code> to the console, optionally using foreground <code>$color</code> and background <code>$bgColor</code>.  Color values must be one of the <code>Zend\Console\ColorInterface</code> constants.</td>
-</tr>
-<tr>
-<td><code>$console-&gt;writeLine(string $text, $color = null, $bgColor = null)</code></td>
-<td>Write a single line of <code>$text</code> to the console. This method will output an environment-specific newline character at the end of the text, moving the console cursor to next line.</td>
-</tr>
-<tr>
-<td><code>$console-&gt;writeAt(string $text, int $x, int $y, $color = null, $bgColor = null)</code></td>
-<td>Write <code>$text</code> at the specified <code>$x</code> and <code>$y</code> coordinates of console window. The top left corner of the screen has coordinates of <code>$x = 1; $y = 1</code>. To retrieve the far-right and bottom coordinates, use the <code>getWidth()</code> and <code>getHeight()</code> methods.</td>
-</tr>
-</tbody>
-</table></div>
-<h3 id="reading-from-the-console">Reading from the console</h3>
-<div class="table-responsive"><table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>$console-&gt;readChar(string $mask = null)</code></td>
-<td>(string) Read a single character from the console. Optional <code>(string) $mask</code> can be provided to force entering only a selected set of characters. For example, to read a single digit, we can use the following syntax: <code>$digit = $console-&gt;readChar('0123456789');</code>.</td>
-</tr>
-<tr>
-<td><code>$console-&gt;readLine(int $maxLength = 2048)</code></td>
-<td>(string) Read a single line of input from console. Optional <code>(int) $maxLength</code> can be used to limit the length of data that will be read. The line will be returned <strong>without trailing newline characters</strong>.</td>
-</tr>
-</tbody>
-</table></div>
-<h3 id="miscellaneous">Miscellaneous</h3>
-<div class="table-responsive"><table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>$console-&gt;hideCursor()</code></td>
-<td>Hide blinking cursor from the console.</td>
-</tr>
-<tr>
-<td><code>$console-&gt;showCursor()</code></td>
-<td>Show blinking cursor in the console.</td>
-</tr>
-<tr>
-<td><code>$console-&gt;clear()</code></td>
-<td>Clear the screen.</td>
-</tr>
-<tr>
-<td><code>$console-&gt;clearLine()</code></td>
-<td>Clear the line that the cursor currently sits at.</td>
-</tr>
-</tbody>
-</table></div>
+<a href="/" class="btn btn-default" role="button">Go to homepage</a>
 
 
-
-    <nav>
-    <ul class="page-nav hidden-print">
-
-        
-        <li class="page-nav__item">
-            
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../intro/">
-                    <i class="fa fa-chevron-left"></i> Previous
-                </a>
-            
-        </li>
-
-        
-        <li class="page-nav__item">
-            
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../prompts/">
-                    Next <i class="fa fa-chevron-right"></i>
-                </a>
-            
-        </li>
-    </ul>
-</nav>
-
-
-
-    <div class="help-wanted">
-        <p>
-            Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-console/edit/master/docs/book/adapter.md" target="_blank" class="help-wanted__link">
-                Edit this page on GitHub!
-            </a>
-        </p>
-    </div>
-
-                
             <!-- content:end -->
             </div>
             <div class="col-md-3 col-xs-12 sidebar">
@@ -552,7 +262,7 @@ width is 80 chars, <code>getWidth()</code> will return <code>80</code>.</p>
                     
     <div class="subnavigation hidden-print">
         <h4 class="subnavigation__title">
-            <a href="..">zend-console</a>
+            <a href="/.">zend-console</a>
         </h4>
 
         <h5 class="subnavigation__subtitle">Table of Contents</h5>
@@ -561,7 +271,7 @@ width is 80 chars, <code>getWidth()</code> will return <code>80</code>.</p>
             
                 
                     <li class="subnavigation__list-item ">
-                        <a href="../intro/" class="subnavigation__link">Introduction</a>
+                        <a href="/intro/" class="subnavigation__link">Introduction</a>
                     </li>
                 
             
@@ -571,20 +281,20 @@ width is 80 chars, <code>getWidth()</code> will return <code>80</code>.</p>
                         <ul class="subnavigation__list">
                             
                                 
-    <li class="subnavigation__list-item subnavigation__list-item--active">
-        <a href="./" class="subnavigation__link">Console Adapters</a>
+    <li class="subnavigation__list-item ">
+        <a href="/adapter/" class="subnavigation__link">Console Adapters</a>
     </li>
 
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../prompts/" class="subnavigation__link">Console Prompts</a>
+        <a href="/prompts/" class="subnavigation__link">Console Prompts</a>
     </li>
 
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../routes/" class="subnavigation__link">Routes</a>
+        <a href="/routes/" class="subnavigation__link">Routes</a>
     </li>
 
                             
@@ -599,19 +309,19 @@ width is 80 chars, <code>getWidth()</code> will return <code>80</code>.</p>
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../mvc/routing/" class="subnavigation__link">MVC Routing</a>
+        <a href="/mvc/routing/" class="subnavigation__link">MVC Routing</a>
     </li>
 
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../mvc/modules/" class="subnavigation__link">Console-Aware Modules</a>
+        <a href="/mvc/modules/" class="subnavigation__link">Console-Aware Modules</a>
     </li>
 
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../mvc/controllers/" class="subnavigation__link">Console-Aware Controllers</a>
+        <a href="/mvc/controllers/" class="subnavigation__link">Console-Aware Controllers</a>
     </li>
 
                             
@@ -626,25 +336,25 @@ width is 80 chars, <code>getWidth()</code> will return <code>80</code>.</p>
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../getopt/intro/" class="subnavigation__link">Introduction</a>
+        <a href="/getopt/intro/" class="subnavigation__link">Introduction</a>
     </li>
 
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../getopt/rules/" class="subnavigation__link">Declaring Rules</a>
+        <a href="/getopt/rules/" class="subnavigation__link">Declaring Rules</a>
     </li>
 
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../getopt/fetching/" class="subnavigation__link">Fetching Options and Arguments</a>
+        <a href="/getopt/fetching/" class="subnavigation__link">Fetching Options and Arguments</a>
     </li>
 
                             
                                 
     <li class="subnavigation__list-item ">
-        <a href="../getopt/configuration/" class="subnavigation__link">Configuration</a>
+        <a href="/getopt/configuration/" class="subnavigation__link">Configuration</a>
     </li>
 
                             
@@ -723,11 +433,11 @@ width is 80 chars, <code>getWidth()</code> will return <code>80</code>.</p>
 </footer>
 
     <script>
-        var base_url = '..',
+        var base_url = '/',
             siteName = 'zend-console';
     </script>
-    <script src="../js/scripts-8d7ae56abf.js"></script>
-        <script src="../search/main.js"></script>
+    <script src="//js/scripts-8d7ae56abf.js"></script>
+        <script src="/search/main.js"></script>
 
     
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
