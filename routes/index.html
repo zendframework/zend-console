@@ -357,7 +357,7 @@ handlers.</p>
 <p>zend-console defines an interface for routing,
 <code>Zend\Console\RouteMatcher\RouteMatcherInterface</code>, which defines a single
 method, <code>match()</code>:</p>
-<pre class="codehilite"><code class="language-php">namespace Zend\Console\RouteMatcher;
+<p> <pre class=codehilite><code class=language-php>namespace Zend\Console\RouteMatcher;
 
 interface RouteMatcherInterface
 {
@@ -368,8 +368,7 @@ interface RouteMatcherInterface
      * @return array|null
      */
     public function match($params);
-}</code></pre>
-
+}</code></pre></p>
 <p>Applications are expected to retrieve arguments from the console and pass them to
 the routing implementation as an array; the routing implementation will then
 return either a <code>null</code> value (meaning failure to match), or an associative array
@@ -377,7 +376,7 @@ return either a <code>null</code> value (meaning failure to match), or an associ
 <h2 id="the-default-route-matcher">The default route matcher</h2>
 <p>zend-console's default routing implementation is <code>Zend\Console\RouteMatcher\DefaultRouteMatcher</code>.
 Its constructor expects:</p>
-<pre class="codehilite"><code class="language-php">    /**
+<p> <pre class=codehilite><code class=language-php>    /**
      * @param string $route
      * @param array $constraints
      * @param array $defaults
@@ -393,8 +392,7 @@ Its constructor expects:</p>
         array $aliases = [],
         array $filters = null,
         array $validators = null
-    )</code></pre>
-
+    )</code></pre></p>
 <p>The arguments are as follows:</p>
 <ul>
 <li><code>$route</code> is a string pattern describing the argument list it will match.</li>
@@ -418,7 +416,7 @@ Its constructor expects:</p>
   regular expressions (as used with the <code>$constraints</code>).</li>
 </ul>
 <blockquote>
-<h3 id="single-routes-only">Single routes only</h3>
+<h3>Single routes only</h3>
 <p><code>DefaultRouteMatcher</code> instances define <em>a single console route to match</em>. Most
 times, you will want to define multiple routes. The zend-mvc integration and
 zf-console both provide methods for aggregating routes.</p>
@@ -433,142 +431,120 @@ zf-console both provide methods for aggregating routes.</p>
 <li><a href="#grouping-literal-alternatives">Named literal alternative groups</a> (e.g., <code>(all|some|none):filter</code>)</li>
 <li><a href="#catch-all-parameters">Catch-all parameters</a> (e.g. <code>[...params]</code>)</li>
 </ul>
-<h3 id="literal-parameters">Literal parameters</h3>
+<h3>Literal parameters</h3>
 <p><em>Literal parameters</em> are expected to appear on the command line exactly the way
 they are provided in the route. For example:</p>
-<pre class="codehilite"><code class="language-text">show users</code></pre>
-
+<p> <pre class=codehilite><code class=language-text>show users</code></pre></p>
 <p>This route will <strong>only</strong> match for the following command line</p>
-<pre class="codehilite"><code class="language-bash">$ zf show users</code></pre>
-
+<p> <pre class=codehilite><code class=language-bash>$ zf show users</code></pre></p>
 <p>It expects the <strong>mandatory literal parameters</strong> <code>show users</code>. It will not match
 if there are any more parameters, or if either one of the two words is missing.
 The order of words is also enforced.</p>
 <p>You can also provide <strong>optional literal parameters</strong>. As an example:</p>
-<pre class="codehilite"><code class="language-text">show [all] users</code></pre>
-
+<p> <pre class=codehilite><code class=language-text>show [all] users</code></pre></p>
 <p>The above route will match each of the following:</p>
-<pre class="codehilite"><code class="language-bash">$ zf show users
-$ zf show all users</code></pre>
-
+<p> <pre class=codehilite><code class=language-bash>$ zf show users
+$ zf show all users</code></pre></p>
 <p>You can also provide <strong>parameter alternatives</strong>:</p>
-<pre class="codehilite"><code class="language-php">show [all|deleted|locked|admin] users</code></pre>
-
+<p> <pre class=codehilite><code class=language-php>show [all|deleted|locked|admin] users</code></pre></p>
 <p>The above route will match both with and without the second parameter; if
 provided, however, it must be one of the words listed. This enables matching any
 of the following:</p>
-<pre class="codehilite"><code class="language-php">$ zf show users
+<p> <pre class=codehilite><code class=language-php>$ zf show users
 $ zf show locked users
 $ zf show admin users
-# etc.</code></pre>
-
+# etc.</code></pre></p>
 <blockquote>
-<h4 id="whitespace-is-ignored">Whitespace is ignored</h4>
+<h4>Whitespace is ignored</h4>
 <p>Whitespaces in route definitions are ignored. If you separate your parameters
 with more spaces, or separate alternatives and pipe characters with spaces,
 the parser will ignore the whitespace.
 The above route definition is equivalent to:</p>
-<pre class="codehilite"><code>show [  all | deleted | locked | admin  ]   users</code></pre>
-
+<p><code>show [  all | deleted | locked | admin  ]   users</code></p>
 <p>As such, you can use whitespace for readability.</p>
 </blockquote>
-<h3 id="literal-flags">Literal flags</h3>
+<h3>Literal flags</h3>
 <p>Console tools commonly use flags. zend-console allows you to define any number
 of optional and/or mandatory flags.</p>
 <p>Flag order is ignored; they can be defined in any order, and the user can
 provide them in any order.</p>
 <p>The following is a route with <strong>optional long flags</strong>:</p>
-<pre class="codehilite"><code class="language-text">check users [--verbose] [--fast] [--thorough]</code></pre>
-
+<p> <pre class=codehilite><code class=language-text>check users [--verbose] [--fast] [--thorough]</code></pre></p>
 <p>The above route will match commands like:</p>
-<pre class="codehilite"><code class="language-bash">$ zf check users
+<p> <pre class=codehilite><code class=language-bash>$ zf check users
 $ zf check users --fast
 $ zf check users --verbose --thorough
 $ zf check users --thorough --fast
-# etc</code></pre>
-
+# etc</code></pre></p>
 <p>You can also define one or more <strong>mandatory long flags</strong>, and group them as an
 alternative:</p>
-<pre class="codehilite"><code class="language-php">check users (--suspicious|--expired) [--verbose] [--fast] [--thorough]</code></pre>
-
+<p> <pre class=codehilite><code class=language-php>check users (--suspicious|--expired) [--verbose] [--fast] [--thorough]</code></pre></p>
 <p>The above will only match if we provide either the <code>--suspicious</code> or <code>--expired</code>
 flag:</p>
-<pre class="codehilite"><code class="language-bash">$ zf check users --expired
+<p> <pre class=codehilite><code class=language-bash>$ zf check users --expired
 $ zf check users --expired --fast
-$ zf check users --verbose --thorough --suspicious</code></pre>
-
+$ zf check users --verbose --thorough --suspicious</code></pre></p>
 <p><strong>Short flags</strong> are also available, and may be grouped with long flags for
 convenience:</p>
-<pre class="codehilite"><code class="language-text">check users [--verbose|-v] [--fast|-f] [--thorough|-t]</code></pre>
-
+<p> <pre class=codehilite><code class=language-text>check users [--verbose|-v] [--fast|-f] [--thorough|-t]</code></pre></p>
 <p>Now we can use short versions of our flags:</p>
-<pre class="codehilite"><code class="language-bash">$ zf check users -f
+<p> <pre class=codehilite><code class=language-bash>$ zf check users -f
 $ zf check users -v --thorough
 $ zf check users -t -f -v
-# etc.</code></pre>
-
-<h3 id="positional-value-parameters">Positional value parameters</h3>
+# etc.</code></pre></p>
+<h3>Positional value parameters</h3>
 <p>Value parameters capture any text-based input, and come in two forms: positional
 and flags (which we've already discussed).</p>
 <p><strong>Positional value parameters</strong> are expected to appear in an <em>exact</em> position on
 the command line, and are denoted using angle brackets (<code>&lt;&gt;</code>).</p>
 <p>Consider the following:</p>
-<pre class="codehilite"><code class="language-text">delete user &lt;userEmail&gt;</code></pre>
-
+<p> <pre class=codehilite><code class=language-text>delete user &lt;userEmail&gt;</code></pre></p>
 <p>This route will match the following commands:</p>
-<pre class="codehilite"><code class="language-bash">$ zf delete user john@acme.org
-$ zf delete user betty@acme.org</code></pre>
-
+<p> <pre class=codehilite><code class=language-bash>$ zf delete user john@acme.org
+$ zf delete user betty@acme.org</code></pre></p>
 <p>When matched, the router will return the value under the key we provided in the
 route definition. If using the <code>DefaultRouteMatcher</code> standalone, this would be:</p>
-<pre class="codehilite"><code class="language-php">$matches = $route-&gt;match($argv);
-$userEmail = $matches['userEmail'];</code></pre>
-
+<p> <pre class=codehilite><code class=language-php>$matches = $route-&gt;match($argv);
+$userEmail = $matches['userEmail'];</code></pre></p>
 <p>Under zend-mvc, you will pull the parameter from the request:</p>
-<pre class="codehilite"><code class="language-php">$userEmail = $this-&gt;getRequest()-&gt;getParam('userEmail');</code></pre>
-
+<p> <pre class=codehilite><code class=language-php>$userEmail = $this-&gt;getRequest()-&gt;getParam('userEmail');</code></pre></p>
 <p>You can also define <strong>optional positional value parameters</strong> by surrounding the
 parameter with square brackets:</p>
-<pre class="codehilite"><code class="language-text">delete user [&lt;userEmail&gt;]</code></pre>
-
+<p> <pre class=codehilite><code class=language-text>delete user [&lt;userEmail&gt;]</code></pre></p>
 <p>In this case, the <code>userEmail</code> parameter will not be required for the route to
 match. If it is not provided, the <code>userEmail</code> parameter will not be present in
 the matched parameters.</p>
 <p>You can define any number of positional value parameters:</p>
-<pre class="codehilite"><code class="language-text">create user &lt;firstName&gt; &lt;lastName&gt; &lt;email&gt; &lt;position&gt;</code></pre>
-
+<p> <pre class=codehilite><code class=language-text>create user &lt;firstName&gt; &lt;lastName&gt; &lt;email&gt; &lt;position&gt;</code></pre></p>
 <p>This allows us to capture commands such as the following:</p>
-<pre class="codehilite"><code class="language-bash">$ zf create user Johnny Bravo john@acme.org Entertainer</code></pre>
-
+<p> <pre class=codehilite><code class=language-bash>$ zf create user Johnny Bravo john@acme.org Entertainer</code></pre></p>
 <blockquote>
-<h4 id="escaping">Escaping</h4>
+<h4>Escaping</h4>
 <p>Command line arguments on all systems must be properly escaped; otherwise they
 will not be passed to our application correctly. For example, to create a user
 with two names and a complex position description, we would issue the command
 like this:</p>
-<pre class="codehilite"><code class="language-bash">$ zf create user "Johnan Tom" Bravo john@acme.org "Head of the Entertainment Department"</code></pre>
-
+<p><code>bash
+$ zf create user "Johnan Tom" Bravo john@acme.org "Head of the Entertainment Department"</code></p>
 </blockquote>
-<h3 id="value-flag-parameters">Value flag parameters</h3>
+<h3>Value flag parameters</h3>
 <p>Positional value parameters are only matched if they appear in the exact order described in the
 route. If we do not want to enforce the order of parameters, we can define <strong>value flags</strong>.</p>
 <p><strong>Value flags</strong> can be defined and matched in <em>any</em> order, and can receive any
 text-based value.</p>
-<pre class="codehilite"><code class="language-text">find user [--id=] [--firstName=] [--lastName=] [--email=] [--position=]</code></pre>
-
+<p> <pre class=codehilite><code class=language-text>find user [--id=] [--firstName=] [--lastName=] [--email=] [--position=]</code></pre></p>
 <p>The above route will match for any of the following routes:</p>
-<pre class="codehilite"><code class="language-bash">$ zf find user
+<p> <pre class=codehilite><code class=language-bash>$ zf find user
 $ zf find user --id 29110
 $ zf find user --id=29110
 $ zf find user --firstName=Johny --lastName=Bravo
 $ zf find user --lastName Bravo --firstName Johny
 $ zf find user --position=Executive --firstName=Bob
-$ zf find user --position "Head of the Entertainment Department"
-# etc.</code></pre>
-
+$ zf find user --position &quot;Head of the Entertainment Department&quot;
+# etc.</code></pre></p>
 <p>As noted, the order of flags is irrelevant for the parser.</p>
 <blockquote>
-<h5 id="providing-values">Providing values</h5>
+<h5>Providing values</h5>
 <p>The parser understands values that are provided after either an equals symbol
 (<code>=</code>) or a single space, but only if the value itself does not contain
 whitespace.  Values containing any whitespace  must be properly quoted and
@@ -577,24 +553,20 @@ values.</p>
 </blockquote>
 <p>In the previous example, all value flags are optional. You may also define
 <strong>mandatory value flags</strong> by omitting the square brackets:</p>
-<pre class="codehilite"><code class="language-text">rename user --id= [--firstName=] [--lastName=]</code></pre>
-
+<p> <pre class=codehilite><code class=language-text>rename user --id= [--firstName=] [--lastName=]</code></pre></p>
 <p>In the above example, the <code>--id</code> parameter <strong>is required</strong> for the route to
 match. The following commands will work with this route:</p>
-<pre class="codehilite"><code class="language-bash">$ zf rename user --id 123
+<p> <pre class=codehilite><code class=language-bash>$ zf rename user --id 123
 $ zf rename user --id 123 --firstName Jonathan
 $ zf rename user --id=123 --lastName=Bravo
-# etc.</code></pre>
-
-<h3 id="grouping-literal-alternatives">Grouping literal alternatives</h3>
+# etc.</code></pre></p>
+<h3>Grouping literal alternatives</h3>
 <p>In the flags section, we demonstrated grouping alternative flags:</p>
-<pre class="codehilite"><code class="language-text">check users (--suspicious|--expired) [--verbose] [--fast] [--thorough]</code></pre>
-
+<p> <pre class=codehilite><code class=language-text>check users (--suspicious|--expired) [--verbose] [--fast] [--thorough]</code></pre></p>
 <p>This can also be done with literals:</p>
-<pre class="codehilite"><code class="language-text">show (all|deleted|locked|admin) &lt;group&gt;</code></pre>
-
+<p> <pre class=codehilite><code class=language-text>show (all|deleted|locked|admin) &lt;group&gt;</code></pre></p>
 <p>However, this makes checking for which alternative was used quite difficult:</p>
-<pre class="codehilite"><code class="language-php">switch (true) {
+<p> <pre class=codehilite><code class=language-php>switch (true) {
     case (isset($params['all'])):
         // all members
         break;
@@ -602,16 +574,14 @@ $ zf rename user --id=123 --lastName=Bravo
         // deleted members
         break;
     /* etc. */
-}</code></pre>
-
+}</code></pre></p>
 <p>To simplify this, you can <em>assign a name to the grouped alternatives</em>. Do this
 with the verbiage <code>:groupname</code> following the group:</p>
-<pre class="codehilite"><code class="language-text">show (all|deleted|locked|admin):filter &lt;group&gt;</code></pre>
-
+<p> <pre class=codehilite><code class=language-text>show (all|deleted|locked|admin):filter &lt;group&gt;</code></pre></p>
 <p>The above names the group "filter". When a group is provided a name, you can
 then retrieve the group name parameter, which will be set to the alternative
 used:</p>
-<pre class="codehilite"><code class="language-php">switch ($params['filter']) {
+<p> <pre class=codehilite><code class=language-php>switch ($params['filter']) {
     case 'all':
         // all members
         break;
@@ -619,9 +589,8 @@ used:</p>
         // deleted members
         break;
     /* etc. */
-}</code></pre>
-
-<h3 id="catch-all-parameters">Catch-all Parameters</h3>
+}</code></pre></p>
+<h3>Catch-all Parameters</h3>
 <ul>
 <li>Since 2.7.0</li>
 </ul>
@@ -633,8 +602,7 @@ as a single parameter (whose name is defined in the route) containing an array.<
 <p>When used, the catch-all parameter must come after all positional value
 parameters. You can only use one catch-all parameter per route.</p>
 <p>Example:</p>
-<pre class="codehilite"><code class="language-text">say [loudly|softly]:volume [...words]</code></pre>
-
+<p> <pre class=codehilite><code class=language-text>say [loudly|softly]:volume [...words]</code></pre></p>
 <p>If the user entered the command line <code>say loudly I am here</code>, the 'volume'
 parameter would contain <code>'loudly'</code> and the 'words' parameter would contain
 <code>['I', 'am', 'here']</code>.</p>
@@ -828,7 +796,7 @@ parameter would contain <code>'loudly'</code> and the 'words' parameter would co
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-console/edit/master/docs/routes.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-console/edit/master/docs/book/routes.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

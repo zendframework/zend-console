@@ -329,7 +329,7 @@ to the appropriate action controller and action method that will handle the
 request. Actions can perform any number of tasks prior to returning a result to
 display in the console window.</p>
 <p>When using zend-mvc, console routes are provided via configuration.</p>
-<pre class="codehilite"><code class="language-php">// The following can sit inside of module/Application/config/module.config.php,
+<p> <pre class=codehilite><code class=language-php>// The following can sit inside of module/Application/config/module.config.php,
 // any other module's configuration, or within files under config/autoload/:
 return [
     'router' =&gt; [
@@ -345,14 +345,13 @@ return [
             ],
         ],
     ],
-];</code></pre>
-
+];</code></pre></p>
 <p>Console routes exposed via zend-mvc will only be processed when the application
 is run inside a console (terminal) window; they are not used for web (HTTP)
 requests. It is possible to define only HTTP routes (web application only), only
 console routes (console-only application), or a mixture of the two.</p>
 <p>As an example of a single route:</p>
-<pre class="codehilite"><code class="language-php">// inside config.console.router.routes:
+<p> <pre class=codehilite><code class=language-php>// inside config.console.router.routes:
 'my-first-route' =&gt; [
     'type'    =&gt; 'simple',  // This is the default, and may be omitted; more on
                             // types below
@@ -363,8 +362,7 @@ console routes (console-only application), or a mixture of the two.</p>
             'action'     =&gt; 'password',
         ],
     ],
-],</code></pre>
-
+],</code></pre></p>
 <p>We have created a <code>simple</code> console route with the name <code>my-first-route</code>. It
 expects two parameters: <code>foo</code> and <code>bar</code>. If user puts these in a console,
 <code>Application\Controller\IndexController::passwordAction()</code> action will be
@@ -374,14 +372,14 @@ invoked.</p>
 given route can accept a <code>type</code> argument. This refers to the route type (which
 maps to a class) to use when creating the route instance. zend-mvc defines
 several types.</p>
-<h3 id="simple-route">Simple route</h3>
+<h3>Simple route</h3>
 <p><code>Zend\Mvc\Router\Console\Simple</code> is a factory for zend-console's
 <code>DefaultRouteMatcher</code>, and decorates it to work with the zend-mvc routing
 system. See the section on <a href="../../routes/#the-default-route-matcher">the default route matcher</a>
 for details on route strings and available configuration to provide.</p>
-<h3 id="catchall-route">Catchall route</h3>
+<h3>Catchall route</h3>
 <p>This special route will catch all console requests, regardless of the parameters provided.</p>
-<pre class="codehilite"><code class="language-php">'default-route' =&gt; [
+<p> <pre class=codehilite><code class=language-php>'default-route' =&gt; [
     'type'     =&gt; 'catchall',
     'options' =&gt; [
         'route'    =&gt; '',
@@ -390,8 +388,7 @@ for details on route strings and available configuration to provide.</p>
             'action'     =&gt; 'consoledefault',
         ],
     ],
-],</code></pre>
-
+],</code></pre></p>
 <p>This route type is rarely used; one possible use case is to register it as the
 last console route, in order to display usage information. Before you do so,
 read about the <a href="../modules/">preferred way of displaying console usage
@@ -430,7 +427,7 @@ interoperation with other modules in your application.</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-console/edit/master/docs/mvc/routing.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-console/edit/master/docs/book/mvc/routing.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

@@ -345,14 +345,13 @@ banners</a> and <a href="#usage-information">usage information</a>.</p>
 <h2 id="application-banner">Application banner</h2>
 <p>When using zend-console within a zend-mvc application, you can invoke it via
 the application bootstrap:</p>
-<pre class="codehilite"><code class="language-bash">$ php public/index.php</code></pre>
-
+<p> <pre class=codehilite><code class=language-bash>$ php public/index.php</code></pre></p>
 <p>By default, it will simply output the current ZF 2 version, like this:</p>
 <p><img alt="Basic console invocation" src="../../images/zend.console.empty.png" class="img-responsive"/></p>
 <p>Our <code>Application</code> module (and any other module) can provide an <strong>application
 banner</strong>. In order to do so, our <code>Module</code> class has to implement
 <code>Zend\ModuleManager\Feature\ConsoleBannerProviderInterface</code>. As an example:</p>
-<pre class="codehilite"><code class="language-php">// module/Application/Module.php
+<p> <pre class=codehilite><code class=language-php>// module/Application/Module.php
 &lt;?php
 namespace Application;
 
@@ -368,8 +367,7 @@ class Module implements ConsoleBannerProviderInterface
     {
         return 'MyModule 0.0.1';
     }
-}</code></pre>
-
+}</code></pre></p>
 <p>As you can see, the application banner should be a single line string that
 returns the module's name and (if available) its current version.</p>
 <p>If several modules define their own banner, they are displayed one after the
@@ -378,16 +376,15 @@ glance which modules expose console commands.</p>
 <p>If we execute our console application now, we'll see the newly created banner:</p>
 <p><img alt="Application banner" src="../../images/zend.console.banner.png" class="img-responsive"/></p>
 <p>Let's create and load a second module that provides a banner:</p>
-<pre class="codehilite"><code class="language-php">&lt;?php
+<p> <pre class=codehilite><code class=language-php>&lt;?php
 // config/application.config.php
 return array(
     'modules' =&gt; array(
         'Application',
         'User',     // &lt;- load user module in module/User
-    ),</code></pre>
-
+    ),</code></pre></p>
 <p>The <code>User</code> module will provide info about itself:</p>
-<pre class="codehilite"><code class="language-php">// module/User/Module.php
+<p> <pre class=codehilite><code class=language-php>// module/User/Module.php
 &lt;?php
 namespace User;
 
@@ -401,15 +398,14 @@ class Module implements ConsoleBannerProviderInterface
      */
     public function getConsoleBanner(Console $console)
     {
-        return "User Module 0.0.1";
+        return &quot;User Module 0.0.1&quot;;
     }
-}</code></pre>
-
+}</code></pre></p>
 <p>Because the <code>User</code> module is loaded after the <code>Application</code> module, the result
 will look like this:</p>
 <p><img alt="Two modules" src="../../images/zend.console.banner2.png" class="img-responsive"/></p>
 <blockquote>
-<h3 id="application-banner-display">Application banner display</h3>
+<h3>Application banner display</h3>
 <p>Application banners provided by modules are displayed as-is &mdash; no
 trimming or other adjustments will be performed on the text. As you can see,
 banners are also automatically colorized as blue.</p>
@@ -418,7 +414,7 @@ banners are also automatically colorized as blue.</p>
 <p>In order to display usage information, our Module class must implement
 <code>Zend\ModuleManager\Feature\ConsoleUsageProviderInterface</code>. Let's modify our
 example and add the new method defined in that interface:</p>
-<pre class="codehilite"><code class="language-php">// module/Application/Module.php
+<p> <pre class=codehilite><code class=language-php>// module/Application/Module.php
 &lt;?php
 namespace Application;
 
@@ -446,8 +442,7 @@ class Module implements
             '(enable|disable) debug' =&gt; 'Enable or disable debug mode for the application.',
         ];
     }
-}</code></pre>
-
+}</code></pre></p>
 <p>This will display the following information:</p>
 <p><img alt="Console usage" src="../../images/zend.console.usage.png" class="img-responsive"/></p>
 <p>Similar to <a href="#application-banner">application banners</a>, multiple modules can
@@ -459,35 +454,34 @@ the module's name. This helps to visually separate commands by module &mdash;
 which is particularly useful when you have multiple modules providing commands.
 By default, the component colorizes the module names in red.</p>
 <blockquote>
-<h3 id="usage-information-is-arbitrary">Usage information is arbitrary</h3>
+<h3>Usage information is arbitrary</h3>
 <p>Usage info provided in modules is not connected with <a href="../../routes/">console
 routing</a>. You can describe console usage in any form you prefer,
 and it does not affect how MVC handles console commands. In order to handle
 real console requests, you still need to define console routes.</p>
 </blockquote>
-<h3 id="free-form-text">Free-form text</h3>
+<h3>Free-form text</h3>
 <p>In order to output free-form text as usage information, <code>getConsoleUsage()</code> can
 return a string or an array of strings. As an example, the following is a
 single, free-form usage text:</p>
-<pre class="codehilite"><code class="language-php">public function getConsoleUsage(Console $console)
+<p> <pre class=codehilite><code class=language-php>public function getConsoleUsage(Console $console)
 {
     return 'User module expects exactly one argument - user name. '
         . 'It will display information for the provided user.';
-}</code></pre>
-
+}</code></pre></p>
 <p><img alt="Free-form usage text" src="../../images/zend.console.usage2.png" class="img-responsive"/></p>
 <blockquote>
-<h4 id="usage-text-is-provided-as-is">Usage text is provided as-is</h4>
+<h4>Usage text is provided as-is</h4>
 <p>The text provided is displayed as-is; no trimming or other adjustments will
 be performed. If you'd like to fit your usage information inside the console
 window, you could check its width with <code>$console-getWidth()</code>.</p>
 </blockquote>
-<h3 id="list-of-commands">List of commands</h3>
+<h3>List of commands</h3>
 <p>If <code>getConsoleUsage()</code> returns an associative array, it will be automatically
 aligned in 2 columns.  The first column will be prepended with script name (the
 entry point for the application). This is useful to display the various
 commands exposed.</p>
-<pre class="codehilite"><code class="language-php">public function getConsoleUsage(Console $console)
+<p> <pre class=codehilite><code class=language-php>public function getConsoleUsage(Console $console)
 {
      return [
         'delete user &lt;userEmail&gt;'        =&gt; 'Delete user with email &lt;userEmail&gt;',
@@ -495,50 +489,47 @@ commands exposed.</p>
         'list [all|disabled] users'      =&gt; 'Show a list of users',
         'find user [--email=] [--name=]' =&gt; 'Attempt to find a user by email or name',
      ];
-}</code></pre>
-
+}</code></pre></p>
 <p><img alt="Listing multiple commands" src="../../images/zend.console.usage3.png" class="img-responsive"/></p>
 <blockquote>
-<h4 id="command-list-alignment">Command list alignment</h4>
+<h4>Command list alignment</h4>
 <p>Commands and their descriptions will be aligned in two columns that fit
 inside the terminal window. If the window is resized, text may wrap, but all
 content will be aligned. If you don't like the behavior, you can always
 return <a href="free-form-text">free-form text</a> instead, as free-form text is never
 transformed or aligned.</p>
 </blockquote>
-<h3 id="list-of-params-and-flags">List of params and flags</h3>
+<h3>List of params and flags</h3>
 <p>Returning an array of arrays from <code>getConsoleUsage()</code> will produce a listing of
 parameters. This is useful for explaining flags, switches, possible values and
 other information. The output will be aligned in multiple columns for
 readability.</p>
 <p>As an example:</p>
-<pre class="codehilite"><code class="language-php">public function getConsoleUsage(Console $console)
+<p> <pre class=codehilite><code class=language-php>public function getConsoleUsage(Console $console)
 {
     return [
         [ '&lt;userEmail&gt;', 'email of the user' ],
         [ '--verbose',   'Turn on verbose mode' ],
-        [ '--quick',     'Perform a "quick" operation' ],
+        [ '--quick',     'Perform a &quot;quick&quot; operation' ],
         [ '-v',          'Same as --verbose' ],
         [ '-w',          'Wide output'],
     );
-}</code></pre>
-
+}</code></pre></p>
 <p><img alt="Parameter lists" src="../../images/zend.console.usage4.png" class="img-responsive"/></p>
 <p>This method can be used to display more than 2 columns of information:</p>
-<pre class="codehilite"><code class="language-php">public function getConsoleUsage(Console $console)
+<p> <pre class=codehilite><code class=language-php>public function getConsoleUsage(Console $console)
 {
     return [
         [ '&lt;userEmail&gt;', 'user email',        'Full email address of the user to find.' ],
         [ '--verbose',   'verbose mode',      'Display additional information during processing' ],
-        [ '--quick',     '"quick" operation', 'Do not check integrity, just make changes and finish' ],
+        [ '--quick',     '&quot;quick&quot; operation', 'Do not check integrity, just make changes and finish' ],
         [ '-v',          'Same as --verbose', 'Display additional information during processing' ],
         [ '-w',          'wide output',       'When listing users, use the whole available screen width' ],
     ];
-}</code></pre>
-
+}</code></pre></p>
 <p><img alt="Multiple columns" src="../../images/zend.console.usage5.png" class="img-responsive"/></p>
 <blockquote>
-<h4 id="alignment">Alignment</h4>
+<h4>Alignment</h4>
 <p>All information will be aligned in one or more columns that fit inside the
 terminal window. If the window is resized, some text may wrap, but all
 content will remain aligned. In case the number of columns changes (e.g. the
@@ -546,9 +537,9 @@ array contains different number of elements), a new table will be created,
 with its own alignment and column widths.</p>
 <p>If you don't like this behavior, you can always return <a href="free-form-text">free-form text</a>.</p>
 </blockquote>
-<h3 id="mixing-styles">Mixing styles</h3>
+<h3>Mixing styles</h3>
 <p>You can use mix together all of the above styles to provide comprehensive usage information.</p>
-<pre class="codehilite"><code class="language-php">public function getConsoleUsage(Console $console)
+<p> <pre class=codehilite><code class=language-php>public function getConsoleUsage(Console $console)
 {
     return [
         'Finding and listing users',
@@ -566,12 +557,11 @@ with its own alignment and column widths.</p>
 
         [ '&lt;userEmail&gt;', 'user email',        'Full email address of the user to change.'],
         [ '--verbose',   'verbose mode',      'Display additional information during processing'],
-        [ '--quick',     '"quick" operation', 'Do not check integrity, just make changes and finish'],
+        [ '--quick',     '&quot;quick&quot; operation', 'Do not check integrity, just make changes and finish'],
         [ '-v',          'Same as --verbose', 'Display additional information during processing'],
 
     );
-}</code></pre>
-
+}</code></pre></p>
 <p><img alt="Mixed styles" src="../../images/zend.console.usage6.png" class="img-responsive"/></p>
 <h2 id="best-practices">Best practices</h2>
 <p>Here are the best practices when providing usage for your commands:</p>
@@ -615,7 +605,7 @@ with its own alignment and column widths.</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-console/edit/master/docs/mvc/modules.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-console/edit/master/docs/book/mvc/modules.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

@@ -354,15 +354,14 @@ the object to parse the arguments. This is useful because you can invoke
 throw an exception again. The exception thrown has a custom method
 <code>getUsageMessage()</code> which returns as a string the formatted set of usage
 messages for all declared options.</p>
-<h3 id="catching-getopt-exceptions">Catching Getopt Exceptions</h3>
-<pre class="codehilite"><code class="language-php">try {
+<h3>Catching Getopt Exceptions</h3>
+<p> <pre class=codehilite><code class=language-php>try {
     $opts = new Zend\Console\Getopt('abp:');
     $opts-&gt;parse();
 } catch (Zend\Console\Exception\RuntimeException $e) {
     echo $e-&gt;getUsageMessage();
     exit;
-}</code></pre>
-
+}</code></pre></p>
 <p>Cases where parsing throws an exception include:</p>
 <ul>
 <li>Option given is not recognized.</li>
@@ -375,23 +374,21 @@ messages for all declared options.</p>
 option had a parameter, this method returns the value of the parameter. If the
 option had no parameter but the user did specify it on the command-line, the
 method returns <code>TRUE</code>. Otherwise the method returns <code>NULL</code>.</p>
-<h3 id="using-getoption">Using getOption()</h3>
-<pre class="codehilite"><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
+<h3>Using getOption()</h3>
+<p> <pre class=codehilite><code class=language-php>$opts = new Zend\Console\Getopt('abp:');
 $b = $opts-&gt;getOption('b');
-$p_parameter = $opts-&gt;getOption('p');</code></pre>
-
+$p_parameter = $opts-&gt;getOption('p');</code></pre></p>
 <p>Alternatively, you can use the property overloading via the magic <code>__isset()</code> and
 <code>__get()</code> methods, allowing you to test for and retrieve values as if they were
 property names.</p>
-<h3 id="using-property-overloading">Using property overloading</h3>
-<pre class="codehilite"><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
+<h3>Using property overloading</h3>
+<p> <pre class=codehilite><code class=language-php>$opts = new Zend\Console\Getopt('abp:');
 if (isset($opts-&gt;b)) {
-    echo "I got the b option.\n";
+    echo &quot;I got the b option.\n&quot;;
 }
-$p_parameter = $opts-&gt;p; // null if not set</code></pre>
-
+$p_parameter = $opts-&gt;p; // null if not set</code></pre></p>
 <blockquote>
-<h3 id="using-aliases">Using aliases</h3>
+<h3>Using aliases</h3>
 <p>If your options are declared with aliases, you may use any of the aliases for
 an option when retrieving its value.</p>
 </blockquote>
@@ -418,11 +415,10 @@ preceding dashes.</p>
 command-line, there may be additional arguments remaining. You can query these
 arguments using the <code>getRemainingArgs()</code> method.  This method returns an array
 of the strings that were not part of any options.</p>
-<h3 id="using-getremainingargs">Using getRemainingArgs()</h3>
-<pre class="codehilite"><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
+<h3>Using getRemainingArgs()</h3>
+<p> <pre class=codehilite><code class=language-php>$opts = new Zend\Console\Getopt('abp:');
 $opts-&gt;setArguments(['-p', 'p_parameter', 'filename']);
-$args = $opts-&gt;getRemainingArgs(); // returns ['filename']</code></pre>
-
+$args = $opts-&gt;getRemainingArgs(); // returns ['filename']</code></pre></p>
 <p><code>Zend\Console\Getopt</code> supports the GNU convention that an argument consisting of
 a double-dash signifies the end of options. Any arguments following this
 signifier must be treated as non-option arguments. This is useful if you might
@@ -461,7 +457,7 @@ have a non-option argument that begins with a dash. For example: <code>rm --
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-console/edit/master/docs/getopt/fetching.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-console/edit/master/docs/book/getopt/fetching.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

@@ -348,12 +348,11 @@ either a string in the format of the short syntax options specification, or else
 an associative array in the format of a long syntax options specification.  See
 <a href="../rules/">Declaring Getopt Rules</a> for details on the syntax for specifying
 options.</p>
-<h3 id="using-addrules">Using addRules()</h3>
-<pre class="codehilite"><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
+<h3>Using addRules()</h3>
+<p> <pre class=codehilite><code class=language-php>$opts = new Zend\Console\Getopt('abp:');
 $opts-&gt;addRules([
     'verbose|v' =&gt; 'Print verbose output',
-]);</code></pre>
-
+]);</code></pre></p>
 <p>The example above shows adding the <code>--verbose</code> option with an alias of <code>-v</code> to a set of options
 defined in the call to the constructor. Notice that you can mix short format options and long format
 options in the same instance of <code>Zend\Console\Getopt</code>.</p>
@@ -362,14 +361,13 @@ options in the same instance of <code>Zend\Console\Getopt</code>.</p>
 long format, you can associate help strings with option rules using the
 <code>setHelp()</code> method. The argument to the <code>setHelp()</code> method is an associative
 array, in which the key is a flag, and the value is a corresponding help string.</p>
-<h3 id="using-sethelp">Using setHelp()</h3>
-<pre class="codehilite"><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
+<h3>Using setHelp()</h3>
+<p> <pre class=codehilite><code class=language-php>$opts = new Zend\Console\Getopt('abp:');
 $opts-&gt;setHelp([
     'a' =&gt; 'apple option, with no parameter',
     'b' =&gt; 'banana option, with required integer parameter',
     'p' =&gt; 'pear option, with optional string parameter',
-]);</code></pre>
-
+]);</code></pre></p>
 <p>If you declared options with aliases, you can use any of the aliases as the key
 of the associative array.</p>
 <p>The <code>setHelp()</code> method is the only way to define help strings if you declared
@@ -382,14 +380,13 @@ merged with any existing aliases. In other words, aliases you declared earlier
 are still in effect.</p>
 <p>An alias may be declared only once. If you try to redefine an alias, a
 <code>Zend\Console\Getopt\Exception</code> is thrown.</p>
-<h3 id="using-setaliases">Using setAliases()</h3>
-<pre class="codehilite"><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
+<h3>Using setAliases()</h3>
+<p> <pre class=codehilite><code class=language-php>$opts = new Zend\Console\Getopt('abp:');
 $opts-&gt;setAliases([
     'a' =&gt; 'apple',
     'a' =&gt; 'apfel',
     'p' =&gt; 'pear',
-]);</code></pre>
-
+]);</code></pre></p>
 <p>In the example above, after declaring these aliases, <code>-a</code>, <code>--apple</code> and
 <code>--apfel</code> are aliases for each other. Also <code>-p</code> and <code>--pear</code> are aliases for
 each other.</p>
@@ -404,23 +401,22 @@ replace the current array of arguments using the <code>setArguments()</code> met
 both cases, the parameter to these methods is a simple array of strings. The
 former method appends the array to the current arguments, and the latter method
 substitutes the array for the current arguments.</p>
-<h3 id="using-addarguments-and-setarguments">Using addArguments() and setArguments()</h3>
-<pre class="codehilite"><code class="language-php">// By default, the constructor uses $_SERVER['argv']
+<h3>Using addArguments() and setArguments()</h3>
+<p> <pre class=codehilite><code class=language-php>// By default, the constructor uses $_SERVER['argv']
 $opts = new Zend\Console\Getopt('abp:');
 
 // Append an array to the existing arguments
 $opts-&gt;addArguments(['-a', '-p', 'p_parameter', 'non_option_arg']);
 
 // Substitute a new array for the existing arguments
-$opts-&gt;setArguments(['-a', '-p', 'p_parameter', 'non_option_arg']);</code></pre>
-
+$opts-&gt;setArguments(['-a', '-p', 'p_parameter', 'non_option_arg']);</code></pre></p>
 <h2 id="adding-configuration">Adding Configuration</h2>
 <p>The third parameter to the <code>Zend\Console\Getopt</code> constructor is an array of
 configuration options that affect the behavior of the object instance returned.
 You can also specify configuration options using the <code>setOptions()</code> method, or
 you can set an individual option using the <code>setOption()</code> method.</p>
 <blockquote>
-<h3 id="clarifying-the-term-option">Clarifying the Term "option"</h3>
+<h3>Clarifying the Term "option"</h3>
 <p>The term "option" is used for configuration of the <code>Zend\Console\Getopt</code> class
 to match terminology used elsewhere in Zend Framework. These are not the same
 things as the command-line options that are parsed by the
@@ -449,23 +445,22 @@ parentheses) are listed below:</p>
   this option.</li>
 </ul>
 <p>More configuration options may be added as future enhancements of this class.</p>
-<h3 id="using-setoption">Using setOption()</h3>
+<h3>Using setOption()</h3>
 <p>The two arguments to the <code>setOption()</code> method are a configuration option name
 and an option value.</p>
-<pre class="codehilite"><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
-$opts-&gt;setOption('ignoreCase', true);</code></pre>
-
-<h3 id="using-setoptions">Using setOptions()</h3>
+<p> <pre class=codehilite><code class=language-php>$opts = new Zend\Console\Getopt('abp:');
+$opts-&gt;setOption('ignoreCase', true);</code></pre></p>
+<h3>Using setOptions()</h3>
 <p>The argument to the <code>setOptions()</code> method is an associative array. The keys of
 this array are the configuration option names, and the values are configuration
 values. This is also the array format used in the class constructor. The
 configuration values you specify are merged with the current configuration; you
 don't have to list all options.</p>
-<pre class="codehilite"><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
+<p> <pre class=codehilite><code class=language-php>$opts = new Zend\Console\Getopt('abp:');
 $opts-&gt;setOptions([
     'ignoreCase' =&gt; true,
     'dashDash'   =&gt; false,
-]);</code></pre>
+]);</code></pre></p>
 
 
 
@@ -495,7 +490,7 @@ $opts-&gt;setOptions([
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-console/edit/master/docs/getopt/configuration.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-console/edit/master/docs/book/getopt/configuration.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

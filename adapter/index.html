@@ -350,10 +350,10 @@ such a way that the console adapter is specific to whatever environment it is
 run within. As such, you likely should never instantiate an adapter directly.
 zend-console, and the zend-mvc integration, provide tools for retrieving an
 appropriate adapter for the current environment in a generic way.</p>
-<h3 id="standalone">Standalone</h3>
+<h3>Standalone</h3>
 <p>zend-console provides a factory for creating and returning the console adapter
 specific to your environment:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Console\Console;
+<p> <pre class=codehilite><code class=language-php>use Zend\Console\Console;
 use Zend\Console\Exception\ExceptionInterface as ConsoleException;
 
 try {
@@ -361,22 +361,21 @@ try {
 } catch (ConsoleException $e) {
     // Could not get console adapter; most likely we are not running inside a
     // console window.
-}</code></pre>
-
+}</code></pre></p>
 <p>This returns a <code>Zend\Console\Adapter\AdapterInterface</code> implementation suitable
 for your current environment.</p>
 <blockquote>
-<h4 id="exceptions">Exceptions</h4>
+<h4>Exceptions</h4>
 <p>For practical and security reasons, <code>Console::getInstance()</code> will always throw
 an exception if you attempt to get console instance in a non-console
 environment (i.e. when running on a HTTP server). You can override this
 behavior by manually instantiating one of the <code>Zend\Console\Adapter\*</code>
 classes; you should do this only as a last resort, however!</p>
 </blockquote>
-<h3 id="zend-mvc">zend-mvc</h3>
+<h3>zend-mvc</h3>
 <p>If you are using MVC controllers you can obtain Console adapter instance using
 the <code>ServiceManager</code>.</p>
-<pre class="codehilite"><code class="language-php">namespace Application;
+<p> <pre class=codehilite><code class=language-php>namespace Application;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Console\Adapter\AdapterInterface as Console;
@@ -392,11 +391,10 @@ class ConsoleController extends AbstractActionController
 console?');
         }
     }
-}</code></pre>
-
+}</code></pre></p>
 <p>If you extend <code>AbstractConsoleController</code>, you can use the <code>getConsole()</code> method
 instead:</p>
-<pre class="codehilite"><code class="language-php">namespace Application;
+<p> <pre class=codehilite><code class=language-php>namespace Application;
 
 use Zend\Mvc\Controller\AbstractConsoleController;
 use Zend\Console\Exception\RuntimeException;
@@ -407,10 +405,9 @@ class ConsoleController extends AbstractConsoleController
     {
         $console = $this-&gt;getConsole();
     }
-}</code></pre>
-
+}</code></pre></p>
 <blockquote>
-<h4 id="use-dependency-injection">Use dependency injection</h4>
+<h4>Use dependency injection</h4>
 <p>We recommend using dependency injection. Instead of pulling the console
 adapter from the service manager, inject it from within your controller's
 factory. This is essentially what happens when extending
@@ -419,7 +416,7 @@ factory. This is essentially what happens when extending
 <h2 id="using-the-console-adapter">Using the console adapter</h2>
 <p><code>Zend\Console\Adapter\AdapterInterface</code> describes a rich set of capabilities.
 Below is a sampling.</p>
-<h3 id="window-size-and-title">Window size and title</h3>
+<h3>Window size and title</h3>
 <div class="table-responsive"><table>
 <thead>
 <tr>
@@ -447,16 +444,16 @@ Below is a sampling.</p>
 </tbody>
 </table></div>
 <blockquote>
-<h4 id="multibyte-sequences">Multibyte sequences</h4>
+<h4>Multibyte sequences</h4>
 <p>For UTF-8 enabled consoles, dimensions represent the number of multibyte
 characters (real characters).</p>
-<h4 id="virtual-buffer-sizes">Virtual buffer sizes</h4>
+<h4>Virtual buffer sizes</h4>
 <p>On consoles with virtual buffers (e.g. MS Windows Command Prompt), width and
 height represent visible (real) size, without scrolling the window. For
 example, if the window scrolling width is 120 chars, but its real, visible
 width is 80 chars, <code>getWidth()</code> will return <code>80</code>.</p>
 </blockquote>
-<h3 id="character-set">Character set</h3>
+<h3>Character set</h3>
 <div class="table-responsive"><table>
 <thead>
 <tr>
@@ -475,7 +472,7 @@ width is 80 chars, <code>getWidth()</code> will return <code>80</code>.</p>
 </tr>
 </tbody>
 </table></div>
-<h3 id="writing-to-the-console">Writing to the console</h3>
+<h3>Writing to the console</h3>
 <div class="table-responsive"><table>
 <thead>
 <tr>
@@ -498,7 +495,7 @@ width is 80 chars, <code>getWidth()</code> will return <code>80</code>.</p>
 </tr>
 </tbody>
 </table></div>
-<h3 id="reading-from-the-console">Reading from the console</h3>
+<h3>Reading from the console</h3>
 <div class="table-responsive"><table>
 <thead>
 <tr>
@@ -517,7 +514,7 @@ width is 80 chars, <code>getWidth()</code> will return <code>80</code>.</p>
 </tr>
 </tbody>
 </table></div>
-<h3 id="miscellaneous">Miscellaneous</h3>
+<h3>Miscellaneous</h3>
 <div class="table-responsive"><table>
 <thead>
 <tr>
@@ -577,7 +574,7 @@ width is 80 chars, <code>getWidth()</code> will return <code>80</code>.</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-console/edit/master/docs/adapter.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-console/edit/master/docs/book/adapter.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

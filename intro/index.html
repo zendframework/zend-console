@@ -305,10 +305,6 @@
             <ul class="toc__list">
                 
                     <li class="toc__entry">
-                        <a href="#deprecated" class="toc__link">Deprecated</a>
-                    </li>
-                
-                    <li class="toc__entry">
                         <a href="#quick-start-with-zend-mvc" class="toc__link">Quick Start with zend-mvc</a>
                     </li>
                 
@@ -328,7 +324,7 @@
 
     <h1 id="introduction-to-zend-console">Introduction to zend-console</h1>
 <blockquote>
-<h3 id="deprecated">Deprecated</h3>
+<h3>Deprecated</h3>
 <p>Both the zend-console and the <a href="https://docs.zendframework.com/zend-mvc-console/">zend-mvc-console</a>
 components will likely not be maintained long-term, as there are more complete
 implementations available elsewhere. We strongly urge developers to start
@@ -378,30 +374,27 @@ route matches, it returns an array of matched parameters &mdash; which may
 include default parameters, or even parameters not exposed via the command line
 (e.g., metadata related to the route).</p>
 <p>Let's assume that we'd like our application to handle the following command line:</p>
-<pre class="codehilite"><code class="language-bash">$ zf user resetpassword user@mail.com</code></pre>
-
+<p> <pre class=codehilite><code class=language-bash>$ zf user resetpassword user@mail.com</code></pre></p>
 <p>When a user runs our application (<code>zf</code>) with these parameters, we'd like to call
 the action <code>resetpassword</code> of <code>Application\Controller\IndexController</code>.</p>
 <blockquote>
-<h3 id="the-zf-command">The zf command</h3>
+<h3>The zf command</h3>
 <p>We will use <code>zf</code> to depict the entry point for your application; it can be
 a shell script in the application's <code>bin/</code> directory, or simply an alias for <code>php
 public/index.php</code>.</p>
 </blockquote>
 <p>First we need to create a <strong>route definition</strong>:</p>
-<pre class="codehilite"><code>user resetpassword &lt;userEmail&gt;</code></pre>
-
+<p> <pre class=codehilite><code>user resetpassword &lt;userEmail&gt;</code></pre></p>
 <p>This simple route definition expects exactly three arguments: the literal
 "user", the literal "resetpassword", and the dynamic argument we're calling
 "userEmail". Let's assume we also accept one optional parameter to enable
 verbose operation:</p>
-<pre class="codehilite"><code>user resetpassword [--verbose|-v] &lt;userEmail&gt;</code></pre>
-
+<p> <pre class=codehilite><code>user resetpassword [--verbose|-v] &lt;userEmail&gt;</code></pre></p>
 <p>The modified console route above expects the same three arguments from our
 original example, but will also recognise an optional <code>--verbose</code> flag, or its
 shorthand version, <code>-v</code>.</p>
 <blockquote>
-<h3 id="flag-order">Flag order</h3>
+<h3>Flag order</h3>
 <p>The order of flags is ignored by zend-console. Flags can appear before
 positional parameters, after them, or anywhere in between. The order of
 multiple flags is also irrelevant. This applies both to route definitions and
@@ -410,7 +403,7 @@ the order that flags are used on the command line.</p>
 <p>Let's use the definition above and configure our console route. When using
 zend-mvc, console routes are defined using the following configuration
 structure:</p>
-<pre class="codehilite"><code class="language-php">return [
+<p> <pre class=codehilite><code class=language-php>return [
     'router' =&gt; [
         'routes' =&gt; [
             // HTTP routes are defined here
@@ -426,11 +419,10 @@ structure:</p>
     ],
 
     /* ... */
-];</code></pre>
-
+];</code></pre></p>
 <p>Let's create our console route and point it to
 <code>Application\Controller\IndexController::resetpasswordAction()</code>:</p>
-<pre class="codehilite"><code class="language-php">// We could define routes for Application\Controller\IndexController in
+<p> <pre class=codehilite><code class=language-php>// We could define routes for Application\Controller\IndexController in
 // the Application module config file, usually located at
 // modules/application/config/module.config.php, or in one of the
 // config/autoload/*.php files.
@@ -451,15 +443,14 @@ return [
         ],
     ],
     /* ... */
-;</code></pre>
-
+;</code></pre></p>
 <h2 id="handling-console-requests">Handling console requests</h2>
 <p>When a user runs our application from the command line and arguments match our
 console route, the specified controller will be instantiated, and the specified
 action method will be called, just as happens with zend-mvc HTTP requests.</p>
 <p>As such, let's add the <code>resetpassword</code> action to our
 <code>Application\Controller\IndexController</code>:</p>
-<pre class="codehilite"><code class="language-php">&lt;?php
+<p> <pre class=codehilite><code class=language-php>&lt;?php
 namespace Application\Controller;
 
 use RuntimeException;
@@ -495,15 +486,14 @@ class IndexController extends AbstractActionController
         /* ... */
 
         if ($verbose) {
-            return "Done! New password for user $userEmail is '$newPassword'. "
-                . "It has also been emailed to him.\n";
+            return &quot;Done! New password for user $userEmail is '$newPassword'. &quot;
+                . &quot;It has also been emailed to him.\n&quot;;
         }
 
-        return "Done! $userEmail has received an email with his new password.\n";
+        return &quot;Done! $userEmail has received an email with his new password.\n&quot;;
 
     }
-}</code></pre>
-
+}</code></pre></p>
 <p>The above creates <code>resetpasswordAction()</code>, which:</p>
 <ul>
 <li>retrieves the current request;</li>
@@ -521,7 +511,7 @@ arguments. The combination of zend-console and zend-mvc enables this out of the
 box. Modules can provide usage information, and zend-console will query all loaded
 modules for console usage information they expose.</p>
 <p>Let's modify our <code>Application\Module</code> to provide usage info:</p>
-<pre class="codehilite"><code class="language-php">&lt;?php
+<p> <pre class=codehilite><code class=language-php>&lt;?php
 
 namespace Application;
 
@@ -560,13 +550,12 @@ class Module implements
             [ '--verbose|-v', '(optional) turn on verbose mode'        ],
         ];
     }
-}</code></pre>
-
+}</code></pre></p>
 <p>Each module that implements <code>ConsoleUsageProviderInterface</code> will be queried for
 console usage info.  On route mismatch, all info from all modules will be
 concatenated, formatted to console width, and shown to the user.</p>
 <blockquote>
-<h3 id="usage-order">Usage Order</h3>
+<h3>Usage Order</h3>
 <p>The order of usage info displayed in the console is in the same order in which
 modules load. If you want your application to display important usage info
 first, change the order your modules are loaded.</p>
@@ -604,7 +593,7 @@ first, change the order your modules are loaded.</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-console/edit/master/docs/intro.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-console/edit/master/docs/book/intro.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>
