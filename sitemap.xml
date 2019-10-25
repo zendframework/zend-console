@@ -2,62 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://docs.zendframework.com/zend-console/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <lastmod>2019-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-console/intro/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <lastmod>2019-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-console/adapter/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <lastmod>2019-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-console/prompts/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <lastmod>2019-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-console/routes/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <lastmod>2019-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-console/mvc/routing/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <lastmod>2019-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-console/mvc/modules/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <lastmod>2019-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-console/mvc/controllers/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <lastmod>2019-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-console/getopt/intro/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <lastmod>2019-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-console/getopt/rules/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <lastmod>2019-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-console/getopt/fetching/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <lastmod>2019-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-console/getopt/configuration/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <lastmod>2019-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
