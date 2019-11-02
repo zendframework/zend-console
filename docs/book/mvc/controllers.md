@@ -188,7 +188,7 @@ class IndexController extends AbstractActionController
 }
 ```
 
-> ### Use routing to protect methods
+> ### Use Routing to protect Methods
 >
 > You do not need to secure all your controllers and methods from console
 > requests. Controller actions will **only be invoked** when at least one

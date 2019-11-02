@@ -4,7 +4,7 @@ A powerful feature the zend-console component exposes is *routing*. Routing
 reads the command line arguments and matches them to criteria; if the criteria
 matches, it then returns a list of matched parameters and flags.
 
-> ## Handling routing results
+> ### Handling routing results
 >
 > zend-console exposes routing via the `Zend\Console\RouteMatcher\DefaultRouteMatcher`
 > class, allowing you to create standalone routable console applications.
@@ -282,7 +282,7 @@ This allows us to capture commands such as the following:
 $ zf create user Johnny Bravo john@acme.org Entertainer
 ```
 
-> #### Escaping
+> ### Escaping
 >
 > Command line arguments on all systems must be properly escaped; otherwise they
 > will not be passed to our application correctly. For example, to create a user
@@ -320,7 +320,7 @@ $ zf find user --position "Head of the Entertainment Department"
 
 As noted, the order of flags is irrelevant for the parser.
 
-> ##### Providing values
+> ### Providing Values
 >
 > The parser understands values that are provided after either an equals symbol
 > (`=`) or a single space, but only if the value itself does not contain
