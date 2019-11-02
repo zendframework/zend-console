@@ -17,5 +17,5 @@ nav:
         - 'Fetching Options and Arguments': getopt/fetching.md
         - Configuration: getopt/configuration.md
 site_name: zend-console
-site_description: Zend\Console
+site_description: 'Build console applications using getopt syntax or routing, complete with prompts'
 repo_url: 'https://github.com/zendframework/zend-console'
