@@ -149,7 +149,6 @@ As such, let's add the `resetpassword` action to our
 `Application\Controller\IndexController`:
 
 ```php
-<?php
 namespace Application\Controller;
 
 use RuntimeException;
@@ -216,8 +215,6 @@ modules for console usage information they expose.
 Let's modify our `Application\Module` to provide usage info:
 
 ```php
-<?php
-
 namespace Application;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
