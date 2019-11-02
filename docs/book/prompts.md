@@ -1,4 +1,4 @@
-# Console prompts
+# Console Prompts
 
 In addition to the console abstraction layer, zend-console provides numerous
 convenience classes for interacting with the user in a console environment. This

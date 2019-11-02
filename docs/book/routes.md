@@ -1,4 +1,4 @@
-# Console routes and routing
+# Routes
 
 A powerful feature the zend-console component exposes is *routing*. Routing
 reads the command line arguments and matches them to criteria; if the criteria

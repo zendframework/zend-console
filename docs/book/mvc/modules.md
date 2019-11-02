@@ -1,4 +1,4 @@
-# Console-aware modules
+# Console-Aware Modules
 
 zend-mvc integrates with zend-console; the integration also works with modules
 loaded with the
