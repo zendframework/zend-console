@@ -71,7 +71,7 @@ the action `resetpassword` of `Application\Controller\IndexController`.
 
 First we need to create a **route definition**:
 
-```
+```text
 user resetpassword <userEmail>
 ```
 
@@ -80,7 +80,7 @@ This simple route definition expects exactly three arguments: the literal
 "userEmail". Let's assume we also accept one optional parameter to enable
 verbose operation:
 
-```
+```text
 user resetpassword [--verbose|-v] <userEmail>
 ```
 
