@@ -54,21 +54,21 @@ expects two parameters: `foo` and `bar`. If user puts these in a console,
 `Application\Controller\IndexController::passwordAction()` action will be
 invoked.
 
-## Route types
+## Route Types
 
 In the last example of the previous section, we noted that configuration for a
 given route can accept a `type` argument. This refers to the route type (which
 maps to a class) to use when creating the route instance. zend-mvc defines
 several types.
 
-### Simple route
+### Simple Route
 
 `Zend\Mvc\Router\Console\Simple` is a factory for zend-console's
 `DefaultRouteMatcher`, and decorates it to work with the zend-mvc routing
 system. See the section on [the default route matcher](../routes.md#the-default-route-matcher)
 for details on route strings and available configuration to provide.
 
-### Catchall route
+### Catchall Route
 
 This special route will catch all console requests, regardless of the parameters provided.
 

@@ -80,7 +80,7 @@ The modified console route above expects the same three arguments from our
 original example, but will also recognise an optional `--verbose` flag, or its
 shorthand version, `-v`.
 
-> ### Flag order
+> ### Flag Order
 >
 > The order of flags is ignored by zend-console. Flags can appear before
 > positional parameters, after them, or anywhere in between. The order of
@@ -139,7 +139,7 @@ return [
 ;
 ```
 
-## Handling console requests
+## Handling Console Requests
 
 When a user runs our application from the command line and arguments match our
 console route, the specified controller will be instantiated, and the specified
@@ -206,7 +206,7 @@ The above creates `resetpasswordAction()`, which:
 - performs work based on the arguments;
 - and finally returns a simple string to display to the user via the console.
 
-## Adding console usage info
+## Adding Console Usage Info
 
 Console applications commonly display usage information when run without
 arguments. The combination of zend-console and zend-mvc enables this out of the
