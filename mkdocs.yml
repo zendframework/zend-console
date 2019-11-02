@@ -19,3 +19,5 @@ nav:
 site_name: zend-console
 site_description: 'Build console applications using getopt syntax or routing, complete with prompts'
 repo_url: 'https://github.com/zendframework/zend-console'
+extra:
+    show_special_homepage: true
