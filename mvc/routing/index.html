@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Zend\Console">  
+    <meta name="description" content="Build console applications using getopt syntax or routing, complete with prompts">  
     <link rel="canonical" href="https://docs.zendframework.com/zend-console/mvc/routing/">
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
@@ -314,7 +314,7 @@
             <ul class="toc__list">
                 
                     <li class="toc__entry">
-                        <a href="#route-types" class="toc__link">Route types</a>
+                        <a href="#route-types" class="toc__link">Route Types</a>
                     </li>
                 
             </ul>
@@ -367,17 +367,17 @@ console routes (console-only application), or a mixture of the two.</p>
 expects two parameters: <code>foo</code> and <code>bar</code>. If user puts these in a console,
 <code>Application\Controller\IndexController::passwordAction()</code> action will be
 invoked.</p>
-<h2 id="route-types">Route types</h2>
+<h2 id="route-types">Route Types</h2>
 <p>In the last example of the previous section, we noted that configuration for a
 given route can accept a <code>type</code> argument. This refers to the route type (which
 maps to a class) to use when creating the route instance. zend-mvc defines
 several types.</p>
-<h3>Simple route</h3>
+<h3>Simple Route</h3>
 <p><code>Zend\Mvc\Router\Console\Simple</code> is a factory for zend-console's
 <code>DefaultRouteMatcher</code>, and decorates it to work with the zend-mvc routing
 system. See the section on <a href="../../routes/#the-default-route-matcher">the default route matcher</a>
 for details on route strings and available configuration to provide.</p>
-<h3>Catchall route</h3>
+<h3>Catchall Route</h3>
 <p>This special route will catch all console requests, regardless of the parameters provided.</p>
 <p> <pre class=codehilite><code class=language-php>'default-route' =&gt; [
     'type'     =&gt; 'catchall',

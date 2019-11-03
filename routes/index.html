@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Zend\Console">  
+    <meta name="description" content="Build console applications using getopt syntax or routing, complete with prompts">  
     <link rel="canonical" href="https://docs.zendframework.com/zend-console/routes/">
     <link rel="shortcut icon" href="../img/favicon.ico">
 
@@ -314,23 +314,19 @@
             <ul class="toc__list">
                 
                     <li class="toc__entry">
-                        <a href="#handling-routing-results" class="toc__link">Handling routing results</a>
-                    </li>
-                
-                    <li class="toc__entry">
                         <a href="#routematcherinterface" class="toc__link">RouteMatcherInterface</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#the-default-route-matcher" class="toc__link">The default route matcher</a>
+                        <a href="#the-default-route-matcher" class="toc__link">The default Route Matcher</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#routing-strings" class="toc__link">Routing strings</a>
+                        <a href="#routing-strings" class="toc__link">Routing Strings</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#console-routes-cheat-sheet" class="toc__link">Console routes cheat-sheet</a>
+                        <a href="#console-routes-cheat-sheet" class="toc__link">Console Routes Cheat-Sheet</a>
                     </li>
                 
             </ul>
@@ -339,12 +335,12 @@
 
     </div>
 
-    <h1 id="console-routes-and-routing">Console routes and routing</h1>
+    <h1 id="routes">Routes</h1>
 <p>A powerful feature the zend-console component exposes is <em>routing</em>. Routing
 reads the command line arguments and matches them to criteria; if the criteria
 matches, it then returns a list of matched parameters and flags.</p>
 <blockquote>
-<h2 id="handling-routing-results">Handling routing results</h2>
+<h3>Handling routing results</h3>
 <p>zend-console exposes routing via the <code>Zend\Console\RouteMatcher\DefaultRouteMatcher</code>
 class, allowing you to create standalone routable console applications.</p>
 <p>zend-mvc provides structure around routing results to controllers, which
@@ -373,7 +369,7 @@ interface RouteMatcherInterface
 the routing implementation as an array; the routing implementation will then
 return either a <code>null</code> value (meaning failure to match), or an associative array
 (the values matched).</p>
-<h2 id="the-default-route-matcher">The default route matcher</h2>
+<h2 id="the-default-route-matcher">The default Route Matcher</h2>
 <p>zend-console's default routing implementation is <code>Zend\Console\RouteMatcher\DefaultRouteMatcher</code>.
 Its constructor expects:</p>
 <p> <pre class=codehilite><code class=language-php>    /**
@@ -416,12 +412,12 @@ Its constructor expects:</p>
   regular expressions (as used with the <code>$constraints</code>).</li>
 </ul>
 <blockquote>
-<h3>Single routes only</h3>
+<h3>Single Routes only</h3>
 <p><code>DefaultRouteMatcher</code> instances define <em>a single console route to match</em>. Most
 times, you will want to define multiple routes. The zend-mvc integration and
 zf-console both provide methods for aggregating routes.</p>
 </blockquote>
-<h2 id="routing-strings">Routing strings</h2>
+<h2 id="routing-strings">Routing Strings</h2>
 <p>Routing strings consist of one or more of the following:</p>
 <ul>
 <li><a href="#literal-parameters">Literal parameters</a> (e.g. <code>create object (external|internal)</code>)</li>
@@ -431,7 +427,7 @@ zf-console both provide methods for aggregating routes.</p>
 <li><a href="#grouping-literal-alternatives">Named literal alternative groups</a> (e.g., <code>(all|some|none):filter</code>)</li>
 <li><a href="#catch-all-parameters">Catch-all parameters</a> (e.g. <code>[...params]</code>)</li>
 </ul>
-<h3>Literal parameters</h3>
+<h3>Literal Parameters</h3>
 <p><em>Literal parameters</em> are expected to appear on the command line exactly the way
 they are provided in the route. For example:</p>
 <p> <pre class=codehilite><code class=language-text>show users</code></pre></p>
@@ -463,7 +459,7 @@ The above route definition is equivalent to:</p>
 <p><code>show [  all | deleted | locked | admin  ]   users</code></p>
 <p>As such, you can use whitespace for readability.</p>
 </blockquote>
-<h3>Literal flags</h3>
+<h3>Literal Flags</h3>
 <p>Console tools commonly use flags. zend-console allows you to define any number
 of optional and/or mandatory flags.</p>
 <p>Flag order is ignored; they can be defined in any order, and the user can
@@ -492,7 +488,7 @@ convenience:</p>
 $ zf check users -v --thorough
 $ zf check users -t -f -v
 # etc.</code></pre></p>
-<h3>Positional value parameters</h3>
+<h3>Positional Value Parameters</h3>
 <p>Value parameters capture any text-based input, and come in two forms: positional
 and flags (which we've already discussed).</p>
 <p><strong>Positional value parameters</strong> are expected to appear in an <em>exact</em> position on
@@ -519,7 +515,7 @@ the matched parameters.</p>
 <p>This allows us to capture commands such as the following:</p>
 <p> <pre class=codehilite><code class=language-bash>$ zf create user Johnny Bravo john@acme.org Entertainer</code></pre></p>
 <blockquote>
-<h4>Escaping</h4>
+<h3>Escaping</h3>
 <p>Command line arguments on all systems must be properly escaped; otherwise they
 will not be passed to our application correctly. For example, to create a user
 with two names and a complex position description, we would issue the command
@@ -528,7 +524,7 @@ like this:</p>
 $ zf create user &quot;Johnan Tom&quot; Bravo john@acme.org &quot;Head of the Entertainment Department&quot;
 </code></pre></p>
 </blockquote>
-<h3>Value flag parameters</h3>
+<h3>Value Flag Parameters</h3>
 <p>Positional value parameters are only matched if they appear in the exact order described in the
 route. If we do not want to enforce the order of parameters, we can define <strong>value flags</strong>.</p>
 <p><strong>Value flags</strong> can be defined and matched in <em>any</em> order, and can receive any
@@ -545,7 +541,7 @@ $ zf find user --position &quot;Head of the Entertainment Department&quot;
 # etc.</code></pre></p>
 <p>As noted, the order of flags is irrelevant for the parser.</p>
 <blockquote>
-<h5>Providing values</h5>
+<h3>Providing Values</h3>
 <p>The parser understands values that are provided after either an equals symbol
 (<code>=</code>) or a single space, but only if the value itself does not contain
 whitespace.  Values containing any whitespace  must be properly quoted and
@@ -561,7 +557,7 @@ match. The following commands will work with this route:</p>
 $ zf rename user --id 123 --firstName Jonathan
 $ zf rename user --id=123 --lastName=Bravo
 # etc.</code></pre></p>
-<h3>Grouping literal alternatives</h3>
+<h3>Grouping Literal Alternatives</h3>
 <p>In the flags section, we demonstrated grouping alternative flags:</p>
 <p> <pre class=codehilite><code class=language-text>check users (--suspicious|--expired) [--verbose] [--fast] [--thorough]</code></pre></p>
 <p>This can also be done with literals:</p>
@@ -607,7 +603,7 @@ parameters. You can only use one catch-all parameter per route.</p>
 <p>If the user entered the command line <code>say loudly I am here</code>, the 'volume'
 parameter would contain <code>'loudly'</code> and the 'words' parameter would contain
 <code>['I', 'am', 'here']</code>.</p>
-<h2 id="console-routes-cheat-sheet">Console routes cheat-sheet</h2>
+<h2 id="console-routes-cheat-sheet">Console Routes Cheat-Sheet</h2>
 <div class="table-responsive"><table>
 <thead>
 <tr>

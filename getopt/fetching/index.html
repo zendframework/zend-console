@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Zend\Console">  
+    <meta name="description" content="Build console applications using getopt syntax or routing, complete with prompts">  
     <link rel="canonical" href="https://docs.zendframework.com/zend-console/getopt/fetching/">
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
@@ -381,14 +381,14 @@ $p_parameter = $opts-&gt;getOption('p');</code></pre></p>
 <p>Alternatively, you can use the property overloading via the magic <code>__isset()</code> and
 <code>__get()</code> methods, allowing you to test for and retrieve values as if they were
 property names.</p>
-<h3>Using property overloading</h3>
+<h3>Using property Overloading</h3>
 <p> <pre class=codehilite><code class=language-php>$opts = new Zend\Console\Getopt('abp:');
 if (isset($opts-&gt;b)) {
     echo &quot;I got the b option.\n&quot;;
 }
 $p_parameter = $opts-&gt;p; // null if not set</code></pre></p>
 <blockquote>
-<h3>Using aliases</h3>
+<h3>Using Aliases</h3>
 <p>If your options are declared with aliases, you may use any of the aliases for
 an option when retrieving its value.</p>
 </blockquote>

@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Zend\Console">  
+    <meta name="description" content="Build console applications using getopt syntax or routing, complete with prompts">  
     <link rel="canonical" href="https://docs.zendframework.com/zend-console/mvc/controllers/">
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
@@ -314,19 +314,19 @@
             <ul class="toc__list">
                 
                     <li class="toc__entry">
-                        <a href="#handling-console-requests" class="toc__link">Handling console requests</a>
+                        <a href="#handling-console-requests" class="toc__link">Handling Console Requests</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#sending-output-to-the-console" class="toc__link">Sending output to the console</a>
+                        <a href="#sending-output-to-the-console" class="toc__link">Sending Output to the Console</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#are-we-in-a-console" class="toc__link">Are we in a console?</a>
+                        <a href="#are-we-in-a-console" class="toc__link">Are we in a Console?</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#reading-values-from-console-parameters" class="toc__link">Reading values from console parameters</a>
+                        <a href="#reading-values-from-console-parameters" class="toc__link">Reading Values from Console Parameters</a>
                     </li>
                 
             </ul>
@@ -335,11 +335,11 @@
 
     </div>
 
-    <h1 id="console-aware-controllers">Console-aware controllers</h1>
+    <h1 id="console-aware-controllers">Console-Aware Controllers</h1>
 <p>When using the zend-mvc integration with zend-console, a matched route results
 in dispatch of an action controller. In this chapter we will learn how ZF2
 Controllers can interact with and return output to console window.</p>
-<h2 id="handling-console-requests">Handling console requests</h2>
+<h2 id="handling-console-requests">Handling Console Requests</h2>
 <p>Console requests are very similar to HTTP requests. In fact, they implement a
 common interface and are created at the same time in the MVC workflow. <a href="../../routes/">Console
 routes</a> match against command line arguments and provide a <code>defaults</code>
@@ -421,7 +421,7 @@ class IndexController extends AbstractActionController
 <p>We fetch the console request, read parameters, and load users from our
 (theoretical) users service.  In order to make this method functional, we'll
 have to display the result in the console window.</p>
-<h2 id="sending-output-to-the-console">Sending output to the console</h2>
+<h2 id="sending-output-to-the-console">Sending Output to the Console</h2>
 <p>The simplest way for our controller to display data in the console window is to
 return a string. Let's modify our example to output a list of users:</p>
 <p> <pre class=codehilite><code class=language-php>public function showUsersAction()
@@ -467,7 +467,7 @@ if not, we return an error message to display immediately, terminating the
 application.</p>
 <p>If any users are found, we loop through each to prepare a listing, which we then
 return from the action for display in the console.</p>
-<h2 id="are-we-in-a-console">Are we in a console?</h2>
+<h2 id="are-we-in-a-console">Are we in a Console?</h2>
 <p>Sometimes we might need to check if our method is being called from a console or
 from a web request. This is useful to block certain methods from running in the
 console or to change their behavior based on that context.</p>
@@ -495,7 +495,7 @@ class IndexController extends AbstractActionController
     }
 }</code></pre></p>
 <blockquote>
-<h3>Use routing to protect methods</h3>
+<h3>Use Routing to protect Methods</h3>
 <p>You do not need to secure all your controllers and methods from console
 requests. Controller actions will <strong>only be invoked</strong> when at least one
 console route matches it.  HTTP and Console routes are separated and defined
@@ -544,11 +544,11 @@ exposes a new method, <code>getConsole()</code>, providing you access to the con
 adapter, allowing you to use prompts, send output (including colorized output),
 and more.</p>
 </blockquote>
-<h2 id="reading-values-from-console-parameters">Reading values from console parameters</h2>
+<h2 id="reading-values-from-console-parameters">Reading Values from Console Parameters</h2>
 <p>There are several types of parameters recognized by the Console component, all
 of which are described in the <a href="../../routes/">console routing chapter</a>. Here, we'll
 focus on how to retrieve values from distinct parameters and flags.</p>
-<h3>Positional parameters</h3>
+<h3>Positional Parameters</h3>
 <p>After a route matches, we can access both <strong>literal parameters</strong> and <strong>value
 parameters</strong> via the <code>$request</code> instance, using the <code>getParam()</code> method.</p>
 <p>Assuming we have the following route:</p>
