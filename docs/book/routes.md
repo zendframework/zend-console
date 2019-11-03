@@ -1,10 +1,10 @@
-# Console routes and routing
+# Routes
 
 A powerful feature the zend-console component exposes is *routing*. Routing
 reads the command line arguments and matches them to criteria; if the criteria
 matches, it then returns a list of matched parameters and flags.
 
-> ## Handling routing results
+> ### Handling routing results
 >
 > zend-console exposes routing via the `Zend\Console\RouteMatcher\DefaultRouteMatcher`
 > class, allowing you to create standalone routable console applications.
@@ -42,7 +42,7 @@ the routing implementation as an array; the routing implementation will then
 return either a `null` value (meaning failure to match), or an associative array
 (the values matched).
 
-## The default route matcher
+## The default Route Matcher
 
 zend-console's default routing implementation is `Zend\Console\RouteMatcher\DefaultRouteMatcher`.
 Its constructor expects:
@@ -89,13 +89,13 @@ The arguments are as follows:
   validators are used to validate values, and provide more options than simply
   regular expressions (as used with the `$constraints`).
 
-> ### Single routes only
+> ### Single Routes only
 >
 > `DefaultRouteMatcher` instances define *a single console route to match*. Most
 > times, you will want to define multiple routes. The zend-mvc integration and
 > zf-console both provide methods for aggregating routes.
 
-## Routing strings
+## Routing Strings
 
 Routing strings consist of one or more of the following:
 
@@ -106,7 +106,7 @@ Routing strings consist of one or more of the following:
 - [Named literal alternative groups](#grouping-literal-alternatives) (e.g., `(all|some|none):filter`)
 - [Catch-all parameters](#catch-all-parameters) (e.g. `[...params]`)
 
-### Literal parameters
+### Literal Parameters
 
 *Literal parameters* are expected to appear on the command line exactly the way
 they are provided in the route. For example:
@@ -168,7 +168,7 @@ $ zf show admin users
 >
 > As such, you can use whitespace for readability.
 
-### Literal flags
+### Literal Flags
 
 Console tools commonly use flags. zend-console allows you to define any number
 of optional and/or mandatory flags.
@@ -224,7 +224,7 @@ $ zf check users -t -f -v
 # etc.
 ```
 
-### Positional value parameters
+### Positional Value Parameters
 
 Value parameters capture any text-based input, and come in two forms: positional
 and flags (which we've already discussed).
@@ -282,7 +282,7 @@ This allows us to capture commands such as the following:
 $ zf create user Johnny Bravo john@acme.org Entertainer
 ```
 
-> #### Escaping
+> ### Escaping
 >
 > Command line arguments on all systems must be properly escaped; otherwise they
 > will not be passed to our application correctly. For example, to create a user
@@ -293,7 +293,7 @@ $ zf create user Johnny Bravo john@acme.org Entertainer
 > $ zf create user "Johnan Tom" Bravo john@acme.org "Head of the Entertainment Department"
 > ```
 
-### Value flag parameters
+### Value Flag Parameters
 
 Positional value parameters are only matched if they appear in the exact order described in the
 route. If we do not want to enforce the order of parameters, we can define **value flags**.
@@ -320,7 +320,7 @@ $ zf find user --position "Head of the Entertainment Department"
 
 As noted, the order of flags is irrelevant for the parser.
 
-> ##### Providing values
+> ### Providing Values
 >
 > The parser understands values that are provided after either an equals symbol
 > (`=`) or a single space, but only if the value itself does not contain
@@ -345,7 +345,7 @@ $ zf rename user --id=123 --lastName=Bravo
 # etc.
 ```
 
-### Grouping literal alternatives
+### Grouping Literal Alternatives
 
 In the flags section, we demonstrated grouping alternative flags:
 
@@ -419,7 +419,7 @@ If the user entered the command line `say loudly I am here`, the 'volume'
 parameter would contain `'loudly'` and the 'words' parameter would contain
 `['I', 'am', 'here']`.
 
-## Console routes cheat-sheet
+## Console Routes Cheat-Sheet
 
 Param type                        | Example route definition    | Explanation
 :---                              | :---                        | :---

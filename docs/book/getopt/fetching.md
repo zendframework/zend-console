@@ -60,7 +60,7 @@ Alternatively, you can use the property overloading via the magic `__isset()` an
 `__get()` methods, allowing you to test for and retrieve values as if they were
 property names.
 
-### Using property overloading
+### Using property Overloading
 
 ```php
 $opts = new Zend\Console\Getopt('abp:');
@@ -70,7 +70,7 @@ if (isset($opts->b)) {
 $p_parameter = $opts->p; // null if not set
 ```
 
-> ### Using aliases
+> ### Using Aliases
 >
 > If your options are declared with aliases, you may use any of the aliases for
 > an option when retrieving its value.

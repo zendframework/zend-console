@@ -1,4 +1,4 @@
-# Zend\\Console\\Getopt
+# Introduction
 
 The `Zend\Console\Getopt` class helps command-line applications to parse their
 options and arguments.
