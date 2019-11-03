@@ -1,12 +1,4 @@
-# Introduction to zend-console
-
-> ### Deprecated
->
-> Both the zend-console and the [zend-mvc-console](https://docs.zendframework.com/zend-mvc-console/)
-> components will likely not be maintained long-term, as there are more complete
-> implementations available elsewhere. We strongly urge developers to start
-> migrating their console tooling to use other libraries, such as
-> [symfony/console](https://github.com/symfony/console).
+# Introduction
 
 zend-console provides both generic support for routable console applications, as
 well as the basis for adding console support to zend-mvc-based applications.
@@ -71,7 +63,7 @@ the action `resetpassword` of `Application\Controller\IndexController`.
 
 First we need to create a **route definition**:
 
-```
+```text
 user resetpassword <userEmail>
 ```
 
@@ -80,7 +72,7 @@ This simple route definition expects exactly three arguments: the literal
 "userEmail". Let's assume we also accept one optional parameter to enable
 verbose operation:
 
-```
+```text
 user resetpassword [--verbose|-v] <userEmail>
 ```
 
@@ -88,7 +80,7 @@ The modified console route above expects the same three arguments from our
 original example, but will also recognise an optional `--verbose` flag, or its
 shorthand version, `-v`.
 
-> ### Flag order
+> ### Flag Order
 >
 > The order of flags is ignored by zend-console. Flags can appear before
 > positional parameters, after them, or anywhere in between. The order of
@@ -147,7 +139,7 @@ return [
 ;
 ```
 
-## Handling console requests
+## Handling Console Requests
 
 When a user runs our application from the command line and arguments match our
 console route, the specified controller will be instantiated, and the specified
@@ -157,7 +149,6 @@ As such, let's add the `resetpassword` action to our
 `Application\Controller\IndexController`:
 
 ```php
-<?php
 namespace Application\Controller;
 
 use RuntimeException;
@@ -214,7 +205,7 @@ The above creates `resetpasswordAction()`, which:
 - performs work based on the arguments;
 - and finally returns a simple string to display to the user via the console.
 
-## Adding console usage info
+## Adding Console Usage Info
 
 Console applications commonly display usage information when run without
 arguments. The combination of zend-console and zend-mvc enables this out of the
@@ -224,8 +215,6 @@ modules for console usage information they expose.
 Let's modify our `Application\Module` to provide usage info:
 
 ```php
-<?php
-
 namespace Application;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;

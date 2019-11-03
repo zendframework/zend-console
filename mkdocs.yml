@@ -1,6 +1,6 @@
 docs_dir: docs/book
 site_dir: docs/html
-pages:
+nav:
     - Home: index.md
     - Introduction: intro.md
     - Reference:
@@ -17,6 +17,7 @@ pages:
         - 'Fetching Options and Arguments': getopt/fetching.md
         - Configuration: getopt/configuration.md
 site_name: zend-console
-site_description: Zend\Console
+site_description: 'Build console applications using getopt syntax or routing, complete with prompts'
 repo_url: 'https://github.com/zendframework/zend-console'
-copyright: 'Copyright (c) 2005-2019 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a>'
+extra:
+    show_special_homepage: true

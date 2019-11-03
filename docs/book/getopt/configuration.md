@@ -1,4 +1,4 @@
-# Configuring Zend\\Console\\Getopt
+# Configuration
 
 ## Adding Option Rules
 

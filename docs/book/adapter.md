@@ -1,4 +1,4 @@
-# Console adapters
+# Console Adapters
 
 zend-console's console abstraction layer works around various bugs and limitations
 in operating systems, including:
