@@ -1,4 +1,4 @@
-# Declaring Getopt Rules
+# Declaring Rules
 
 The constructor for the `Zend\Console\Getopt` class takes from one to three
 arguments. The first argument declares which options are supported by your
