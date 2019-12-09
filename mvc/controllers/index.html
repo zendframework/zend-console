@@ -347,7 +347,7 @@ array, which holds the <code>controller</code> and <code>action</code> keys. The
 controller aliases in the <code>ServiceManager</code>, and method names in the controller
 class. This is analogous to the way HTTP requests are handled under zend-mvc.</p>
 <p>In this example we'll use the following route:</p>
-<p> <pre class=codehilite><code class=language-php>// in file module/Application/config/module.config.php:
+<pre class=codehilite><code class=language-php>// in file module/Application/config/module.config.php:
 return [
     'router' =&gt; [
         'routes' =&gt; [
@@ -372,14 +372,14 @@ return [
     ],
 
     /* ... */
-);</code></pre></p>
+);</code></pre>
 <p>This route will match commands such as:</p>
-<p> <pre class=codehilite><code class=language-bash>$ php public/index.php show users
+<pre class=codehilite><code class=language-bash>$ php public/index.php show users
 $ php public/index.php show all users
-$ php public/index.php show disabled users</code></pre></p>
+$ php public/index.php show disabled users</code></pre>
 <p>This route maps to the method <code>Application\Controller\IndexController::showUsersAction()</code>.</p>
 <p>Let's add it that method to our controller.</p>
-<p> <pre class=codehilite><code class=language-php>&lt;?php
+<pre class=codehilite><code class=language-php>&lt;?php
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -417,14 +417,14 @@ class IndexController extends AbstractActionController
                 break;
         }
     }
-}</code></pre></p>
+}</code></pre>
 <p>We fetch the console request, read parameters, and load users from our
 (theoretical) users service.  In order to make this method functional, we'll
 have to display the result in the console window.</p>
 <h2 id="sending-output-to-the-console">Sending Output to the Console</h2>
 <p>The simplest way for our controller to display data in the console window is to
 return a string. Let's modify our example to output a list of users:</p>
-<p> <pre class=codehilite><code class=language-php>public function showUsersAction()
+<pre class=codehilite><code class=language-php>public function showUsersAction()
 {
     $request = $this-&gt;getRequest();
     $users   = $this-&gt;getServiceLocator()-&gt;get('users');
@@ -461,7 +461,7 @@ return a string. Let's modify our example to output a list of users:</p>
     }
 
     return $result; // show it in the console
-}</code></pre></p>
+}</code></pre>
 <p>In the second conditional, we are checking if the users service found any users;
 if not, we return an error message to display immediately, terminating the
 application.</p>
@@ -472,7 +472,7 @@ return from the action for display in the console.</p>
 from a web request. This is useful to block certain methods from running in the
 console or to change their behavior based on that context.</p>
 <p>Here is an example of how to check if we are dealing with a console request:</p>
-<p> <pre class=codehilite><code class=language-php>namespace Application\Controller;
+<pre class=codehilite><code class=language-php>namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -493,7 +493,7 @@ class IndexController extends AbstractActionController
 
         /* ... */
     }
-}</code></pre></p>
+}</code></pre>
 <blockquote>
 <h3>Use Routing to protect Methods</h3>
 <p>You do not need to secure all your controllers and methods from console
@@ -506,7 +506,7 @@ unless there is at least one HTTP route that points to it.</p>
 </blockquote>
 <p>The example below shows how a single controller method can handle <strong>both Console
 and HTTP requests</strong>:</p>
-<p> <pre class=codehilite><code class=language-php>namespace Application\Controller;
+<pre class=codehilite><code class=language-php>namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -535,7 +535,7 @@ class IndexController extends AbstractActionController
 
         throw new RuntimeException('Cannot handle request of type ' . get_class($request));
     }
-}</code></pre></p>
+}</code></pre>
 <blockquote>
 <h3>AbstractConsoleController</h3>
 <p>One way to ensure you always receive a console request instance is to extend
@@ -552,7 +552,7 @@ focus on how to retrieve values from distinct parameters and flags.</p>
 <p>After a route matches, we can access both <strong>literal parameters</strong> and <strong>value
 parameters</strong> via the <code>$request</code> instance, using the <code>getParam()</code> method.</p>
 <p>Assuming we have the following route:</p>
-<p> <pre class=codehilite><code class=language-php>'show-users' =&gt; [
+<pre class=codehilite><code class=language-php>'show-users' =&gt; [
     'options' =&gt; [
         'route'    =&gt; 'show (all|deleted|locked|admin) [&lt;groupName&gt;]'
         'defaults' =&gt; [
@@ -560,9 +560,9 @@ parameters</strong> via the <code>$request</code> instance, using the <code>getP
             'action'     =&gt; 'showusers',
         ],
     ],
-],</code></pre></p>
+],</code></pre>
 <p>If this route matches, our action can now query parameters in the following way:</p>
-<p> <pre class=codehilite><code class=language-php>// an action inside Application\Controller\UsersController:
+<pre class=codehilite><code class=language-php>// an action inside Application\Controller\UsersController:
 public function showUsersAction()
 {
     $request = $this-&gt;getRequest();
@@ -578,10 +578,10 @@ public function showUsersAction()
     }
 
     /* ... */
-}</code></pre></p>
+}</code></pre>
 <p>In case of parameter alternatives, it is a good idea to <strong>assign a name to the group</strong>, which
 simplifies the branching in our action controllers. We can do this with the following syntax:</p>
-<p> <pre class=codehilite><code class=language-php>// inside of config.console.router.routes:
+<pre class=codehilite><code class=language-php>// inside of config.console.router.routes:
 'show-users' =&gt; array(
     'options' =&gt; array(
         'route'    =&gt; 'show (all|deleted|locked|admin):userTypeFilter [&lt;groupName&gt;]'
@@ -590,10 +590,10 @@ simplifies the branching in our action controllers. We can do this with the foll
             'action'     =&gt; 'showusers'
         )
     )
-)</code></pre></p>
+)</code></pre>
 <p>Now we can use a the group name <code>userTypeFilter</code> to check which option has been
 selected by the user:</p>
-<p> <pre class=codehilite><code class=language-php>public function showUsersAction()
+<pre class=codehilite><code class=language-php>public function showUsersAction()
 {
     $request = $this-&gt;getRequest();
 
@@ -612,13 +612,13 @@ selected by the user:</p>
            // ...
            // ...
     }
-}</code></pre></p>
+}</code></pre>
 <h3>Flags</h3>
 <p>Flags are directly accessible by name. Value-capturing flags will contain string
 values, as provided by the user. Non-value flags will be equal to <code>true</code>, or
 <code>null</code> if not present.</p>
 <p>Given the following route:</p>
-<p> <pre class=codehilite><code class=language-php>'find-user' =&gt; [
+<pre class=codehilite><code class=language-php>'find-user' =&gt; [
     'options' =&gt; [
         'route'    =&gt; 'find user [--fast] [--verbose] [--id=] [--firstName=] [--lastName=] [--email=] ',
         'defaults' =&gt; [
@@ -626,9 +626,9 @@ values, as provided by the user. Non-value flags will be equal to <code>true</co
             'action'     =&gt; 'find',
         ],
     ],
-],</code></pre></p>
+],</code></pre>
 <p>We can retrieve values in the following fashion:</p>
-<p> <pre class=codehilite><code class=language-php>public function findAction()
+<pre class=codehilite><code class=language-php>public function findAction()
 {
     $request = $this-&gt;getRequest();
 
@@ -647,9 +647,9 @@ values, as provided by the user. Non-value flags will be equal to <code>true</co
     } else {
         // perform standard query ...
     }
-}</code></pre></p>
+}</code></pre>
 <p>In case of <strong>flag alternatives</strong>, we have to check each alternative separately:</p>
-<p> <pre class=codehilite><code class=language-php>/*
+<pre class=codehilite><code class=language-php>/*
  * Assuming our route now reads:
  *      'route'    =&gt; 'find user [--fast|-f] [--verbose|-v] ... ',
  */
@@ -662,7 +662,7 @@ public function findAction()
     $isVerbose = $request-&gt;getParam('verbose', false) || $request-&gt;getParam('v', false);
 
     // ...
-}</code></pre></p>
+}</code></pre>
 
 
 

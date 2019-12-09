@@ -329,7 +329,7 @@ to the appropriate action controller and action method that will handle the
 request. Actions can perform any number of tasks prior to returning a result to
 display in the console window.</p>
 <p>When using zend-mvc, console routes are provided via configuration.</p>
-<p> <pre class=codehilite><code class=language-php>// The following can sit inside of module/Application/config/module.config.php,
+<pre class=codehilite><code class=language-php>// The following can sit inside of module/Application/config/module.config.php,
 // any other module's configuration, or within files under config/autoload/:
 return [
     'router' =&gt; [
@@ -345,13 +345,13 @@ return [
             ],
         ],
     ],
-];</code></pre></p>
+];</code></pre>
 <p>Console routes exposed via zend-mvc will only be processed when the application
 is run inside a console (terminal) window; they are not used for web (HTTP)
 requests. It is possible to define only HTTP routes (web application only), only
 console routes (console-only application), or a mixture of the two.</p>
 <p>As an example of a single route:</p>
-<p> <pre class=codehilite><code class=language-php>// inside config.console.router.routes:
+<pre class=codehilite><code class=language-php>// inside config.console.router.routes:
 'my-first-route' =&gt; [
     'type'    =&gt; 'simple',  // This is the default, and may be omitted; more on
                             // types below
@@ -362,7 +362,7 @@ console routes (console-only application), or a mixture of the two.</p>
             'action'     =&gt; 'password',
         ],
     ],
-],</code></pre></p>
+],</code></pre>
 <p>We have created a <code>simple</code> console route with the name <code>my-first-route</code>. It
 expects two parameters: <code>foo</code> and <code>bar</code>. If user puts these in a console,
 <code>Application\Controller\IndexController::passwordAction()</code> action will be
@@ -379,7 +379,7 @@ system. See the section on <a href="../../routes/#the-default-route-matcher">the
 for details on route strings and available configuration to provide.</p>
 <h3>Catchall Route</h3>
 <p>This special route will catch all console requests, regardless of the parameters provided.</p>
-<p> <pre class=codehilite><code class=language-php>'default-route' =&gt; [
+<pre class=codehilite><code class=language-php>'default-route' =&gt; [
     'type'     =&gt; 'catchall',
     'options' =&gt; [
         'route'    =&gt; '',
@@ -388,7 +388,7 @@ for details on route strings and available configuration to provide.</p>
             'action'     =&gt; 'consoledefault',
         ],
     ],
-],</code></pre></p>
+],</code></pre>
 <p>This route type is rarely used; one possible use case is to register it as the
 last console route, in order to display usage information. Before you do so,
 read about the <a href="../modules/">preferred way of displaying console usage

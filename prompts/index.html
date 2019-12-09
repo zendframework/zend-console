@@ -344,25 +344,25 @@
 convenience classes for interacting with the user in a console environment. This
 chapter describes available <code>Zend\Console\Prompt</code> classes and their usage.</p>
 <p>All prompts can be instantiated directly, and expose a <code>show()</code> method.</p>
-<p> <pre class=codehilite><code class=language-php>use Zend\Console\Prompt;
+<pre class=codehilite><code class=language-php>use Zend\Console\Prompt;
 
 $confirm = new Prompt\Confirm('Are you sure you want to continue?');
 $result = $confirm-&gt;show();
 if ($result) {
     // the user chose to continue
-}</code></pre></p>
+}</code></pre>
 <p>You can also use prompts statically, via the static <code>prompt()</code> method:</p>
-<p> <pre class=codehilite><code class=language-php>use Zend\Console\Prompt;
+<pre class=codehilite><code class=language-php>use Zend\Console\Prompt;
 
 $result = Prompt\Confirm::prompt('Are you sure you want to continue?');
 if ($result) {
     // the user chose to continue
-}</code></pre></p>
+}</code></pre>
 <p>Both of above examples will display something like this:</p>
 <p><img alt="Basic prompt" src="../images/zend.console.prompt.png" class="img-responsive"/></p>
 <h2 id="confirm">Confirm</h2>
 <p>This prompt is best used for <strong>yes</strong> / <strong>no</strong> prompts.</p>
-<p> <pre class=codehilite><code class=language-php>Confirm(string $text, string $yesChar = 'y', string $noChar = 'n') : bool</code></pre></p>
+<pre class=codehilite><code class=language-php>Confirm(string $text, string $yesChar = 'y', string $noChar = 'n') : bool</code></pre>
 <div class="table-responsive"><table>
 <thead>
 <tr>
@@ -386,21 +386,21 @@ if ($result) {
 </tbody>
 </table></div>
 <p>Example usage:</p>
-<p> <pre class=codehilite><code class=language-php>use Zend\Console\Prompt\Confirm;
+<pre class=codehilite><code class=language-php>use Zend\Console\Prompt\Confirm;
 
 if ( Confirm::prompt('Is this the correct answer? [y/n]', 'y', 'n')) {
     $console-&gt;write(&quot;You chose YES&quot;);
 } else {
     $console-&gt;write(&quot;You chose NO&quot;);
-}</code></pre></p>
+}</code></pre>
 <p><img alt="Confirm Prompt" src="../images/zend.console.prompt2.png" class="img-responsive"/></p>
 <h2 id="line">Line</h2>
 <p>This prompt asks for a line of text input.</p>
-<p> <pre class=codehilite><code class=language-php>Line(
+<pre class=codehilite><code class=language-php>Line(
     string $text = 'Please enter value',
     bool $allowEmpty = false,
     bool $maxLength = 2048
-) : string</code></pre></p>
+) : string</code></pre>
 <div class="table-responsive"><table>
 <thead>
 <tr>
@@ -424,7 +424,7 @@ if ( Confirm::prompt('Is this the correct answer? [y/n]', 'y', 'n')) {
 </tbody>
 </table></div>
 <p>Example usage:</p>
-<p> <pre class=codehilite><code class=language-php>use Zend\Console\Prompt\Line;
+<pre class=codehilite><code class=language-php>use Zend\Console\Prompt\Line;
 
 $name = Line::prompt(
     'What is your name?',
@@ -432,18 +432,18 @@ $name = Line::prompt(
     100
 );
 
-$console-&gt;write(&quot;Good day to you $name!&quot;);</code></pre></p>
+$console-&gt;write(&quot;Good day to you $name!&quot;);</code></pre>
 <p><img alt="Line Prompt" src="../images/zend.console.prompt3.png" class="img-responsive"/></p>
 <h2 id="char">Char</h2>
 <p>This prompt reads a single keystroke, and optionally validates it against a list
 of allowed characters.</p>
-<p> <pre class=codehilite><code class=language-php>Char(
+<pre class=codehilite><code class=language-php>Char(
     string $text = 'Please hit a key',
     string $allowedChars = 'abc',
     bool $ignoreCase = true,
     bool $allowEmpty = false,
     bool $echo = true
-) : string</code></pre></p>
+) : string</code></pre>
 <div class="table-responsive"><table>
 <thead>
 <tr>
@@ -475,7 +475,7 @@ of allowed characters.</p>
 </tbody>
 </table></div>
 <p>Example usage:</p>
-<p> <pre class=codehilite><code class=language-php>use Zend\Console\Prompt\Char;
+<pre class=codehilite><code class=language-php>use Zend\Console\Prompt\Char;
 
 $answer = Char::prompt(
     'What is the correct answer? [a,b,c,d,e]',
@@ -489,16 +489,16 @@ if ($answer == 'b') {
     $console-&gt;write('Correct. This is the right answer.');
 } else {
     $console-&gt;write('Wrong! Try again.');
-}</code></pre></p>
+}</code></pre>
 <p><img alt="Char Prompt" src="../images/zend.console.prompt4.png" class="img-responsive"/></p>
 <h2 id="select">Select</h2>
 <p>This prompt displays a number of choices, and asks the user to pick one.</p>
-<p> <pre class=codehilite><code class=language-php>Select(
+<pre class=codehilite><code class=language-php>Select(
     string $text = 'Please select one option',
     array $options = [],
     bool $allowEmpty = false,
     bool $echo = false
-) : string</code></pre></p>
+) : string</code></pre>
 <div class="table-responsive"><table>
 <thead>
 <tr>
@@ -526,7 +526,7 @@ if ($answer == 'b') {
 </tbody>
 </table></div>
 <p>Example usage:</p>
-<p> <pre class=codehilite><code class=language-php>$options = [
+<pre class=codehilite><code class=language-php>$options = [
     'a' =&gt; 'Apples',
     'o' =&gt; 'Oranges',
     'p' =&gt; 'Pears',
@@ -541,15 +541,15 @@ $answer = Select::prompt(
     false
 );
 
-$console-&gt;write(&quot;You told me that you like &quot; . $options[$answer]);</code></pre></p>
+$console-&gt;write(&quot;You told me that you like &quot; . $options[$answer]);</code></pre>
 <p><img alt="Select Prompt" src="../images/zend.console.prompt5.png" class="img-responsive"/></p>
 <h2 id="password">Password</h2>
 <p>This prompt reads in a string, without echoing that string back to the console;
 the most common use case is password prompts, which gives it its name.</p>
-<p> <pre class=codehilite><code class=language-php>Password(
+<pre class=codehilite><code class=language-php>Password(
     string $promptText = 'Password : ',
     boolean $echo = true
-) : string</code></pre></p>
+) : string</code></pre>
 <div class="table-responsive"><table>
 <thead>
 <tr>
@@ -569,11 +569,11 @@ the most common use case is password prompts, which gives it its name.</p>
 </tbody>
 </table></div>
 <p>Example usage:</p>
-<p> <pre class=codehilite><code class=language-php>use Zend\Console\Prompt\Password;
+<pre class=codehilite><code class=language-php>use Zend\Console\Prompt\Password;
 
 $password = Password::prompt('Enter the secret', true);
 
-$console-&gt;write(&quot;Sh!, the password is $password&quot;);</code></pre></p>
+$console-&gt;write(&quot;Sh!, the password is $password&quot;);</code></pre>
 <p><img alt="Password Prompt" src="../images/zend.console.prompt6.png" class="img-responsive"/></p>
 
 
