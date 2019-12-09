@@ -1,5 +1,9 @@
 # zend-console
 
+> ## Repository abandoned 2019-12-05
+>
+> This package is no longer maintained. We recommend migrating to symfony/console.
+
 [![Build Status](https://secure.travis-ci.org/zendframework/zend-console.svg?branch=master)](https://secure.travis-ci.org/zendframework/zend-console)
 [![Coverage Status](https://coveralls.io/repos/github/zendframework/zend-console/badge.svg?branch=master)](https://coveralls.io/github/zendframework/zend-console?branch=master)
 
