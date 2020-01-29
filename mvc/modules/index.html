@@ -7,12 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Build console applications using getopt syntax or routing, complete with prompts">  
-    <link rel="canonical" href="https://docs.zendframework.com/zend-console/mvc/modules/">
+    <link rel="canonical" href="https://docs.zendframework.com/mvc/modules/">
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
     <title>Console-Aware Modules - zend-console - Zend Framework Docs</title>
 
-    <link rel="stylesheet" href="../../css/styles-5cfabd53ee.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body id="page-top">
 
@@ -257,9 +257,9 @@
     <div class="laminas-announcement">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
-                Zend Framework transitions to the Linux Foundation. <a href="https://getlaminas.org">Learn More.</a>
-            </div>
+            <div class="col-xs-12"><strong>
+                This package has moved. Visit its replacement, <a href="https://docs.laminas.dev/laminas-console/">laminas/laminas-console.</a>
+            </strong></div>
         </div>
     </div>
 </div>
@@ -345,13 +345,15 @@ banners</a> and <a href="#usage-information">usage information</a>.</p>
 <h2 id="application-banner">Application banner</h2>
 <p>When using zend-console within a zend-mvc application, you can invoke it via
 the application bootstrap:</p>
-<pre class=codehilite><code class=language-bash>$ php public/index.php</code></pre>
+<pre><code class="language-bash">$ php public/index.php
+</code></pre>
+
 <p>By default, it will simply output the current ZF 2 version, like this:</p>
 <p><img alt="Basic console invocation" src="../../images/zend.console.empty.png" class="img-responsive"/></p>
 <p>Our <code>Application</code> module (and any other module) can provide an <strong>application
 banner</strong>. In order to do so, our <code>Module</code> class has to implement
 <code>Zend\ModuleManager\Feature\ConsoleBannerProviderInterface</code>. As an example:</p>
-<pre class=codehilite><code class=language-php>// module/Application/Module.php
+<pre><code class="language-php">// module/Application/Module.php
 &lt;?php
 namespace Application;
 
@@ -367,7 +369,9 @@ class Module implements ConsoleBannerProviderInterface
     {
         return 'MyModule 0.0.1';
     }
-}</code></pre>
+}
+</code></pre>
+
 <p>As you can see, the application banner should be a single line string that
 returns the module's name and (if available) its current version.</p>
 <p>If several modules define their own banner, they are displayed one after the
@@ -376,15 +380,17 @@ glance which modules expose console commands.</p>
 <p>If we execute our console application now, we'll see the newly created banner:</p>
 <p><img alt="Application banner" src="../../images/zend.console.banner.png" class="img-responsive"/></p>
 <p>Let's create and load a second module that provides a banner:</p>
-<pre class=codehilite><code class=language-php>&lt;?php
+<pre><code class="language-php">&lt;?php
 // config/application.config.php
 return array(
     'modules' =&gt; array(
         'Application',
         'User',     // &lt;- load user module in module/User
-    ),</code></pre>
+    ),
+</code></pre>
+
 <p>The <code>User</code> module will provide info about itself:</p>
-<pre class=codehilite><code class=language-php>// module/User/Module.php
+<pre><code class="language-php">// module/User/Module.php
 &lt;?php
 namespace User;
 
@@ -400,7 +406,9 @@ class Module implements ConsoleBannerProviderInterface
     {
         return &quot;User Module 0.0.1&quot;;
     }
-}</code></pre>
+}
+</code></pre>
+
 <p>Because the <code>User</code> module is loaded after the <code>Application</code> module, the result
 will look like this:</p>
 <p><img alt="Two modules" src="../../images/zend.console.banner2.png" class="img-responsive"/></p>
@@ -414,7 +422,7 @@ banners are also automatically colorized as blue.</p>
 <p>In order to display usage information, our Module class must implement
 <code>Zend\ModuleManager\Feature\ConsoleUsageProviderInterface</code>. Let's modify our
 example and add the new method defined in that interface:</p>
-<pre class=codehilite><code class=language-php>// module/Application/Module.php
+<pre><code class="language-php">// module/Application/Module.php
 &lt;?php
 namespace Application;
 
@@ -442,7 +450,9 @@ class Module implements
             '(enable|disable) debug' =&gt; 'Enable or disable debug mode for the application.',
         ];
     }
-}</code></pre>
+}
+</code></pre>
+
 <p>This will display the following information:</p>
 <p><img alt="Console usage" src="../../images/zend.console.usage.png" class="img-responsive"/></p>
 <p>Similar to <a href="#application-banner">application banners</a>, multiple modules can
@@ -464,11 +474,13 @@ real console requests, you still need to define console routes.</p>
 <p>In order to output free-form text as usage information, <code>getConsoleUsage()</code> can
 return a string or an array of strings. As an example, the following is a
 single, free-form usage text:</p>
-<pre class=codehilite><code class=language-php>public function getConsoleUsage(Console $console)
+<pre><code class="language-php">public function getConsoleUsage(Console $console)
 {
     return 'User module expects exactly one argument - user name. '
         . 'It will display information for the provided user.';
-}</code></pre>
+}
+</code></pre>
+
 <p><img alt="Free-form usage text" src="../../images/zend.console.usage2.png" class="img-responsive"/></p>
 <blockquote>
 <h4>Usage text is provided as-is</h4>
@@ -481,7 +493,7 @@ window, you could check its width with <code>$console-getWidth()</code>.</p>
 aligned in 2 columns.  The first column will be prepended with script name (the
 entry point for the application). This is useful to display the various
 commands exposed.</p>
-<pre class=codehilite><code class=language-php>public function getConsoleUsage(Console $console)
+<pre><code class="language-php">public function getConsoleUsage(Console $console)
 {
      return [
         'delete user &lt;userEmail&gt;'        =&gt; 'Delete user with email &lt;userEmail&gt;',
@@ -489,7 +501,9 @@ commands exposed.</p>
         'list [all|disabled] users'      =&gt; 'Show a list of users',
         'find user [--email=] [--name=]' =&gt; 'Attempt to find a user by email or name',
      ];
-}</code></pre>
+}
+</code></pre>
+
 <p><img alt="Listing multiple commands" src="../../images/zend.console.usage3.png" class="img-responsive"/></p>
 <blockquote>
 <h4>Command list alignment</h4>
@@ -505,7 +519,7 @@ parameters. This is useful for explaining flags, switches, possible values and
 other information. The output will be aligned in multiple columns for
 readability.</p>
 <p>As an example:</p>
-<pre class=codehilite><code class=language-php>public function getConsoleUsage(Console $console)
+<pre><code class="language-php">public function getConsoleUsage(Console $console)
 {
     return [
         [ '&lt;userEmail&gt;', 'email of the user' ],
@@ -514,10 +528,12 @@ readability.</p>
         [ '-v',          'Same as --verbose' ],
         [ '-w',          'Wide output'],
     );
-}</code></pre>
+}
+</code></pre>
+
 <p><img alt="Parameter lists" src="../../images/zend.console.usage4.png" class="img-responsive"/></p>
 <p>This method can be used to display more than 2 columns of information:</p>
-<pre class=codehilite><code class=language-php>public function getConsoleUsage(Console $console)
+<pre><code class="language-php">public function getConsoleUsage(Console $console)
 {
     return [
         [ '&lt;userEmail&gt;', 'user email',        'Full email address of the user to find.' ],
@@ -526,7 +542,9 @@ readability.</p>
         [ '-v',          'Same as --verbose', 'Display additional information during processing' ],
         [ '-w',          'wide output',       'When listing users, use the whole available screen width' ],
     ];
-}</code></pre>
+}
+</code></pre>
+
 <p><img alt="Multiple columns" src="../../images/zend.console.usage5.png" class="img-responsive"/></p>
 <blockquote>
 <h4>Alignment</h4>
@@ -539,7 +557,7 @@ with its own alignment and column widths.</p>
 </blockquote>
 <h3>Mixing styles</h3>
 <p>You can use mix together all of the above styles to provide comprehensive usage information.</p>
-<pre class=codehilite><code class=language-php>public function getConsoleUsage(Console $console)
+<pre><code class="language-php">public function getConsoleUsage(Console $console)
 {
     return [
         'Finding and listing users',
@@ -561,7 +579,9 @@ with its own alignment and column widths.</p>
         [ '-v',          'Same as --verbose', 'Display additional information during processing'],
 
     );
-}</code></pre>
+}
+</code></pre>
+
 <p><img alt="Mixed styles" src="../../images/zend.console.usage6.png" class="img-responsive"/></p>
 <h2 id="best-practices">Best practices</h2>
 <p>Here are the best practices when providing usage for your commands:</p>
@@ -795,7 +815,7 @@ with its own alignment and column widths.</p>
             
             <div class="col-md-9">
                 <h4 class="footer__headline">Copyright</h4>
-                <p>&copy; 2006-2019 by <a href="https://www.zend.com/">Zend</a>, a <a href="https://www.roguewave.com/">Rogue Wave Company</a>.</p>
+                <p>&copy; 2006-2020 by <a href="https://www.zend.com/">Zend</a> by <a href="https://www.perforce.com/">Perforce</a>.</p>
             </div>
 
             
@@ -803,10 +823,10 @@ with its own alignment and column widths.</p>
                 <h4 class="footer__headline">Support</h4>
                 <ul class="support__list">
                     <li class="support__list-item">
-                        <a href="https://discourse.zendframework.com" class="support__link" title="Forum"><i class="fa fa-comments"></i></a>
+                        <a href="https://discourse.laminas.dev" class="support__link" title="Forum"><i class="fa fa-comments"></i></a>
                     </li>
                     <li class="support__list-item">
-                        <a href="https://zendframework-slack.herokuapp.com" class="support__link" title="Chat"><i class="fa fa-slack"></i></a>
+                        <a href="https://laminas.dev/chat/" class="support__link" title="Chat"><i class="fa fa-slack"></i></a>
                     </li>
                     <li class="support__list-item">
                         <a href="https://github.com/zendframework" class="support__link" title="Github"><i class="fa fa-github"></i></a>
@@ -814,27 +834,28 @@ with its own alignment and column widths.</p>
                     <li class="support__list-item">
                         <a href="https://twitter.com/zfdevteam" class="support__link" title="Twitter"><i class="fa fa-twitter"></i></a>
                     </li>
-                    <li class="support__list-item">
-                        <a href="https://tinyletter.com/mwopzend" class="support__link" title="Newsletter"><i class="fa fa-envelope"></i></a>
-                    </li>
-                    <li class="support__list-item">
-                        <a href="https://framework.zend.com/blog/feed-rss.xml" class="support__link" title="Blog feed"><i class="fa fa-rss"></i></a>
-                    </li>
-                    <li class="support__list-item">
-                        <a href="https://framework.zend.com/security/feed" class="support__link" title="Security feed"><i class="fa fa-rss-square"></i></a>
-                    </li>
                 </ul>
             </div>
         </div>
     </div>
 </footer>
 
+<nav class="cookie-bar navbar navbar-fixed-bottom navbar-default hidden">
+    <div class="container">
+        <p class="navbar-text">
+            We use cookies to allow you to dismiss dialogs such as the Laminas
+            Project notification.
+        </p>
+        <button type="button" class="cookie-button btn btn-default navbar-btn">Allow Cookies</button>
+    </div>
+</nav>
+
     <script>
         var base_url = '../..',
             siteName = 'zend-console';
     </script>
-    <script src="../../js/scripts-8d7ae56abf.js"></script>
-        <script src="../../search/main.js"></script>
+    <script src="/js/scripts.js"></script>
+    <script src="../../search/main.js"></script>
 
     
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">

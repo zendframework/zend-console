@@ -7,12 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Build console applications using getopt syntax or routing, complete with prompts">  
-    <link rel="canonical" href="https://docs.zendframework.com/zend-console/getopt/configuration/">
+    <link rel="canonical" href="https://docs.zendframework.com/getopt/configuration/">
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
     <title>Configuration - zend-console - Zend Framework Docs</title>
 
-    <link rel="stylesheet" href="../../css/styles-5cfabd53ee.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body id="page-top">
 
@@ -257,9 +257,9 @@
     <div class="laminas-announcement">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
-                Zend Framework transitions to the Linux Foundation. <a href="https://getlaminas.org">Learn More.</a>
-            </div>
+            <div class="col-xs-12"><strong>
+                This package has moved. Visit its replacement, <a href="https://docs.laminas.dev/laminas-console/">laminas/laminas-console.</a>
+            </strong></div>
         </div>
     </div>
 </div>
@@ -349,10 +349,12 @@ an associative array in the format of a long syntax options specification.  See
 <a href="../rules/">Declaring Getopt Rules</a> for details on the syntax for specifying
 options.</p>
 <h3>Using addRules()</h3>
-<pre class=codehilite><code class=language-php>$opts = new Zend\Console\Getopt('abp:');
+<pre><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
 $opts-&gt;addRules([
     'verbose|v' =&gt; 'Print verbose output',
-]);</code></pre>
+]);
+</code></pre>
+
 <p>The example above shows adding the <code>--verbose</code> option with an alias of <code>-v</code> to a set of options
 defined in the call to the constructor. Notice that you can mix short format options and long format
 options in the same instance of <code>Zend\Console\Getopt</code>.</p>
@@ -362,12 +364,14 @@ long format, you can associate help strings with option rules using the
 <code>setHelp()</code> method. The argument to the <code>setHelp()</code> method is an associative
 array, in which the key is a flag, and the value is a corresponding help string.</p>
 <h3>Using setHelp()</h3>
-<pre class=codehilite><code class=language-php>$opts = new Zend\Console\Getopt('abp:');
+<pre><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
 $opts-&gt;setHelp([
     'a' =&gt; 'apple option, with no parameter',
     'b' =&gt; 'banana option, with required integer parameter',
     'p' =&gt; 'pear option, with optional string parameter',
-]);</code></pre>
+]);
+</code></pre>
+
 <p>If you declared options with aliases, you can use any of the aliases as the key
 of the associative array.</p>
 <p>The <code>setHelp()</code> method is the only way to define help strings if you declared
@@ -381,12 +385,14 @@ are still in effect.</p>
 <p>An alias may be declared only once. If you try to redefine an alias, a
 <code>Zend\Console\Getopt\Exception</code> is thrown.</p>
 <h3>Using setAliases()</h3>
-<pre class=codehilite><code class=language-php>$opts = new Zend\Console\Getopt('abp:');
+<pre><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
 $opts-&gt;setAliases([
     'a' =&gt; 'apple',
     'a' =&gt; 'apfel',
     'p' =&gt; 'pear',
-]);</code></pre>
+]);
+</code></pre>
+
 <p>In the example above, after declaring these aliases, <code>-a</code>, <code>--apple</code> and
 <code>--apfel</code> are aliases for each other. Also <code>-p</code> and <code>--pear</code> are aliases for
 each other.</p>
@@ -402,14 +408,16 @@ both cases, the parameter to these methods is a simple array of strings. The
 former method appends the array to the current arguments, and the latter method
 substitutes the array for the current arguments.</p>
 <h3>Using addArguments() and setArguments()</h3>
-<pre class=codehilite><code class=language-php>// By default, the constructor uses $_SERVER['argv']
+<pre><code class="language-php">// By default, the constructor uses $_SERVER['argv']
 $opts = new Zend\Console\Getopt('abp:');
 
 // Append an array to the existing arguments
 $opts-&gt;addArguments(['-a', '-p', 'p_parameter', 'non_option_arg']);
 
 // Substitute a new array for the existing arguments
-$opts-&gt;setArguments(['-a', '-p', 'p_parameter', 'non_option_arg']);</code></pre>
+$opts-&gt;setArguments(['-a', '-p', 'p_parameter', 'non_option_arg']);
+</code></pre>
+
 <h2 id="adding-configuration">Adding Configuration</h2>
 <p>The third parameter to the <code>Zend\Console\Getopt</code> constructor is an array of
 configuration options that affect the behavior of the object instance returned.
@@ -448,19 +456,22 @@ parentheses) are listed below:</p>
 <h3>Using setOption()</h3>
 <p>The two arguments to the <code>setOption()</code> method are a configuration option name
 and an option value.</p>
-<pre class=codehilite><code class=language-php>$opts = new Zend\Console\Getopt('abp:');
-$opts-&gt;setOption('ignoreCase', true);</code></pre>
+<pre><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
+$opts-&gt;setOption('ignoreCase', true);
+</code></pre>
+
 <h3>Using setOptions()</h3>
 <p>The argument to the <code>setOptions()</code> method is an associative array. The keys of
 this array are the configuration option names, and the values are configuration
 values. This is also the array format used in the class constructor. The
 configuration values you specify are merged with the current configuration; you
 don't have to list all options.</p>
-<pre class=codehilite><code class=language-php>$opts = new Zend\Console\Getopt('abp:');
+<pre><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
 $opts-&gt;setOptions([
     'ignoreCase' =&gt; true,
     'dashDash'   =&gt; false,
-]);</code></pre>
+]);
+</code></pre>
 
 
 
@@ -680,7 +691,7 @@ $opts-&gt;setOptions([
             
             <div class="col-md-9">
                 <h4 class="footer__headline">Copyright</h4>
-                <p>&copy; 2006-2019 by <a href="https://www.zend.com/">Zend</a>, a <a href="https://www.roguewave.com/">Rogue Wave Company</a>.</p>
+                <p>&copy; 2006-2020 by <a href="https://www.zend.com/">Zend</a> by <a href="https://www.perforce.com/">Perforce</a>.</p>
             </div>
 
             
@@ -688,10 +699,10 @@ $opts-&gt;setOptions([
                 <h4 class="footer__headline">Support</h4>
                 <ul class="support__list">
                     <li class="support__list-item">
-                        <a href="https://discourse.zendframework.com" class="support__link" title="Forum"><i class="fa fa-comments"></i></a>
+                        <a href="https://discourse.laminas.dev" class="support__link" title="Forum"><i class="fa fa-comments"></i></a>
                     </li>
                     <li class="support__list-item">
-                        <a href="https://zendframework-slack.herokuapp.com" class="support__link" title="Chat"><i class="fa fa-slack"></i></a>
+                        <a href="https://laminas.dev/chat/" class="support__link" title="Chat"><i class="fa fa-slack"></i></a>
                     </li>
                     <li class="support__list-item">
                         <a href="https://github.com/zendframework" class="support__link" title="Github"><i class="fa fa-github"></i></a>
@@ -699,27 +710,28 @@ $opts-&gt;setOptions([
                     <li class="support__list-item">
                         <a href="https://twitter.com/zfdevteam" class="support__link" title="Twitter"><i class="fa fa-twitter"></i></a>
                     </li>
-                    <li class="support__list-item">
-                        <a href="https://tinyletter.com/mwopzend" class="support__link" title="Newsletter"><i class="fa fa-envelope"></i></a>
-                    </li>
-                    <li class="support__list-item">
-                        <a href="https://framework.zend.com/blog/feed-rss.xml" class="support__link" title="Blog feed"><i class="fa fa-rss"></i></a>
-                    </li>
-                    <li class="support__list-item">
-                        <a href="https://framework.zend.com/security/feed" class="support__link" title="Security feed"><i class="fa fa-rss-square"></i></a>
-                    </li>
                 </ul>
             </div>
         </div>
     </div>
 </footer>
 
+<nav class="cookie-bar navbar navbar-fixed-bottom navbar-default hidden">
+    <div class="container">
+        <p class="navbar-text">
+            We use cookies to allow you to dismiss dialogs such as the Laminas
+            Project notification.
+        </p>
+        <button type="button" class="cookie-button btn btn-default navbar-btn">Allow Cookies</button>
+    </div>
+</nav>
+
     <script>
         var base_url = '../..',
             siteName = 'zend-console';
     </script>
-    <script src="../../js/scripts-8d7ae56abf.js"></script>
-        <script src="../../search/main.js"></script>
+    <script src="/js/scripts.js"></script>
+    <script src="../../search/main.js"></script>
 
     
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">

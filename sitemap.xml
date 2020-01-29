@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-     <loc>https://docs.zendframework.com/zend-console/</loc>
-     <lastmod>2019-12-09</lastmod>
+     <loc>https://docs.zendframework.com/</loc>
+     <lastmod>2020-01-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://docs.zendframework.com/zend-console/intro/</loc>
-     <lastmod>2019-12-09</lastmod>
+     <loc>https://docs.zendframework.com/intro/</loc>
+     <lastmod>2020-01-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://docs.zendframework.com/zend-console/adapter/</loc>
-     <lastmod>2019-12-09</lastmod>
+     <loc>https://docs.zendframework.com/adapter/</loc>
+     <lastmod>2020-01-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://docs.zendframework.com/zend-console/prompts/</loc>
-     <lastmod>2019-12-09</lastmod>
+     <loc>https://docs.zendframework.com/prompts/</loc>
+     <lastmod>2020-01-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://docs.zendframework.com/zend-console/routes/</loc>
-     <lastmod>2019-12-09</lastmod>
+     <loc>https://docs.zendframework.com/routes/</loc>
+     <lastmod>2020-01-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://docs.zendframework.com/zend-console/mvc/routing/</loc>
-     <lastmod>2019-12-09</lastmod>
+     <loc>https://docs.zendframework.com/mvc/routing/</loc>
+     <lastmod>2020-01-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://docs.zendframework.com/zend-console/mvc/modules/</loc>
-     <lastmod>2019-12-09</lastmod>
+     <loc>https://docs.zendframework.com/mvc/modules/</loc>
+     <lastmod>2020-01-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://docs.zendframework.com/zend-console/mvc/controllers/</loc>
-     <lastmod>2019-12-09</lastmod>
+     <loc>https://docs.zendframework.com/mvc/controllers/</loc>
+     <lastmod>2020-01-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://docs.zendframework.com/zend-console/getopt/intro/</loc>
-     <lastmod>2019-12-09</lastmod>
+     <loc>https://docs.zendframework.com/getopt/intro/</loc>
+     <lastmod>2020-01-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://docs.zendframework.com/zend-console/getopt/rules/</loc>
-     <lastmod>2019-12-09</lastmod>
+     <loc>https://docs.zendframework.com/getopt/rules/</loc>
+     <lastmod>2020-01-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://docs.zendframework.com/zend-console/getopt/fetching/</loc>
-     <lastmod>2019-12-09</lastmod>
+     <loc>https://docs.zendframework.com/getopt/fetching/</loc>
+     <lastmod>2020-01-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://docs.zendframework.com/zend-console/getopt/configuration/</loc>
-     <lastmod>2019-12-09</lastmod>
+     <loc>https://docs.zendframework.com/getopt/configuration/</loc>
+     <lastmod>2020-01-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

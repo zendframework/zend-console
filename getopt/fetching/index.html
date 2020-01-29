@@ -7,12 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Build console applications using getopt syntax or routing, complete with prompts">  
-    <link rel="canonical" href="https://docs.zendframework.com/zend-console/getopt/fetching/">
+    <link rel="canonical" href="https://docs.zendframework.com/getopt/fetching/">
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
     <title>Fetching Options and Arguments - zend-console - Zend Framework Docs</title>
 
-    <link rel="stylesheet" href="../../css/styles-5cfabd53ee.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body id="page-top">
 
@@ -257,9 +257,9 @@
     <div class="laminas-announcement">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
-                Zend Framework transitions to the Linux Foundation. <a href="https://getlaminas.org">Learn More.</a>
-            </div>
+            <div class="col-xs-12"><strong>
+                This package has moved. Visit its replacement, <a href="https://docs.laminas.dev/laminas-console/">laminas/laminas-console.</a>
+            </strong></div>
         </div>
     </div>
 </div>
@@ -355,13 +355,15 @@ throw an exception again. The exception thrown has a custom method
 <code>getUsageMessage()</code> which returns as a string the formatted set of usage
 messages for all declared options.</p>
 <h3>Catching Getopt Exceptions</h3>
-<pre class=codehilite><code class=language-php>try {
+<pre><code class="language-php">try {
     $opts = new Zend\Console\Getopt('abp:');
     $opts-&gt;parse();
 } catch (Zend\Console\Exception\RuntimeException $e) {
     echo $e-&gt;getUsageMessage();
     exit;
-}</code></pre>
+}
+</code></pre>
+
 <p>Cases where parsing throws an exception include:</p>
 <ul>
 <li>Option given is not recognized.</li>
@@ -375,18 +377,22 @@ option had a parameter, this method returns the value of the parameter. If the
 option had no parameter but the user did specify it on the command-line, the
 method returns <code>TRUE</code>. Otherwise the method returns <code>NULL</code>.</p>
 <h3>Using getOption()</h3>
-<pre class=codehilite><code class=language-php>$opts = new Zend\Console\Getopt('abp:');
+<pre><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
 $b = $opts-&gt;getOption('b');
-$p_parameter = $opts-&gt;getOption('p');</code></pre>
+$p_parameter = $opts-&gt;getOption('p');
+</code></pre>
+
 <p>Alternatively, you can use the property overloading via the magic <code>__isset()</code> and
 <code>__get()</code> methods, allowing you to test for and retrieve values as if they were
 property names.</p>
 <h3>Using property Overloading</h3>
-<pre class=codehilite><code class=language-php>$opts = new Zend\Console\Getopt('abp:');
+<pre><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
 if (isset($opts-&gt;b)) {
     echo &quot;I got the b option.\n&quot;;
 }
-$p_parameter = $opts-&gt;p; // null if not set</code></pre>
+$p_parameter = $opts-&gt;p; // null if not set
+</code></pre>
+
 <blockquote>
 <h3>Using Aliases</h3>
 <p>If your options are declared with aliases, you may use any of the aliases for
@@ -416,9 +422,11 @@ command-line, there may be additional arguments remaining. You can query these
 arguments using the <code>getRemainingArgs()</code> method.  This method returns an array
 of the strings that were not part of any options.</p>
 <h3>Using getRemainingArgs()</h3>
-<pre class=codehilite><code class=language-php>$opts = new Zend\Console\Getopt('abp:');
+<pre><code class="language-php">$opts = new Zend\Console\Getopt('abp:');
 $opts-&gt;setArguments(['-p', 'p_parameter', 'filename']);
-$args = $opts-&gt;getRemainingArgs(); // returns ['filename']</code></pre>
+$args = $opts-&gt;getRemainingArgs(); // returns ['filename']
+</code></pre>
+
 <p><code>Zend\Console\Getopt</code> supports the GNU convention that an argument consisting of
 a double-dash signifies the end of options. Any arguments following this
 signifier must be treated as non-option arguments. This is useful if you might
@@ -647,7 +655,7 @@ have a non-option argument that begins with a dash. For example: <code>rm --
             
             <div class="col-md-9">
                 <h4 class="footer__headline">Copyright</h4>
-                <p>&copy; 2006-2019 by <a href="https://www.zend.com/">Zend</a>, a <a href="https://www.roguewave.com/">Rogue Wave Company</a>.</p>
+                <p>&copy; 2006-2020 by <a href="https://www.zend.com/">Zend</a> by <a href="https://www.perforce.com/">Perforce</a>.</p>
             </div>
 
             
@@ -655,10 +663,10 @@ have a non-option argument that begins with a dash. For example: <code>rm --
                 <h4 class="footer__headline">Support</h4>
                 <ul class="support__list">
                     <li class="support__list-item">
-                        <a href="https://discourse.zendframework.com" class="support__link" title="Forum"><i class="fa fa-comments"></i></a>
+                        <a href="https://discourse.laminas.dev" class="support__link" title="Forum"><i class="fa fa-comments"></i></a>
                     </li>
                     <li class="support__list-item">
-                        <a href="https://zendframework-slack.herokuapp.com" class="support__link" title="Chat"><i class="fa fa-slack"></i></a>
+                        <a href="https://laminas.dev/chat/" class="support__link" title="Chat"><i class="fa fa-slack"></i></a>
                     </li>
                     <li class="support__list-item">
                         <a href="https://github.com/zendframework" class="support__link" title="Github"><i class="fa fa-github"></i></a>
@@ -666,27 +674,28 @@ have a non-option argument that begins with a dash. For example: <code>rm --
                     <li class="support__list-item">
                         <a href="https://twitter.com/zfdevteam" class="support__link" title="Twitter"><i class="fa fa-twitter"></i></a>
                     </li>
-                    <li class="support__list-item">
-                        <a href="https://tinyletter.com/mwopzend" class="support__link" title="Newsletter"><i class="fa fa-envelope"></i></a>
-                    </li>
-                    <li class="support__list-item">
-                        <a href="https://framework.zend.com/blog/feed-rss.xml" class="support__link" title="Blog feed"><i class="fa fa-rss"></i></a>
-                    </li>
-                    <li class="support__list-item">
-                        <a href="https://framework.zend.com/security/feed" class="support__link" title="Security feed"><i class="fa fa-rss-square"></i></a>
-                    </li>
                 </ul>
             </div>
         </div>
     </div>
 </footer>
 
+<nav class="cookie-bar navbar navbar-fixed-bottom navbar-default hidden">
+    <div class="container">
+        <p class="navbar-text">
+            We use cookies to allow you to dismiss dialogs such as the Laminas
+            Project notification.
+        </p>
+        <button type="button" class="cookie-button btn btn-default navbar-btn">Allow Cookies</button>
+    </div>
+</nav>
+
     <script>
         var base_url = '../..',
             siteName = 'zend-console';
     </script>
-    <script src="../../js/scripts-8d7ae56abf.js"></script>
-        <script src="../../search/main.js"></script>
+    <script src="/js/scripts.js"></script>
+    <script src="../../search/main.js"></script>
 
     
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
